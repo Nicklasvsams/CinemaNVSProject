@@ -1,5 +1,4 @@
-﻿using CinemaNVS.DAL.Database.Entities.Movies;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,7 +13,7 @@ namespace CinemaNVS.DAL.Database.Entities.Movies
         public string Title { get; set; }
         [Column(TypeName = "decimal(2,1)")]
         public float Rating { get; set; }
-        [Column(TypeName = "nvarchar(20)")]
+        [Column(TypeName = "int")]
         public int RuntimeMinutes { get; set; }
         [Column(TypeName = "date")]
         public DateTime ReleaseDate { get; set; }
