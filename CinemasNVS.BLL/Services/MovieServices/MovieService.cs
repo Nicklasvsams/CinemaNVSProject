@@ -9,7 +9,11 @@ namespace CinemasNVS.BLL.Services.MovieServices
 {
     public interface IMovieService
     {
-        public Task<IEnumerable<MovieResponse>> GetAllMovies();
+        Task<IEnumerable<MovieResponse>> GetAllMoviesAsync();
+        Task<MovieResponse> GetMovieByIdAsync(int id);
+        Task<MovieResponse> DeleteMovieByIdAsync(int id);
+        Task<MovieResponse> UpdateMovieByIdAsync(MovieRequest movie, int id);
+        Task<MovieResponse> CreateMovieAsync(MovieRequest movie);
     }
 
     public class MovieService : IMovieService
@@ -21,27 +25,97 @@ namespace CinemasNVS.BLL.Services.MovieServices
             _movieRepository = movieRepository;
         }
 
-        public async Task<IEnumerable<MovieResponse>> GetAllMovies()
+        public async Task<MovieResponse> CreateMovieAsync(MovieRequest movie)
         {
-            IEnumerable<Movie> movies = await _movieRepository.SelectAllMovies();
+            return MapEntityToResponse(await _movieRepository.InsertMovieAsync(MapRequestToEntity(movie)));
+        }
+
+        public async Task<MovieResponse> DeleteMovieByIdAsync(int id)
+        {
+            return MapEntityToResponse(await _movieRepository.DeleteMovieByIdAsync(id));
+        }
+
+        public async Task<IEnumerable<MovieResponse>> GetAllMoviesAsync()
+        {
+            IEnumerable<Movie> movies = await _movieRepository.SelectAllMoviesAsync();
 
             return movies.Select(x => MapEntityToResponse(x)).ToList();
         }
 
+        public async Task<MovieResponse> GetMovieByIdAsync(int id)
+        {
+            return MapEntityToResponse(await _movieRepository.SelectMovieByIdAsync(id));
+        }
+
+        public async Task<MovieResponse> UpdateMovieByIdAsync(MovieRequest movie, int id)
+        {
+            return MapEntityToResponse(await _movieRepository.UpdateMovieByIdAsync(MapRequestToEntity(movie), id));
+        }
+
         private MovieResponse MapEntityToResponse(Movie movie)
         {
-            return new MovieResponse()
+            MovieResponse movRes = new MovieResponse()
             {
                 Id = movie.Id,
                 Title = movie.Title,
                 Rating = movie.Rating,
                 RuntimeMinutes = movie.RuntimeMinutes,
-                IsRunning = movie.IsRunning,
                 TrailerLink = movie.TrailerLink,
                 ImdbLink = movie.ImdbLink,
                 ReleaseDate = movie.ReleaseDate,
                 DirectorId = movie.DirectorId
             };
+
+            if (movie.Actors != null)
+            {
+                List<MovieActorResponse> actRes = new List<MovieActorResponse>();
+
+                foreach (Actor actor in movie.Actors)
+                {
+                    actRes.Add(new MovieActorResponse()
+                    {
+                        Id = actor.Id,
+                        Name = actor.Name,
+                        ImdbLink = actor.ImdbLink
+                    });
+
+                }
+                movRes.ActorResponse = actRes;
+            }
+
+            if (movie.Director != null)
+            {
+                movRes.DirectorResponse = new MovieDirectorResponse()
+                {
+                    Id = movie.Director.Id,
+                    Name = movie.Director.Name,
+                    ImdbLink = movie.Director.ImdbLink
+                };
+            }
+
+            if (movie.IsRunning == 1) { movRes.IsRunning = true; }
+            else { movRes.IsRunning = false; };
+
+            return movRes;
+        }
+
+        private Movie MapRequestToEntity(MovieRequest movReq)
+        {
+            Movie mov = new Movie()
+            {
+                Title = movReq.Title,
+                Rating = movReq.Rating,
+                ReleaseDate = movReq.ReleaseDate,
+                ImdbLink = movReq.ImdbLink,
+                TrailerLink = movReq.TrailerLink,
+                RuntimeMinutes = movReq.RuntimeMinutes,
+                DirectorId = movReq.DirectorId
+            };
+
+            if (movReq.IsRunning) { mov.IsRunning = 1; }
+            else { mov.IsRunning = 0; };
+
+            return mov;
         }
     }
 }
