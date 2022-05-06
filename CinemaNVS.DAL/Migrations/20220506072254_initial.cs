@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CinemaNVS.DAL.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -43,7 +43,7 @@ namespace CinemaNVS.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     Rating = table.Column<decimal>(type: "decimal(2,1)", nullable: false),
-                    RuntimeMinutes = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    RuntimeMinutes = table.Column<int>(type: "int", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "date", nullable: false),
                     IsRunning = table.Column<int>(type: "int", nullable: false),
                     TrailerLink = table.Column<string>(type: "nvarchar(100)", nullable: true),
@@ -98,7 +98,7 @@ namespace CinemaNVS.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Movies",
                 columns: new[] { "Id", "DirectorId", "ImdbLink", "IsRunning", "Rating", "ReleaseDate", "RuntimeMinutes", "Title", "TrailerLink" },
-                values: new object[] { 1, 1, "https://www.imdb.com/title/tt1853728/", 0, 8.4m, new DateTime(2013, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "165", "Django Unchained", "https://www.youtube.com/watch?v=0fUCuvNlOCg" });
+                values: new object[] { 1, 1, "https://www.imdb.com/title/tt1853728/", 0, 8.4m, new DateTime(2013, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 165, "Django Unchained", "https://www.youtube.com/watch?v=0fUCuvNlOCg" });
 
             migrationBuilder.InsertData(
                 table: "ActorMovie",

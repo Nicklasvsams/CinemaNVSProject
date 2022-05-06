@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaNVS.DAL.Migrations
 {
     [DbContext(typeof(CinemaDBContext))]
-    [Migration("20220504105935_Initial")]
-    partial class Initial
+    [Migration("20220506072254_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,9 +110,8 @@ namespace CinemaNVS.DAL.Migrations
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("date");
 
-                    b.Property<string>("RuntimeMinutes")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<int>("RuntimeMinutes")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(100)");
@@ -135,7 +134,7 @@ namespace CinemaNVS.DAL.Migrations
                             IsRunning = 0,
                             Rating = 8.4m,
                             ReleaseDate = new DateTime(2013, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RuntimeMinutes = "165",
+                            RuntimeMinutes = 165,
                             Title = "Django Unchained",
                             TrailerLink = "https://www.youtube.com/watch?v=0fUCuvNlOCg"
                         });
