@@ -1,8 +1,8 @@
 ﻿using CinemasNVS.BLL.DTOs;
 using CinemasNVS.BLL.Services.MovieServices;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -22,6 +22,9 @@ namespace CinemaNVS.Controllers
 
         // GET: api/<MovieController>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -48,30 +51,97 @@ namespace CinemaNVS.Controllers
 
         // GET api/<MovieController>/5
         [HttpGet("{id}")]
-        public async Task<MovieResponse> Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetById([FromRoute]int id)
         {
-            return await _movieService.GetMovieByIdAsync(id);
+            try
+            {
+                var movieResponse = await _movieService.GetMovieByIdAsync(id);
+
+                if (movieResponse == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(movieResponse);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         // POST api/<MovieController>
         [HttpPost]
-        public async Task<MovieResponse> Post([FromBody] MovieRequest movReq)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Create([FromBody]MovieRequest movReq)
         {
-            return await _movieService.CreateMovieAsync(movReq);
+            try
+            {
+                var movieResponse = await _movieService.CreateMovieAsync(movReq);
+
+                if (movieResponse == null)
+                {
+                    return StatusCode(500);
+                }
+
+                return Ok(movieResponse);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         // PUT api/<MovieController>/5
         [HttpPut("{id}")]
-        public async Task<MovieResponse> Put(int id, [FromBody] MovieRequest movReq)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Update([FromRoute]int id, [FromBody]MovieRequest movReq)
         {
-            return await _movieService.UpdateMovieByIdAsync(movReq, id);
+            try
+            {
+                var movieResponse = await _movieService.UpdateMovieByIdAsync(movReq, id);
+
+                if (movieResponse == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(movieResponse);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         // DELETE api/<MovieController>/5
         [HttpDelete("{id}")]
-        public async Task<MovieResponse> Delete(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete([FromRoute]int id)
         {
-            return await _movieService.DeleteMovieByIdAsync(id);
+            try
+            {
+                var movieResponse = await _movieService.DeleteMovieByIdAsync(id);
+
+                if (movieResponse == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(movieResponse);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
     }
 }
