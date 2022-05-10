@@ -54,47 +54,52 @@ namespace CinemasNVS.BLL.Services.MovieServices
 
         private MovieResponse MapEntityToResponse(Movie movie)
         {
-            MovieResponse movRes = new MovieResponse()
-            {
-                Id = movie.Id,
-                Title = movie.Title,
-                Rating = movie.Rating,
-                RuntimeMinutes = movie.RuntimeMinutes,
-                TrailerLink = movie.TrailerLink,
-                ImdbLink = movie.ImdbLink,
-                ReleaseDate = movie.ReleaseDate,
-                DirectorId = movie.DirectorId
-            };
+            MovieResponse movRes = null;
 
-            if (movie.Actors != null)
+            if (movie != null)
             {
-                List<MovieActorResponse> actRes = new List<MovieActorResponse>();
-
-                foreach (Actor actor in movie.Actors)
+                movRes = new MovieResponse()
                 {
-                    actRes.Add(new MovieActorResponse()
-                    {
-                        Id = actor.Id,
-                        Name = actor.Name,
-                        ImdbLink = actor.ImdbLink
-                    });
-
-                }
-                movRes.ActorResponse = actRes;
-            }
-
-            if (movie.Director != null)
-            {
-                movRes.DirectorResponse = new MovieDirectorResponse()
-                {
-                    Id = movie.Director.Id,
-                    Name = movie.Director.Name,
-                    ImdbLink = movie.Director.ImdbLink
+                    Id = movie.Id,
+                    Title = movie.Title,
+                    Rating = movie.Rating,
+                    RuntimeMinutes = movie.RuntimeMinutes,
+                    TrailerLink = movie.TrailerLink,
+                    ImdbLink = movie.ImdbLink,
+                    ReleaseDate = movie.ReleaseDate,
+                    DirectorId = movie.DirectorId
                 };
-            }
 
-            if (movie.IsRunning == 1) { movRes.IsRunning = true; }
-            else { movRes.IsRunning = false; };
+                if (movie.Actors != null)
+                {
+                    List<MovieActorResponse> actRes = new List<MovieActorResponse>();
+
+                    foreach (Actor actor in movie.Actors)
+                    {
+                        actRes.Add(new MovieActorResponse()
+                        {
+                            Id = actor.Id,
+                            Name = actor.Name,
+                            ImdbLink = actor.ImdbLink
+                        });
+
+                    }
+                    movRes.ActorResponse = actRes;
+                }
+
+                if (movie.Director != null)
+                {
+                    movRes.DirectorResponse = new MovieDirectorResponse()
+                    {
+                        Id = movie.Director.Id,
+                        Name = movie.Director.Name,
+                        ImdbLink = movie.Director.ImdbLink
+                    };
+                }
+
+                if (movie.IsRunning == 1) movRes.IsRunning = true;
+                else movRes.IsRunning = false;
+            }
 
             return movRes;
         }
@@ -112,8 +117,8 @@ namespace CinemasNVS.BLL.Services.MovieServices
                 DirectorId = movReq.DirectorId
             };
 
-            if (movReq.IsRunning) { mov.IsRunning = 1; }
-            else { mov.IsRunning = 0; };
+            if (movReq.IsRunning) mov.IsRunning = 1; 
+            else mov.IsRunning = 0;
 
             return mov;
         }

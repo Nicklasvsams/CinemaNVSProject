@@ -1,4 +1,6 @@
-﻿namespace CinemasNVS.BLL.DTOs
+﻿using System;
+
+namespace CinemasNVS.BLL.DTOs
 {
     public class DirectorResponse
     {
@@ -6,6 +8,19 @@
         public string Name { get; set; }
         public string ImdbLink { get; set; }
 
-        public MovieResponse MovieResponse { get; set; }
+        public DirectorMovieResponse MovieResponse { get; set; }
+    }
+
+    public class DirectorMovieResponse
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public float Rating { get; set; }
+        public int RuntimeMinutes { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public bool IsRunning { get; set; }
+        public string TrailerLink { get; set; }
+        public string ImdbLink { get; set; }
+        public int DirectorId { get; set; }
     }
 }
