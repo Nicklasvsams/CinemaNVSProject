@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CinemasNVS.BLL.DTOs
 {
@@ -8,7 +9,7 @@ namespace CinemasNVS.BLL.DTOs
         public string Name { get; set; }
         public string ImdbLink { get; set; }
 
-        public DirectorMovieResponse MovieResponse { get; set; }
+        public IEnumerable<DirectorMovieResponse> Movies { get; set; }
     }
 
     public class DirectorMovieResponse

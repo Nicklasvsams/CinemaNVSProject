@@ -48,12 +48,18 @@ namespace CinemaNVS.DAL.Repositories.Movies
 
         public async Task<Actor> SelectActorByIdAsync(int id)
         {
-            return await _dBContext.Actors.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dBContext
+                .Actors
+                .Include("Movies")
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<Actor>> SelectAllActorsAsync()
         {
-            return await _dBContext.Actors.ToListAsync();
+            return await _dBContext
+                .Actors
+                .Include("Movies")
+                .ToListAsync();
         }
 
         public async Task<Actor> UpdateActorByIdAsync(Actor actor, int id)

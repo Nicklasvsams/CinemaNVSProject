@@ -88,6 +88,8 @@ namespace CinemasNVS.BLL.Services.MovieServices
 
                         movies.Add(actorMovieResponse);
                     }
+
+                    actRes.Movies = movies;
                 }
             }
 
