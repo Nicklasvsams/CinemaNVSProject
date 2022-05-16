@@ -34,6 +34,10 @@ namespace CinemaNVS
 
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<IActorRepository, ActorRepository>();
+            services.AddScoped<IActorService, ActorService>();
+            services.AddScoped<IDirectorRepository, DirectorRepository>();
+            services.AddScoped<IDirectorService, DirectorService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
