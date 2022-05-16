@@ -48,12 +48,18 @@ namespace CinemaNVS.DAL.Repositories.Movies
 
         public async Task<IEnumerable<Director>> SelectAllDirectorsAsync()
         {
-            return await _dBContext.Directors.ToListAsync();
+            return await _dBContext
+                .Directors
+                .Include("Movies")
+                .ToListAsync();
         }
 
         public async Task<Director> SelectDirectorByIdAsync(int id)
         {
-            return await _dBContext.Directors.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dBContext
+                .Directors
+                .Include("Movies")
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<Director> UpdateDirectorByIdAsync(Director director, int id)
@@ -64,6 +70,8 @@ namespace CinemaNVS.DAL.Repositories.Movies
             {
                 directorToUpdate.Name = director.Name;
                 directorToUpdate.ImdbLink = director.ImdbLink;
+
+                await _dBContext.SaveChangesAsync();
             }
 
             return directorToUpdate;
