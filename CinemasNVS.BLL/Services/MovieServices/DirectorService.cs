@@ -11,9 +11,9 @@ namespace CinemasNVS.BLL.Services.MovieServices
     {
         Task<IEnumerable<DirectorResponse>> GetAllDirectorsAsync();
         Task<DirectorResponse> GetDirectorByIdAsync(int directorId);
-        Task<DirectorResponse> CreateDirector(DirectorRequest director);
-        Task<DirectorResponse> DeleteDirector(int directorId);
-        Task<DirectorResponse> UpdateDirector(int directorId, DirectorRequest director);
+        Task<DirectorResponse> CreateDirectorAsync(DirectorRequest director);
+        Task<DirectorResponse> DeleteDirectorAsync(int directorId);
+        Task<DirectorResponse> UpdateDirectorAsync(int directorId, DirectorRequest director);
     }
 
     public class DirectorService : IDirectorService
@@ -25,12 +25,12 @@ namespace CinemasNVS.BLL.Services.MovieServices
             _directorRepository = directorRepository;
         }
 
-        public async Task<DirectorResponse> CreateDirector(DirectorRequest director)
+        public async Task<DirectorResponse> CreateDirectorAsync(DirectorRequest director)
         {
             return MapEntityToResponse(await _directorRepository.InsertDirectorAsync(MapRequestToEntity(director)));
         }
 
-        public async Task<DirectorResponse> DeleteDirector(int directorId)
+        public async Task<DirectorResponse> DeleteDirectorAsync(int directorId)
         {
             return MapEntityToResponse(await _directorRepository.DeleteDirectorByIdAsync(directorId));
         }
@@ -47,7 +47,7 @@ namespace CinemasNVS.BLL.Services.MovieServices
             return MapEntityToResponse(await _directorRepository.SelectDirectorByIdAsync(directorId));
         }
 
-        public async Task<DirectorResponse> UpdateDirector(int directorId, DirectorRequest director)
+        public async Task<DirectorResponse> UpdateDirectorAsync(int directorId, DirectorRequest director)
         {
             return MapEntityToResponse(await _directorRepository.UpdateDirectorByIdAsync(MapRequestToEntity(director), directorId));
         }
