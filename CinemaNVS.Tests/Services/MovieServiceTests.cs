@@ -231,41 +231,6 @@ namespace CinemaNVS.Tests.Services
             };
         }
 
-        private List<MovieResponse> MovieResponseList()
-        {
-            return new List<MovieResponse>()
-            {
-                new MovieResponse()
-                {
-                    Id = 1,
-                    Title = "Test",
-                    IsRunning = true,
-                    ReleaseDate = DateTime.Now,
-                    ImdbLink = "TestLink",
-                    RuntimeMinutes = 191,
-                    TrailerLink = "TestLink",
-                    Rating = 1,
-                    DirectorId = 1,
-                    DirectorResponse = new MovieDirectorResponse(),
-                    ActorResponse = new List<MovieActorResponse>()
-                },
-                new MovieResponse()
-                {
-                    Id = 2,
-                    Title = "Test2",
-                    IsRunning = false,
-                    ReleaseDate = DateTime.Now,
-                    ImdbLink = "TestLink2",
-                    RuntimeMinutes = 19,
-                    TrailerLink = "TestLink2",
-                    Rating = 2,
-                    DirectorId = 2,
-                    DirectorResponse = new MovieDirectorResponse(),
-                    ActorResponse = new List<MovieActorResponse>()
-                }
-            };
-        }
-
         private MovieRequest MovieRequest()
         {
             return new MovieRequest()
@@ -298,7 +263,5 @@ namespace CinemaNVS.Tests.Services
                 Actors = new List<Actor>()
             };
         }
-
-        
     }
 }
