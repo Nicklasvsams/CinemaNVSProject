@@ -17,7 +17,7 @@ namespace CinemaNVS.Tests.Repository
         public ActorRepositoryTests()
         {
             DbContextOptions<CinemaDBContext> _dbContextOptions = new DbContextOptionsBuilder<CinemaDBContext>()
-                .UseInMemoryDatabase(databaseName: "DirectorRepositoryDB")
+                .UseInMemoryDatabase(databaseName: "ActorRepositoryDB")
                 .Options;
             _dbContext = new CinemaDBContext(_dbContextOptions);
             _actorRepository = new ActorRepository(_dbContext);
