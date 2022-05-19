@@ -99,7 +99,7 @@ namespace CinemaNVS.Controllers
         {
             try
             {
-                var directorResponse = await _directorService.UpdateDirectorAsync(id, dirReq);
+                var directorResponse = await _directorService.UpdateDirectorByIdAsync(id, dirReq);
 
                 if (directorResponse == null)
                 {
@@ -122,7 +122,7 @@ namespace CinemaNVS.Controllers
         {
             try
             {
-                var directorResponse = await _directorService.DeleteDirectorAsync(id);
+                var directorResponse = await _directorService.DeleteDirectorByIdAsync(id);
 
                 if (directorResponse == null)
                 {

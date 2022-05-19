@@ -99,7 +99,7 @@ namespace CinemaNVS.Controllers
         {
             try
             {
-                var actorResponse = await _actorService.UpdateActorAsync(id, actReq);
+                var actorResponse = await _actorService.UpdateActorByIdAsync(id, actReq);
 
                 if (actorResponse == null)
                 {
@@ -122,7 +122,7 @@ namespace CinemaNVS.Controllers
         {
             try
             {
-                var actorResponse = await _actorService.DeleteActorAsync(id);
+                var actorResponse = await _actorService.DeleteActorByIdAsync(id);
 
                 if (actorResponse == null)
                 {
