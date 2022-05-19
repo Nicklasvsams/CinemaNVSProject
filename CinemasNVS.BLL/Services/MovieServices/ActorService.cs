@@ -12,8 +12,8 @@ namespace CinemasNVS.BLL.Services.MovieServices
         Task<IEnumerable<ActorResponse>> GetAllActorsAsync();
         Task<ActorResponse> GetActorByIdAsync(int actorId);
         Task<ActorResponse> CreateActorAsync(ActorRequest actor);
-        Task<ActorResponse> DeleteActorAsync(int actorId);
-        Task<ActorResponse> UpdateActorAsync(int actorId, ActorRequest actor);
+        Task<ActorResponse> DeleteActorByIdAsync(int actorId);
+        Task<ActorResponse> UpdateActorByIdAsync(int actorId, ActorRequest actor);
     }
 
     public class ActorService : IActorService
@@ -30,7 +30,7 @@ namespace CinemasNVS.BLL.Services.MovieServices
             return MapEntityToResponse(await _actorRepository.InsertActorAsync(MapRequestToEntity(actor)));
         }
 
-        public async Task<ActorResponse> DeleteActorAsync(int actorId)
+        public async Task<ActorResponse> DeleteActorByIdAsync(int actorId)
         {
             return MapEntityToResponse(await _actorRepository.DeleteActorByIdAsync(actorId));
         }
@@ -47,7 +47,7 @@ namespace CinemasNVS.BLL.Services.MovieServices
             return actors.Select(x => MapEntityToResponse(x)).ToList();
         }
 
-        public async Task<ActorResponse> UpdateActorAsync(int actorId, ActorRequest actor)
+        public async Task<ActorResponse> UpdateActorByIdAsync(int actorId, ActorRequest actor)
         {
             return MapEntityToResponse(await _actorRepository.UpdateActorByIdAsync(MapRequestToEntity(actor), actorId));
         }
