@@ -327,8 +327,8 @@ namespace CinemaNVS.Tests.Controllers
                 TrailerLink = "TestLink",
                 Rating = 1,
                 DirectorId = 1,
-                DirectorResponse = new MovieDirectorResponse(),
-                ActorResponse = new List<MovieActorResponse>()
+                DirectorResponse = new MovieResponseDirector(),
+                ActorResponse = new List<MovieResponseActor>()
             };
         }
 

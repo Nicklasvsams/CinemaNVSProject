@@ -292,14 +292,14 @@ namespace CinemaNVS.Tests.Controllers
                     Id = 1,
                     Name = "Test Name",
                     ImdbLink = "imdblink.dk",
-                    Movies = new List<ActorMovieResponse>()
+                    Movies = new List<ActorResponseMovie>()
                 },
                 new ActorResponse()
                 {
                     Id = 2,
                     Name = "Test Name2",
                     ImdbLink = "imdblink2.dk",
-                    Movies = new List<ActorMovieResponse>()
+                    Movies = new List<ActorResponseMovie>()
                 }
             };
         }
@@ -311,7 +311,7 @@ namespace CinemaNVS.Tests.Controllers
                 Id = 1,
                 Name = "Test Name",
                 ImdbLink = "imdblink.dk",
-                Movies = new List<ActorMovieResponse>()
+                Movies = new List<ActorResponseMovie>()
             };
         }
 

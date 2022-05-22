@@ -72,11 +72,11 @@ namespace CinemasNVS.BLL.Services.MovieServices
 
                 if (movie.Actors != null)
                 {
-                    List<MovieActorResponse> actRes = new List<MovieActorResponse>();
+                    List<MovieResponseActor> actRes = new List<MovieResponseActor>();
 
                     foreach (Actor actor in movie.Actors)
                     {
-                        actRes.Add(new MovieActorResponse()
+                        actRes.Add(new MovieResponseActor()
                         {
                             Id = actor.Id,
                             Name = actor.Name,
@@ -89,7 +89,7 @@ namespace CinemasNVS.BLL.Services.MovieServices
 
                 if (movie.Director != null)
                 {
-                    movRes.DirectorResponse = new MovieDirectorResponse()
+                    movRes.DirectorResponse = new MovieResponseDirector()
                     {
                         Id = movie.Director.Id,
                         Name = movie.Director.Name,

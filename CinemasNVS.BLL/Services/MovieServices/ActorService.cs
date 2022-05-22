@@ -67,11 +67,11 @@ namespace CinemasNVS.BLL.Services.MovieServices
 
                 if(actor.Movies != null)
                 {
-                    List<ActorMovieResponse> movies = new List<ActorMovieResponse>();
+                    List<ActorResponseMovie> movies = new List<ActorResponseMovie>();
 
                     foreach (var movie in actor.Movies)
                     {
-                        ActorMovieResponse actorMovieResponse = new ActorMovieResponse()
+                        ActorResponseMovie actorMovieResponse = new ActorResponseMovie()
                         {
                             Id = movie.Id,
                             Title = movie.Title,

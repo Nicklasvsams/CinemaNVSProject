@@ -9,10 +9,10 @@ namespace CinemasNVS.BLL.DTOs
         public string Name { get; set; }
         public string ImdbLink { get; set; }
 
-        public IEnumerable<DirectorMovieResponse> Movies { get; set; }
+        public IEnumerable<DirectorResponseMovie> Movies { get; set; }
     }
 
-    public class DirectorMovieResponse
+    public class DirectorResponseMovie
     {
         public int Id { get; set; }
         public string Title { get; set; }
