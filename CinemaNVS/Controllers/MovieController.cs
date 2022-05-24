@@ -20,7 +20,6 @@ namespace CinemaNVS.Controllers
             _movieService = movieService;
         }
 
-        // GET: api/<MovieController>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -49,7 +48,6 @@ namespace CinemaNVS.Controllers
             }
         }
 
-        // GET api/<MovieController>/5
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -73,7 +71,6 @@ namespace CinemaNVS.Controllers
             }
         }
 
-        // POST api/<MovieController>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -96,7 +93,6 @@ namespace CinemaNVS.Controllers
             }
         }
 
-        // PUT api/<MovieController>/5
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -120,7 +116,6 @@ namespace CinemaNVS.Controllers
             }
         }
 
-        // DELETE api/<MovieController>/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
