@@ -36,6 +36,8 @@ namespace CinemaNVS
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IActorRepository, ActorRepository>();
             services.AddScoped<IActorService, ActorService>();
+            services.AddScoped<IMovieActorRepository, MovieActorRepository>();
+            services.AddScoped<IMovieActorService, MovieActorService>();
             services.AddScoped<IDirectorRepository, DirectorRepository>();
             services.AddScoped<IDirectorService, DirectorService>();
 

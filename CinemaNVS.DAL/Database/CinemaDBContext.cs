@@ -10,11 +10,25 @@ namespace CinemaNVS.DAL.Database
         public CinemaDBContext(DbContextOptions<CinemaDBContext> options) : base(options) { }
 
         public DbSet<Movie> Movies { get; set; }
-        public DbSet<Director> Directors { get; set; }
         public DbSet<Actor> Actors { get; set; }
+        public DbSet<MovieActor> MovieActor { get; set; }
+        public DbSet<Director> Directors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<MovieActor>()
+                .HasKey(ma => new {ma.MovieId, ma.ActorId});
+
+            modelBuilder.Entity<MovieActor>()
+                .HasOne(m => m.Movie)
+                .WithMany(ma => ma.MovieActor)
+                .HasForeignKey(mi => mi.MovieId);
+
+            modelBuilder.Entity<MovieActor>()
+                .HasOne(a => a.Actor)
+                .WithMany(ma => ma.MovieActor)
+                .HasForeignKey(ai => ai.ActorId);
+
             modelBuilder.Entity<Director>().HasData(
                 new Director()
                 {
@@ -43,6 +57,13 @@ namespace CinemaNVS.DAL.Database
                     Rating = 8.4F,
                     TrailerLink = "https://www.youtube.com/watch?v=0fUCuvNlOCg",
                     ImdbLink = "https://www.imdb.com/title/tt1853728/"
+                });
+
+            modelBuilder.Entity<MovieActor>().HasData(
+                new MovieActor()
+                {
+                    MovieId = 1,
+                    ActorId = 1
                 });
         }
     }
