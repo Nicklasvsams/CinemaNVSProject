@@ -65,25 +65,25 @@ namespace CinemasNVS.BLL.Services.MovieServices
                     ImdbLink = actor.ImdbLink
                 };
 
-                if(actor.Movies != null)
+                if(actor.MovieActor != null)
                 {
                     List<ActorResponseMovie> movies = new List<ActorResponseMovie>();
 
-                    foreach (var movie in actor.Movies)
+                    foreach (var movie in actor.MovieActor)
                     {
                         ActorResponseMovie actorMovieResponse = new ActorResponseMovie()
                         {
-                            Id = movie.Id,
-                            Title = movie.Title,
-                            ReleaseDate = movie.ReleaseDate,
-                            ImdbLink = movie.ImdbLink,
-                            Rating = movie.Rating,
-                            RuntimeMinutes = movie.RuntimeMinutes,
-                            TrailerLink = movie.TrailerLink,
-                            DirectorId = movie.DirectorId
+                            Id = movie.Movie.Id,
+                            Title = movie.Movie.Title,
+                            ReleaseDate = movie.Movie.ReleaseDate,
+                            ImdbLink = movie.Movie.ImdbLink,
+                            Rating = movie.Movie.Rating,
+                            RuntimeMinutes = movie.Movie.RuntimeMinutes,
+                            TrailerLink = movie.Movie.TrailerLink,
+                            DirectorId = movie.Movie.DirectorId
                         };
 
-                        if (movie.IsRunning == 1) actorMovieResponse.IsRunning = true;
+                        if (movie.Movie.IsRunning == 1) actorMovieResponse.IsRunning = true;
                         else actorMovieResponse.IsRunning = false;
 
                         movies.Add(actorMovieResponse);

@@ -139,7 +139,7 @@ namespace CinemaNVS.Tests.Repository
             {
                 Name = "Test Name",
                 ImdbLink = "imdblink.dk",
-                Movies = new List<Movie>()
+                MovieActor = new List<MovieActor>()
             };
 
             //Act
@@ -163,7 +163,7 @@ namespace CinemaNVS.Tests.Repository
                 Id = 1,
                 Name = "Test Name",
                 ImdbLink = "imdblink.dk",
-                Movies = new List<Movie>()
+                MovieActor = new List<MovieActor>()
             };
 
             _dbContext.Actors.Add(actor);
@@ -194,7 +194,7 @@ namespace CinemaNVS.Tests.Repository
             {
                 Name = "Test Updatename",
                 ImdbLink = "imdblinkupdate.dk",
-                Movies = new List<Movie>()
+                MovieActor = new List<MovieActor>()
             };
 
             //Act
@@ -220,7 +220,7 @@ namespace CinemaNVS.Tests.Repository
             {
                 Name = "Test Updatename",
                 ImdbLink = "imdblinkupdate.dk",
-                Movies = new List<Movie>()
+                MovieActor = new List<MovieActor>()
             };
 
             //Act
@@ -239,14 +239,14 @@ namespace CinemaNVS.Tests.Repository
                     Id = 1,
                     Name = "Test Name",
                     ImdbLink = "imdblink.dk",
-                    Movies = new List<Movie>()
+                    MovieActor = new List<MovieActor>()
                 },
                 new Actor()
                 {
                     Id = 2,
                     Name = "Test Name2",
                     ImdbLink = "imdblink2.dk",
-                    Movies = new List<Movie>()
+                    MovieActor = new List<MovieActor>()
                 }
             };
         }
@@ -258,7 +258,7 @@ namespace CinemaNVS.Tests.Repository
                 Id = 1,
                 Name = "Test Name",
                 ImdbLink = "imdblink.dk",
-                Movies = new List<Movie>()
+                MovieActor = new List<MovieActor>()
             };
         }
     }

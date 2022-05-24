@@ -70,17 +70,17 @@ namespace CinemasNVS.BLL.Services.MovieServices
                     DirectorId = movie.DirectorId
                 };
 
-                if (movie.Actors != null)
+                if (movie.MovieActor != null)
                 {
                     List<MovieResponseActor> actRes = new List<MovieResponseActor>();
 
-                    foreach (Actor actor in movie.Actors)
+                    foreach (MovieActor actor in movie.MovieActor)
                     {
                         actRes.Add(new MovieResponseActor()
                         {
-                            Id = actor.Id,
-                            Name = actor.Name,
-                            ImdbLink = actor.ImdbLink
+                            Id = actor.Actor.Id,
+                            Name = actor.Actor.Name,
+                            ImdbLink = actor.Actor.ImdbLink
                         });
 
                     }

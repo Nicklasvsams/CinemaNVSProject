@@ -27,6 +27,6 @@ namespace CinemaNVS.DAL.Database.Entities.Movies
         public int DirectorId { get; set; }
 
         public Director Director { get; set; }
-        public IEnumerable<Actor> Actors { get; set; } = new List<Actor>();
+        public ICollection<MovieActor> MovieActor { get; set; } = new List<MovieActor>();
     }
 }

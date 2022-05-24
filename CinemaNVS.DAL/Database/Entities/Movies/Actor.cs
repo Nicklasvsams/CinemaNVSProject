@@ -13,6 +13,6 @@ namespace CinemaNVS.DAL.Database.Entities.Movies
         [Column(TypeName = "nvarchar(100)")]
         public string ImdbLink { get; set; }
 
-        public IEnumerable<Movie> Movies { get; set; }
+        public ICollection<MovieActor> MovieActor { get; set; } = new List<MovieActor>();
     }
 }

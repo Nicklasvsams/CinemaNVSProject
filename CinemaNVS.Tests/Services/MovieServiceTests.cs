@@ -212,7 +212,7 @@ namespace CinemaNVS.Tests.Services
                     Rating = 1,
                     DirectorId = 1,
                     Director = new Director(),
-                    Actors = new List<Actor>()
+                    MovieActor = new List<MovieActor>()
                 },
                 new Movie()
                 {
@@ -226,7 +226,7 @@ namespace CinemaNVS.Tests.Services
                     Rating = 2,
                     DirectorId = 2,
                     Director = new Director(),
-                    Actors = new List<Actor>()
+                    MovieActor = new List<MovieActor>()
                 }
             };
         }
@@ -260,7 +260,7 @@ namespace CinemaNVS.Tests.Services
                 Rating = 5,
                 DirectorId = 1,
                 Director = new Director(),
-                Actors = new List<Actor>()
+                MovieActor = new List<MovieActor>()
             };
         }
     }

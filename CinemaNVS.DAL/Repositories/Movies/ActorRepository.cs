@@ -50,7 +50,7 @@ namespace CinemaNVS.DAL.Repositories.Movies
         {
             return await _dBContext
                 .Actors
-                .Include("Movies")
+                .Include("MovieActor.Movie")
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
@@ -58,7 +58,7 @@ namespace CinemaNVS.DAL.Repositories.Movies
         {
             return await _dBContext
                 .Actors
-                .Include("Movies")
+                .Include("MovieActor.Movie")
                 .ToListAsync();
         }
 

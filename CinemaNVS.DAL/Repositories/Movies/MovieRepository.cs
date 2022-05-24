@@ -2,6 +2,7 @@
 using CinemaNVS.DAL.Database.Entities.Movies;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CinemaNVS.DAL.Repositories.Movies
@@ -51,7 +52,7 @@ namespace CinemaNVS.DAL.Repositories.Movies
             return await _dBContext
                 .Movies
                 .Include("Director")
-                .Include("Actors")
+                .Include("MovieActor.Actor")
                 .ToListAsync();
         }
 
@@ -60,7 +61,7 @@ namespace CinemaNVS.DAL.Repositories.Movies
             return await _dBContext
                 .Movies
                 .Include("Director")
-                .Include("Actors")
+                .Include("MovieActor.Actor")
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 

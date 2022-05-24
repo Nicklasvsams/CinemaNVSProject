@@ -146,7 +146,7 @@ namespace CinemaNVS.Tests.Repository
                 Rating = 1,
                 DirectorId = 1,
                 Director = new Director(),
-                Actors = new List<Actor>()
+                MovieActor = new List<MovieActor>()
             };
 
             //Act
@@ -177,7 +177,7 @@ namespace CinemaNVS.Tests.Repository
                 Rating = 1,
                 DirectorId = 1,
                 Director = new Director(),
-                Actors = new List<Actor>()
+                MovieActor = new List<MovieActor>()
             };
 
             _dbContext.Movies.Add(movie);
@@ -214,7 +214,7 @@ namespace CinemaNVS.Tests.Repository
                 RuntimeMinutes = 50,
                 Rating = 9,
                 DirectorId = 3,
-                Actors = new List<Actor>(),
+                MovieActor = new List<MovieActor>(),
                 Director = new Director()
             };
 
@@ -253,7 +253,7 @@ namespace CinemaNVS.Tests.Repository
                 RuntimeMinutes = 50,
                 Rating = 9,
                 DirectorId = 3,
-                Actors = new List<Actor>(),
+                MovieActor = new List<MovieActor>(),
                 Director = new Director()
             };
 
@@ -280,7 +280,7 @@ namespace CinemaNVS.Tests.Repository
                     Rating = 1,
                     DirectorId = 1,
                     Director = new Director(),
-                    Actors = new List<Actor>()
+                    MovieActor = new List<MovieActor>()
                 },
                 new Movie()
                 {
@@ -294,7 +294,7 @@ namespace CinemaNVS.Tests.Repository
                     Rating = 2,
                     DirectorId = 2,
                     Director = new Director(),
-                    Actors = new List<Actor>()
+                    MovieActor = new List<MovieActor>()
                 }
             };
         }
@@ -313,7 +313,7 @@ namespace CinemaNVS.Tests.Repository
                 Rating = 1,
                 DirectorId = 1,
                 Director = new Director(),
-                Actors = new List<Actor>()
+                MovieActor = new List<MovieActor>()
             };
         }
     }

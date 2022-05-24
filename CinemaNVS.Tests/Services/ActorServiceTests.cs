@@ -204,14 +204,14 @@ namespace CinemaNVS.Tests.Services
                     Id = 1,
                     Name = "Test Name",
                     ImdbLink = "imdblink.dk",
-                    Movies = new List<Movie>()
+                    MovieActor = new List<MovieActor>()
                 },
                 new Actor()
                 {
                     Id = 2,
                     Name = "Test Name2",
                     ImdbLink = "imdblink2.dk",
-                    Movies = new List<Movie>()
+                    MovieActor = new List<MovieActor>()
                 }
             };
         }
@@ -232,7 +232,7 @@ namespace CinemaNVS.Tests.Services
                 Id = 1,
                 Name = "Test Name",
                 ImdbLink = "imdblink.dk",
-                Movies = new List<Movie>()
+                MovieActor = new List<MovieActor>()
             };
         }
     }
