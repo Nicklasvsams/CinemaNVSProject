@@ -7,7 +7,7 @@ namespace CinemaNVS.DAL.Repositories.Users
 {
     public interface ILoginRepository
     {
-        Task<Login> GetLoginByNameAsync(string name);
+        Task<Login> SelectLoginByNameAsync(string name);
         Task<Login> InsertLoginAsync(Login login);
         Task<Login> UpdateLoginByUsernameAsync(Login login, string username);
     }
@@ -21,7 +21,7 @@ namespace CinemaNVS.DAL.Repositories.Users
             _dBContext = dBContext;
         }
 
-        public async Task<Login> GetLoginByNameAsync(string name)
+        public async Task<Login> SelectLoginByNameAsync(string name)
         {
             return await _dBContext.Logins.FirstOrDefaultAsync(x => x.Username == name);
         }
