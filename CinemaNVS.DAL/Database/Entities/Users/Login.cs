@@ -1,13 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CinemaNVS.DAL.Database.Entities.Users
 {
-    internal class Login
+    public class Login
     {
-        // TODO: Implement
+        [Key]
+        public int Id { get; set; }
+        [Column(TypeName = "nvarchar(450)")]
+        public string Username { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
+        public string Password { get; set; }
+        [Column(TypeName = "nvarchar(3)")]
+        public string IsAdmin { get; set; }
+        [Column(TypeName = "int")]
+        public int? CustomerId { get; set; }
+
+        public Customer Customer { get; set; }
     }
 }

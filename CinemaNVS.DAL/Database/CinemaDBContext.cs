@@ -1,4 +1,6 @@
 ﻿using CinemaNVS.DAL.Database.Entities.Movies;
+using CinemaNVS.DAL.Database.Entities.Transactions;
+using CinemaNVS.DAL.Database.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace CinemaNVS.DAL.Database
@@ -13,6 +15,9 @@ namespace CinemaNVS.DAL.Database
         public DbSet<Actor> Actors { get; set; }
         public DbSet<MovieActor> MovieActor { get; set; }
         public DbSet<Director> Directors { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Login> Logins { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +33,10 @@ namespace CinemaNVS.DAL.Database
                 .HasOne(a => a.Actor)
                 .WithMany(ma => ma.MovieActor)
                 .HasForeignKey(ai => ai.ActorId);
+
+            modelBuilder.Entity<Login>()
+                .HasIndex(l => l.Username)
+                .IsUnique();
 
             modelBuilder.Entity<Director>().HasData(
                 new Director()
@@ -64,6 +73,46 @@ namespace CinemaNVS.DAL.Database
                 {
                     MovieId = 1,
                     ActorId = 1
+                });
+
+            modelBuilder.Entity<Customer>().HasData(
+                new Customer()
+                {
+                    Id = 1,
+                    FirstName = "Bob",
+                    LastName = "Levinsen",
+                    PhoneNo = 11223344,
+                    Email = "Test@gmail.com",
+                    IsActive = "yes"
+                });
+
+            modelBuilder.Entity<Login>().HasData(
+                new Login()
+                {
+                    Id = 1,
+                    Username = "Bobby",
+                    Password = "Passw0rd",
+                    IsAdmin = "no",
+                    CustomerId = 1
+                });
+
+            modelBuilder.Entity<Login>().HasData(
+                new Login()
+                {
+                    Id = 2,
+                    Username = "admin",
+                    Password = "admin",
+                    IsAdmin = "yes"
+                });
+
+            modelBuilder.Entity<Booking>().HasData(
+                new Booking()
+                {
+                    Id = 1,
+                    BookingDate = new System.DateTime(2022, 05, 24),
+                    Price = 140,
+                    CustomerId = 1,
+                    MovieId = 1
                 });
         }
     }
