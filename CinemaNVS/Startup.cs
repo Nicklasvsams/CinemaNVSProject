@@ -1,6 +1,10 @@
 using CinemaNVS.DAL.Database;
 using CinemaNVS.DAL.Repositories.Movies;
+using CinemaNVS.DAL.Repositories.Transactions;
+using CinemaNVS.DAL.Repositories.Users;
 using CinemasNVS.BLL.Services.MovieServices;
+using CinemasNVS.BLL.Services.TransactionServices;
+using CinemasNVS.BLL.Services.UserServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,12 +38,24 @@ namespace CinemaNVS
 
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IMovieService, MovieService>();
+
             services.AddScoped<IActorRepository, ActorRepository>();
             services.AddScoped<IActorService, ActorService>();
+
             services.AddScoped<IMovieActorRepository, MovieActorRepository>();
             services.AddScoped<IMovieActorService, MovieActorService>();
+
             services.AddScoped<IDirectorRepository, DirectorRepository>();
             services.AddScoped<IDirectorService, DirectorService>();
+
+            services.AddScoped<ILoginRepository, LoginRepository>();
+            services.AddScoped<ILoginService, LoginService>();
+
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerService, CustomerService>();
+
+            services.AddScoped<IBookingRepository, BookingRepository>();
+            services.AddScoped<IBookingService, BookingService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
