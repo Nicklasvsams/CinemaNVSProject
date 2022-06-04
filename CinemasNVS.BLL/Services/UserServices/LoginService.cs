@@ -2,15 +2,18 @@
 using CinemaNVS.DAL.Repositories.Users;
 using CinemasNVS.BLL.DTOs;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CinemasNVS.BLL.Services.UserServices
 {
     public interface ILoginService
     {
+        Task<IEnumerable<LoginResponse>> GetAllLoginsAsync();
         Task<LoginResponse> AuthorizeLoginByUsernameAsync(string name, string password);
         Task<LoginResponse> CreateLoginAsync(LoginRequest login);
         Task<LoginResponse> UpdateLoginByUsernameAsync(LoginRequest login, string username);
+        Task<LoginResponse> DeleteLoginByUsernameAsync(string username);
     }
 
     public class LoginService : ILoginService
@@ -29,6 +32,8 @@ namespace CinemasNVS.BLL.Services.UserServices
 
             if (login != null)
             {
+                logRes = MapEntityToResponse(login);
+
                 if (login.Username == username && login.Password == password)
                 {
                     logRes.IsAuthorized = true;
@@ -47,6 +52,18 @@ namespace CinemasNVS.BLL.Services.UserServices
         public async Task<LoginResponse> CreateLoginAsync(LoginRequest login)
         {
             return MapEntityToResponse(await _loginRepository.InsertLoginAsync(MapRequestToEntity(login)));
+        }
+
+        public async Task<LoginResponse> DeleteLoginByUsernameAsync(string username)
+        {
+            return MapEntityToResponse(await _loginRepository.DeleteLoginByUsernameAsync(username));
+        }
+
+        public async Task<IEnumerable<LoginResponse>> GetAllLoginsAsync()
+        {
+            IEnumerable<Login> logins = await _loginRepository.SelectAllLoginsAsync();
+
+            return logins.Select(x => MapEntityToResponse(x)).ToList();
         }
 
         public async Task<LoginResponse> UpdateLoginByUsernameAsync(LoginRequest login, string username)
