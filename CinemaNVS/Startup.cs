@@ -34,6 +34,17 @@ namespace CinemaNVS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "_CORSRules",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+
             services.AddDbContext<CinemaDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CinemaDBContext")));
 
             services.AddScoped<IMovieRepository, MovieRepository>();
@@ -75,6 +86,8 @@ namespace CinemaNVS
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("_CORSRules");
 
             app.UseRouting();
 
