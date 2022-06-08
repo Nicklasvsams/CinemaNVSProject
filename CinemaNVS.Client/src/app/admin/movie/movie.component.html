@@ -1,0 +1,80 @@
+<div class="main">
+    <h1>Movie administration</h1>
+    <div class="dataForms">
+        <ul>
+            <li>
+                <label>Title</label>
+                <input [(ngModel)]="movie.title">
+            </li>
+            <li>
+                <label>Rating</label>
+                <input [(ngModel)]="movie.rating">
+            </li>
+            <li>
+                <label>Runtime in minutes</label>
+                <input [(ngModel)]="movie.runtimeMinutes">
+            </li>
+            <li>
+                <label>Is running</label>
+                <select [(ngModel)]="movie.isRunning">
+                    <option disabled selected>Is movie running?</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </li>
+            <li>
+                <label>Trailer link</label>
+                <input [(ngModel)]="movie.trailerLink">
+            </li>
+            <li>
+                <label>IMDB link</label>
+                <input [(ngModel)]="movie.imdbLink">
+            </li>
+            <li>
+                <label>Director</label>
+                <select [(ngModel)]="movie.directorId" type="number">
+                    <option disabled selected>Choose director</option>
+                    <option *ngFor="let director of directors" [ngValue]='director.id'>
+                        {{ director.name }}
+                    </option>
+                </select>
+            </li>
+            <li>
+                <label>Release date</label>
+                <input [(ngModel)]="movie.releaseDate" type="date">
+            </li>
+            <button (click)="save()">Save</button>
+            <button (click)="cancel()">Cancel</button>
+        </ul>
+
+    </div>
+
+
+
+    <ul class="content" *ngIf="movies.length > 0">
+        <div class="infoCard" *ngFor="let movie of movies">
+            <ul *ngIf="movie.directorResponse != null && movie.actorResponse != null">
+                <li>
+                    <h3>Movie info:</h3>
+                </li>
+                <li><b>Id: </b>{{movie.id}}</li>
+                <li><b>Title: </b>{{movie.title}}</li>
+                <li><b>Rating: </b>{{movie.rating}}</li>
+                <li><b>Runtime: </b>{{movie.runtimeMinutes}} minutes</li>
+                <li><b>Release date: </b>{{movie.releaseDate | date}}</li>
+                <li>
+                    <b>
+                        <div *ngIf="movie.isRunning==true; else elseBlock">Movie is running.</div>
+                        <ng-template #elseBlock>Movie is not running.</ng-template>
+                    </b>
+                </li>
+                <li><b>Trailer link: </b>{{movie.trailerLink}}</li>
+                <li><b>IMDB link: </b>{{movie.imdbLink}}</li>
+
+                <button (click)="edit(movie)">Edit</button>
+                <button (click)="delete(movie)">Delete</button>
+            </ul>
+
+        </div>
+    </ul>
+</div>

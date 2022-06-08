@@ -1,10 +1,24 @@
-<div *ngFor="let movie of movies">
-    <h2>{{ movie.title }}, Rating: {{ movie.rating }}, Runtime: {{ movie.runtimeMinutes }} minutes</h2>
-    <p>Release date: {{ movie.releaseDate }}</p>
-    <div *ngIf="movie.isRunning==true; else elseBlock">Movie is running.</div>
-    <ng-template #elseBlock>Movie is not running.</ng-template>
-    <br>
-    <a href="{{movie.trailerLink}}">Trailer</a>
-    <br>
-    <a href="{{movie.imdbLink}}">IMDB</a>
+<div class="main">
+    <div class="content">
+        <div class="infoCard" *ngFor="let movie of movies">
+            <h2>{{ movie.title }}, Rating: {{ movie.rating }}, Runtime: {{ movie.runtimeMinutes }} minutes</h2>
+            <p>Release date: {{ movie.releaseDate | date }}</p>
+            <div *ngIf="movie.isRunning==true; else elseBlock">Movie is running.</div>
+            <ng-template #elseBlock>Movie is not running.</ng-template>
+            <br>
+            <a href="{{movie.trailerLink}}">Trailer</a>
+            <br>
+            <a href="{{movie.imdbLink}}">IMDB</a>
+            <h2>Director</h2>
+            <div *ngIf="movie.directorResponse != null">
+                <p><a href="{{movie.directorResponse.imdbLink}}">{{movie.directorResponse.name}}</a></p>
+            </div>
+
+            <div *ngFor="let actor of movie.actorResponse">
+                <h2>Actors</h2>
+                <a href="{{actor.imdbLink}}">{{actor.name}}</a>
+            </div>
+        </div>
+    </div>
+
 </div>

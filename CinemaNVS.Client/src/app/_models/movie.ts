@@ -1,3 +1,6 @@
+import { Actor } from "./actor";
+import { Director } from "./director";
+
 export interface Movie {
     id: number;
     title: string;
@@ -8,4 +11,6 @@ export interface Movie {
     trailerLink: string;
     imdbLink: string;
     directorId: number;
+    directorResponse?: Director;
+    actorResponse?: Actor[];
 }

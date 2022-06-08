@@ -1,1 +1,13 @@
+<nav>
+    <a routerLink="/">Home</a>
+    <div class="dropdown">
+        <button (click)="dropDownNav()" id="dropbtn">Navigation</button>
+        <div id="mydropdown" class="dropdown-content">
+            <a routerLink="/admin/movie">Movies</a>
+        </div>
+    </div>
+</nav>
 <router-outlet></router-outlet>
+<footer>
+    Cinema NVS - Nicklas V Sams
+</footer>
