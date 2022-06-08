@@ -9,12 +9,18 @@ import { MovieComponent } from './admin/movie/movie.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DirectorComponent } from './admin/director/director.component';
+import { ActorComponent } from './admin/actor/actor.component';
+import { MovieActorComponent } from './admin/movie-actor/movie-actor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FrontpageComponent,
-    MovieComponent
+    MovieComponent,
+    DirectorComponent,
+    ActorComponent,
+    MovieActorComponent
   ],
   imports: [
     BrowserModule,

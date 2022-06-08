@@ -1,0 +1,33 @@
+<div class="main">
+    <h1>Actor administration</h1>
+    <div class="dataForms">
+        <ul>
+            <li>
+                <label>Name</label>
+                <input [(ngModel)]="actor.name">
+            </li>
+            <li>
+                <label>IMDB link</label>
+                <input [(ngModel)]="actor.imdbLink">
+            </li>
+            <button (click)="save()">Save</button>
+            <button (click)="cancel()">Cancel</button>
+        </ul>
+    </div>
+
+    <ul class="content" *ngIf="actors.length > 0">
+        <div class="infoCard" *ngFor="let actor of actors">
+            <ul>
+                <li>
+                    <h3>Actor info:</h3>
+                </li>
+                <li><b>Id: </b>{{actor.id}}</li>
+                <li><b>Name: </b>{{actor.name}}</li>
+                <li><b>IMDB link: </b>{{actor.imdbLink}}</li>
+
+                <button (click)="edit(actor)">Edit</button>
+                <button (click)="delete(actor)">Delete</button>
+            </ul>
+        </div>
+    </ul>
+</div>

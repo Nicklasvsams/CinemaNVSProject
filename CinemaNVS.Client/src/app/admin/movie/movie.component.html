@@ -53,7 +53,7 @@
 
     <ul class="content" *ngIf="movies.length > 0">
         <div class="infoCard" *ngFor="let movie of movies">
-            <ul *ngIf="movie.directorResponse != null && movie.actorResponse != null">
+            <ul>
                 <li>
                     <h3>Movie info:</h3>
                 </li>
@@ -74,7 +74,6 @@
                 <button (click)="edit(movie)">Edit</button>
                 <button (click)="delete(movie)">Delete</button>
             </ul>
-
         </div>
     </ul>
 </div>

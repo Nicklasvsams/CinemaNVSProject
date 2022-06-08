@@ -10,11 +10,9 @@ import { DirectorService } from 'src/app/_services/director.service';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit {
-  startDate = new Date().getDate();
   movies: Movie[] = [];
   directors: Director[] = [];
   movie: Movie = { id: 0, title: '', rating: 0, runtimeMinutes: 0, releaseDate: new Date(), isRunning: false, trailerLink: '', imdbLink: '', directorId: 0 };
-  moviePlaceholder: Movie = { id: 0, title: '', rating: 0, runtimeMinutes: 0, releaseDate: new Date(), isRunning: false, trailerLink: '', imdbLink: '', directorId: 0 };
 
   constructor(private movieService: MovieService, private directorService: DirectorService) { }
 
@@ -40,7 +38,7 @@ export class MovieComponent implements OnInit {
   }
 
   save(): void {
-    this.movie.isRunning = this.movie.isRunning.toString() == 'Yes' ? true : false;
+    this.movie.isRunning = this.movie.isRunning.toString() === 'Yes' ? true : false;
 
     if (this.movie.id == 0) {
       if (confirm('Save new movie?')) {
@@ -49,6 +47,7 @@ export class MovieComponent implements OnInit {
           .subscribe({
             next: (x) => {
               this.movies.push(x);
+              console.log(this.movies)
               this.movie = this.movieObject();
             },
             error: (err) => {
@@ -71,7 +70,6 @@ export class MovieComponent implements OnInit {
 
   cancel(): void {
     this.movie = this.movieObject();
-    this.movies.find(x => x.id == this.moviePlaceholder.id, this.moviePlaceholder)
   }
 
   movieObject(): Movie {

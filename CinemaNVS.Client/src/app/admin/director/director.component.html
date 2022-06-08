@@ -1,0 +1,33 @@
+<div class="main">
+    <h1>Director administration</h1>
+    <div class="dataForms">
+        <ul>
+            <li>
+                <label>Name</label>
+                <input [(ngModel)]="director.name">
+            </li>
+            <li>
+                <label>IMDB link</label>
+                <input [(ngModel)]="director.imdbLink">
+            </li>
+            <button (click)="save()">Save</button>
+            <button (click)="cancel()">Cancel</button>
+        </ul>
+    </div>
+
+    <ul class="content" *ngIf="directors.length > 0">
+        <div class="infoCard" *ngFor="let director of directors">
+            <ul>
+                <li>
+                    <h3>Director info:</h3>
+                </li>
+                <li><b>Id: </b>{{director.id}}</li>
+                <li><b>Name: </b>{{director.name}}</li>
+                <li><b>IMDB link: </b>{{director.imdbLink}}</li>
+
+                <button (click)="edit(director)">Edit</button>
+                <button (click)="delete(director)">Delete</button>
+            </ul>
+        </div>
+    </ul>
+</div>
