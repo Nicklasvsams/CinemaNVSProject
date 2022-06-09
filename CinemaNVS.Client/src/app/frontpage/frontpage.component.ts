@@ -17,14 +17,13 @@ export class FrontpageComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieService.getAllMovies()
-    .subscribe({
-      next: (x) => {
-        this.movies = x;
-        console.log(x);
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
+      .subscribe({
+        next: (x) => {
+          this.movies = x;
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
   }
 }

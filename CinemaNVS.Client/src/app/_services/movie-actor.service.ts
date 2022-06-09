@@ -25,11 +25,7 @@ export class MovieActorService {
     return this.http.post<MovieActor>(this.apiUrl, movieActor, this.httpOptions)
   }
 
-  deleteMovieActor(movieId: number, actorId: number): Observable<MovieActor> {
-    return this.http.delete<MovieActor>(this.apiUrl, this.httpOptions)
+  deleteMovieActor(id: number): Observable<MovieActor> {
+    return this.http.delete<MovieActor>(this.apiUrl + '/' + id, this.httpOptions)
   }
-
-  // updateMovieActor(movieId: number, actorId: number, movieActor: MovieActor): Observable<MovieActor> {
-  //   return this.http.put<MovieActor>(this.apiUrl + '/' + movieId, movieActor, this.httpOptions)
-  // }
 }

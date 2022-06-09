@@ -1,1 +1,44 @@
-<p>movie-actor works!</p>
+<div class="main">
+    <h1>Movie-Actor relation administration</h1>
+    <div class="dataForms">
+        <ul>
+            <li>
+                <label>Movie ID</label>
+                <input [(ngModel)]="movieActor.movieId">
+            </li>
+            <li>
+                <label>Actor ID</label>
+                <input [(ngModel)]="movieActor.actorId">
+            </li>
+            <button (click)="save()">Save</button>
+            <button (click)="cancel()">Cancel</button>
+        </ul>
+    </div>
+
+    <ul class="content" *ngIf="movieActors.length > 0">
+        <div class="infoCard" *ngFor="let movieActor of movieActors">
+            <div *ngIf="movieActor.movie != null">
+                <ul>
+                    <li>
+                        <h3>Movie-Actor relation info:</h3>
+                    </li>
+                    <li><b>ID: </b>{{movieActor.id}}</li>
+                    <li>
+                        <b>Movie ID: </b>{{movieActor.movieId}} -
+                        <b>Title: </b>{{movieActor.movie.title}}
+                    </li>
+                    <li>
+                        <div *ngFor="let actor of movieActor.movie.actorResponse">
+                            <div *ngIf="actor.id == movieActor.actorId">
+                                <b>Actor ID: </b>{{movieActor.actorId}}
+                                <b>Name: </b>{{actor.name}}
+                            </div>
+                        </div>
+                    </li>
+
+                    <button (click)="delete(movieActor)">Delete</button>
+                </ul>
+            </div>
+        </div>
+    </ul>
+</div>

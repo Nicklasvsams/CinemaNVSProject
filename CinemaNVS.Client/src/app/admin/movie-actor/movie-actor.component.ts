@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Actor } from 'src/app/_models/actor';
 import { Movie } from 'src/app/_models/movie';
 import { MovieActor } from 'src/app/_models/movieActor';
-import { ActorService } from 'src/app/_services/actor.service';
 import { MovieActorService } from 'src/app/_services/movie-actor.service';
 import { MovieService } from 'src/app/_services/movie.service';
 
@@ -14,32 +12,37 @@ import { MovieService } from 'src/app/_services/movie.service';
 
 export class MovieActorComponent implements OnInit {
   movieActors: MovieActor[] = [];
-  movieActor: MovieActor = { movieId: 0, actorId: 0 };
+  movieActor: MovieActor = { id: 0, movieId: 0, actorId: 0 };
   movies: Movie[] = [];
-  actors: Actor[] = [];
 
-  constructor(private movieActorService: MovieActorService, private movieService: MovieService, private actorService: ActorService) { }
+  constructor(private movieActorService: MovieActorService, private movieService: MovieService) { }
 
   ngOnInit(): void {
     this.movieService.getAllMovies()
-      .subscribe(x => this.movies = x);
+      .subscribe({
+        next: (x) => {
+          this.movies = x;
+          this.movieActorService.getAllMovieActors()
+            .subscribe({
+              next: (x) => {
+                this.movieActors = x;
+                this.movieActors.forEach((movieActor, index) =>
+                  this.movieActors[index].movie = this.movies
+                    .find(x => x.id == movieActor.movieId));
+              }
+            });
+        }
+      });
 
-    this.actorService.getAllActors()
-      .subscribe(x => this.actors = x);
 
-    this.movieActorService.getAllMovieActors()
-      .subscribe(x => this.movieActors = x);
-  }
-
-  edit(movieActor: MovieActor): void {
-    this.movieActor = movieActor;
   }
 
   delete(movieActor: MovieActor): void {
     if (confirm('Are you sure you want to delete this movie actor relation?')) {
+
       this.movieActorService.deleteMovieActor(movieActor.id)
         .subscribe(() => {
-          this.movies = this.movies.filter(x => x.id != movieActor.id)
+          this.movieActors = this.movieActors.filter(x => x.id != movieActor.id)
         });
     }
   }
@@ -47,26 +50,27 @@ export class MovieActorComponent implements OnInit {
   save(): void {
     if (confirm('Save new movie actor relation?')) {
 
-      this.movieService.addMovie(this.movie)
+      this.movieActorService.addMovieActor(this.movieActor)
         .subscribe({
           next: (x) => {
-            this.movies.push(x);
-            console.log(this.movies)
-            this.movie = this.movieObject();
+            this.ngOnInit();
+            x.movie = this.movies.find(y => y.id == x.movieId);
+            this.movieActors.push(x);
+            this.movieActor = this.movieActorObject();
           },
           error: (err) => {
             console.log(err);
           }
         });
     }
-
   }
 
   cancel(): void {
     this.movieActor = this.movieActorObject();
+    console.log(this.movieActors);
   }
 
   movieActorObject(): MovieActor {
-    return { movieId: 0, actorId: 0 }
+    return { id: 0, movieId: 0, actorId: 0 }
   }
 }
