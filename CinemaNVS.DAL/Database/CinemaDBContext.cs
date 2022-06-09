@@ -22,6 +22,13 @@ namespace CinemaNVS.DAL.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MovieActor>()
+                .HasKey(ma => new {ma.MovieId, ma.ActorId});
+
+            modelBuilder.Entity<MovieActor>()
+                .Property<int>("Id")
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<MovieActor>()
                 .HasOne(m => m.Movie)
                 .WithMany(ma => ma.MovieActor)
                 .HasForeignKey(mi => mi.MovieId);

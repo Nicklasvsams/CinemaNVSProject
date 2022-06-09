@@ -132,14 +132,14 @@ namespace CinemaNVS.DAL.Migrations
                 name: "MovieActor",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     MovieId = table.Column<int>(type: "int", nullable: false),
-                    ActorId = table.Column<int>(type: "int", nullable: false)
+                    ActorId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieActor", x => x.Id);
+                    table.PrimaryKey("PK_MovieActor", x => new { x.MovieId, x.ActorId });
                     table.ForeignKey(
                         name: "FK_MovieActor_Actors_ActorId",
                         column: x => x.ActorId,
@@ -191,7 +191,7 @@ namespace CinemaNVS.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "MovieActor",
-                columns: new[] { "Id", "ActorId", "MovieId" },
+                columns: new[] { "ActorId", "MovieId", "Id" },
                 values: new object[] { 1, 1, 1 });
 
             migrationBuilder.CreateIndex(
@@ -220,11 +220,6 @@ namespace CinemaNVS.DAL.Migrations
                 name: "IX_MovieActor_ActorId",
                 table: "MovieActor",
                 column: "ActorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MovieActor_MovieId",
-                table: "MovieActor",
-                column: "MovieId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Movies_DirectorId",

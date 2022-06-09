@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaNVS.DAL.Migrations
 {
     [DbContext(typeof(CinemaDBContext))]
-    [Migration("20220609141313_initial")]
+    [Migration("20220609145033_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,31 +127,29 @@ namespace CinemaNVS.DAL.Migrations
 
             modelBuilder.Entity("CinemaNVS.DAL.Database.Entities.Movies.MovieActor", b =>
                 {
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ActorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ActorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
+                    b.HasKey("MovieId", "ActorId");
 
                     b.HasIndex("ActorId");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("MovieActor");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            MovieId = 1,
                             ActorId = 1,
-                            MovieId = 1
+                            Id = 1
                         });
                 });
 
