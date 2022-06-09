@@ -9,13 +9,14 @@
             <a href="{{movie.trailerLink}}">Trailer</a>
             <br>
             <a href="{{movie.imdbLink}}">IMDB</a>
+
             <h2>Director</h2>
             <div *ngIf="movie.directorResponse != null">
                 <p><a href="{{movie.directorResponse.imdbLink}}">{{movie.directorResponse.name}}</a></p>
             </div>
 
+            <h2>Actors</h2>
             <div *ngFor="let actor of movie.actorResponse">
-                <h2>Actors</h2>
                 <a href="{{actor.imdbLink}}">{{actor.name}}</a>
             </div>
         </div>
