@@ -10,8 +10,7 @@ namespace CinemaNVS.DAL.Repositories.Movies
     {
         public Task<IEnumerable<MovieActor>> SelectAllMovieActorsAsync();
         public Task<MovieActor> InsertMovieActorAsync(MovieActor movieActor);
-        public Task<MovieActor> DeleteMovieActorByIdAsync(int movId, int actId);
-        public Task<MovieActor> UpdateMovieActorAsync(int movId, int actId, MovieActor movAct);
+        public Task<MovieActor> DeleteMovieActorByIdAsync(int id);
     }
 
     public class MovieActorRepository : IMovieActorRepository
@@ -23,10 +22,10 @@ namespace CinemaNVS.DAL.Repositories.Movies
             _dBContext = dBContext;
         }
 
-        public async Task<MovieActor> DeleteMovieActorByIdAsync(int movId, int actId)
+        public async Task<MovieActor> DeleteMovieActorByIdAsync(int id)
         {
             MovieActor movActToDelete = await _dBContext.MovieActor
-                .FirstOrDefaultAsync(x => x.MovieId == movId && x.ActorId == actId);
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             if (movActToDelete != null)
             {
@@ -49,22 +48,6 @@ namespace CinemaNVS.DAL.Repositories.Movies
             await _dBContext.SaveChangesAsync();
 
             return movieActor;
-        }
-
-        public async Task<MovieActor> UpdateMovieActorAsync(int movId, int actId, MovieActor movAct)
-        {
-            MovieActor movActToUpdate = await _dBContext.MovieActor
-                .FirstOrDefaultAsync(x => x.MovieId == movId && x.ActorId == actId);
-
-            if (movActToUpdate != null)
-            {
-                movActToUpdate.MovieId = movAct.MovieId;
-                movActToUpdate.ActorId = movAct.ActorId;
-
-                await _dBContext.SaveChangesAsync();
-            };
-
-            return movActToUpdate;
         }
     }
 }

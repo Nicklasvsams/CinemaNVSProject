@@ -68,15 +68,15 @@ namespace CinemaNVS.Controllers
             }
         }
 
-        [HttpDelete("{movieId}, {actorId}")]
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Delete([FromRoute] int movieId, int actorId)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             try
             {
-                var movieActorResponse = await _movieActorService.DeleteMovieActorAsync(movieId, actorId);
+                var movieActorResponse = await _movieActorService.DeleteMovieActorAsync(id);
 
                 if (movieActorResponse == null)
                 {
