@@ -3,12 +3,22 @@
     <div class="dataForms">
         <ul>
             <li>
-                <label>Movie ID</label>
-                <input [(ngModel)]="movieActor.movieId">
+                <label>Movie</label>
+                <select [(ngModel)]="movieActor.movieId" type="number">
+                    <option disabled selected>Choose movie</option>
+                    <option *ngFor="let movie of movies" [ngValue]='movie.id'>
+                        {{ movie.title }}
+                    </option>
+                </select>
             </li>
             <li>
-                <label>Actor ID</label>
-                <input [(ngModel)]="movieActor.actorId">
+                <label>Actor</label>
+                <select [(ngModel)]="movieActor.actorId" type="number">
+                    <option disabled selected>Choose actor</option>
+                    <option *ngFor="let actor of actors" [ngValue]='actor.id'>
+                        {{ actor.name }}
+                    </option>
+                </select>
             </li>
             <button (click)="save()">Save</button>
             <button (click)="cancel()">Cancel</button>
