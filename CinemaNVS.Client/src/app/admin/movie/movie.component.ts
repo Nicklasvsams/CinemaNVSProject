@@ -12,7 +12,7 @@ import { DirectorService } from 'src/app/_services/director.service';
 export class MovieComponent implements OnInit {
   movies: Movie[] = [];
   directors: Director[] = [];
-  movie: Movie = { id: 0, title: '', rating: 0, runtimeMinutes: 0, releaseDate: new Date(), isRunning: false, trailerLink: '', imdbLink: '', directorId: 0 };
+  movie: Movie = { id: 0, title: '', runtimeMinutes: 0, releaseDate: new Date(), isRunning: false, trailerLink: '', imdbLink: '', directorId: 0 };
 
   constructor(private movieService: MovieService, private directorService: DirectorService) { }
 
@@ -73,6 +73,6 @@ export class MovieComponent implements OnInit {
   }
 
   movieObject(): Movie {
-    return { id: 0, title: '', rating: 0, runtimeMinutes: 0, releaseDate: new Date(), isRunning: false, trailerLink: '', imdbLink: '', directorId: 0 }
+    return { id: 0, title: '', runtimeMinutes: 0, releaseDate: new Date(), isRunning: false, trailerLink: '', imdbLink: '', directorId: 0 }
   }
 }

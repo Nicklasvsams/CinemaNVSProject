@@ -7,10 +7,6 @@
                 <input [(ngModel)]="movie.title">
             </li>
             <li>
-                <label>Rating</label>
-                <input [(ngModel)]="movie.rating">
-            </li>
-            <li>
                 <label>Runtime in minutes</label>
                 <input [(ngModel)]="movie.runtimeMinutes">
             </li>
@@ -59,7 +55,6 @@
                 </li>
                 <li><b>Id: </b>{{movie.id}}</li>
                 <li><b>Title: </b>{{movie.title}}</li>
-                <li><b>Rating: </b>{{movie.rating}}</li>
                 <li><b>Runtime: </b>{{movie.runtimeMinutes}} minutes</li>
                 <li><b>Release date: </b>{{movie.releaseDate | date}}</li>
                 <li>

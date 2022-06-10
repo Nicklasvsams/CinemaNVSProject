@@ -4,7 +4,6 @@ import { Director } from "./director";
 export interface Movie {
     id: number;
     title: string;
-    rating: number;
     runtimeMinutes: number;
     releaseDate: Date;
     isRunning: boolean;
