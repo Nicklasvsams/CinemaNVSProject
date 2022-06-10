@@ -11,8 +11,6 @@ namespace CinemaNVS.DAL.Database.Entities.Movies
         public int Id { get; set; }
         [Column(TypeName = "nvarchar(100)")]
         public string Title { get; set; }
-        [Column(TypeName = "decimal(2,1)")]
-        public float Rating { get; set; }
         [Column(TypeName = "int")]
         public int RuntimeMinutes { get; set; }
         [Column(TypeName = "date")]

@@ -209,7 +209,6 @@ namespace CinemaNVS.Tests.Services
                     ImdbLink = "TestLink",
                     RuntimeMinutes = 191,
                     TrailerLink = "TestLink",
-                    Rating = 1,
                     DirectorId = 1,
                     Director = new Director(),
                     MovieActor = new List<MovieActor>()
@@ -223,7 +222,6 @@ namespace CinemaNVS.Tests.Services
                     ImdbLink = "TestLink2",
                     RuntimeMinutes = 19,
                     TrailerLink = "TestLink2",
-                    Rating = 2,
                     DirectorId = 2,
                     Director = new Director(),
                     MovieActor = new List<MovieActor>()
@@ -240,7 +238,6 @@ namespace CinemaNVS.Tests.Services
                 ImdbLink = "TestLink",
                 ReleaseDate = DateTime.Now,
                 IsRunning = true,
-                Rating = 5,
                 RuntimeMinutes = 29,
                 DirectorId = 1
             };
@@ -257,7 +254,6 @@ namespace CinemaNVS.Tests.Services
                 ImdbLink = "TestLink",
                 RuntimeMinutes = 29,
                 TrailerLink = "TestLink",
-                Rating = 5,
                 DirectorId = 1,
                 Director = new Director(),
                 MovieActor = new List<MovieActor>()

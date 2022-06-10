@@ -77,7 +77,6 @@ namespace CinemasNVS.BLL.Services.MovieServices
                             Title = movie.Movie.Title,
                             ReleaseDate = movie.Movie.ReleaseDate,
                             ImdbLink = movie.Movie.ImdbLink,
-                            Rating = movie.Movie.Rating,
                             RuntimeMinutes = movie.Movie.RuntimeMinutes,
                             TrailerLink = movie.Movie.TrailerLink,
                             DirectorId = movie.Movie.DirectorId

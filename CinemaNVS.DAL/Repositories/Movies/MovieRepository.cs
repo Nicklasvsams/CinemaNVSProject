@@ -73,7 +73,6 @@ namespace CinemaNVS.DAL.Repositories.Movies
             {
                 movieToUpdate.Title = movie.Title;
                 movieToUpdate.RuntimeMinutes = movie.RuntimeMinutes;
-                movieToUpdate.Rating = movie.Rating;
                 movieToUpdate.ReleaseDate = movie.ReleaseDate;
                 movieToUpdate.IsRunning = movie.IsRunning;
                 movieToUpdate.TrailerLink = movie.TrailerLink;

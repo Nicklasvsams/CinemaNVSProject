@@ -62,7 +62,6 @@ namespace CinemasNVS.BLL.Services.MovieServices
                 {
                     Id = movie.Id,
                     Title = movie.Title,
-                    Rating = movie.Rating,
                     RuntimeMinutes = movie.RuntimeMinutes,
                     TrailerLink = movie.TrailerLink,
                     ImdbLink = movie.ImdbLink,
@@ -109,7 +108,6 @@ namespace CinemasNVS.BLL.Services.MovieServices
             Movie mov = new Movie()
             {
                 Title = movReq.Title,
-                Rating = movReq.Rating,
                 ReleaseDate = movReq.ReleaseDate,
                 ImdbLink = movReq.ImdbLink,
                 TrailerLink = movReq.TrailerLink,

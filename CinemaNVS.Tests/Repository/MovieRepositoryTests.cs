@@ -143,7 +143,6 @@ namespace CinemaNVS.Tests.Repository
                 ImdbLink = "TestLink",
                 RuntimeMinutes = 191,
                 TrailerLink = "TestLink",
-                Rating = 1,
                 DirectorId = 1,
                 Director = new Director(),
                 MovieActor = new List<MovieActor>()
@@ -174,7 +173,6 @@ namespace CinemaNVS.Tests.Repository
                 ImdbLink = "TestLink",
                 RuntimeMinutes = 191,
                 TrailerLink = "TestLink",
-                Rating = 1,
                 DirectorId = 1,
                 Director = new Director(),
                 MovieActor = new List<MovieActor>()
@@ -212,7 +210,6 @@ namespace CinemaNVS.Tests.Repository
                 ImdbLink = "UpdateLinkImdb",
                 IsRunning = 0,
                 RuntimeMinutes = 50,
-                Rating = 9,
                 DirectorId = 3,
                 MovieActor = new List<MovieActor>(),
                 Director = new Director()
@@ -230,7 +227,6 @@ namespace CinemaNVS.Tests.Repository
             Assert.Equal("UpdateLinkImdb", result.ImdbLink);
             Assert.Equal(0, result.IsRunning);
             Assert.Equal(50, result.RuntimeMinutes);
-            Assert.Equal(9, result.Rating);
             Assert.Equal(3, result.DirectorId);
             Assert.Equal(new DateTime(1991, 06, 28), result.ReleaseDate);
         }
@@ -251,7 +247,6 @@ namespace CinemaNVS.Tests.Repository
                 ImdbLink = "UpdateLinkImdb",
                 IsRunning = 0,
                 RuntimeMinutes = 50,
-                Rating = 9,
                 DirectorId = 3,
                 MovieActor = new List<MovieActor>(),
                 Director = new Director()
@@ -277,7 +272,6 @@ namespace CinemaNVS.Tests.Repository
                     ImdbLink = "TestLink",
                     RuntimeMinutes = 191,
                     TrailerLink = "TestLink",
-                    Rating = 1,
                     DirectorId = 1,
                     Director = new Director(),
                     MovieActor = new List<MovieActor>()
@@ -291,7 +285,6 @@ namespace CinemaNVS.Tests.Repository
                     ImdbLink = "TestLink2",
                     RuntimeMinutes = 19,
                     TrailerLink = "TestLink2",
-                    Rating = 2,
                     DirectorId = 2,
                     Director = new Director(),
                     MovieActor = new List<MovieActor>()
@@ -310,7 +303,6 @@ namespace CinemaNVS.Tests.Repository
                 ImdbLink = "TestLink",
                 RuntimeMinutes = 191,
                 TrailerLink = "TestLink",
-                Rating = 1,
                 DirectorId = 1,
                 Director = new Director(),
                 MovieActor = new List<MovieActor>()

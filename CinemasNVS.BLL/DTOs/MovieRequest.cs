@@ -9,10 +9,6 @@ namespace CinemasNVS.BLL.DTOs
         [StringLength(100, ErrorMessage = "Title can not be longer than 100 characters long")]
         public string Title { get; set; }
         [Required]
-        [Range(0, 10,
-        ErrorMessage = "Value for {0} must be between {1} and {2}.")]
-        public float Rating { get; set; }
-        [Required]
         [Range(1, 1000,
         ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public int RuntimeMinutes { get; set; }
