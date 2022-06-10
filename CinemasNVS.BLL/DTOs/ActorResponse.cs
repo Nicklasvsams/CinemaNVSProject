@@ -16,7 +16,6 @@ namespace CinemasNVS.BLL.DTOs
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public float Rating { get; set; }
         public int RuntimeMinutes { get; set; }
         public DateTime ReleaseDate { get; set; }
         public bool IsRunning { get; set; }
