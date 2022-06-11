@@ -81,7 +81,6 @@ namespace CinemasNVS.BLL.Services.UserServices
                 {
                     Id = login.Id,
                     Username = login.Username,
-                    CustomerId = login.CustomerId,
                     IsAuthorized = false
                 };
 
@@ -99,8 +98,6 @@ namespace CinemasNVS.BLL.Services.UserServices
                 Username = logReq.Username,
                 Password = logReq.Password
             };
-
-            if (logReq.CustomerId != null) log.CustomerId = logReq.CustomerId;
 
             if (logReq.IsAdmin) log.IsAdmin = "yes";
             else log.IsAdmin = "no";
