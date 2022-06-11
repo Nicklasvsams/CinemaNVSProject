@@ -11,6 +11,7 @@ namespace CinemaNVS.DAL.Repositories.Transactions
     {
         Task<IEnumerable<Booking>> SelectAllBookingsAsync();
         Task<Booking> SelectBookingByIdAsync(int id);
+        Task<IEnumerable<Booking>> SelectBookingsByShowingIdAsync(int id);
         Task<Booking> DeleteBookingByIdAsync(int id);
         Task<Booking> UpdateBookingByIdAsync(Booking booking, int id);
         Task<Booking> InsertBookingAsync(Booking booking);
@@ -51,8 +52,10 @@ namespace CinemaNVS.DAL.Repositories.Transactions
         {
             return await _dBContext
                 .Bookings
-                .Include("Movie")
-                .Include("Customer")
+                .Include(x => x.Customer)
+                .Include(x => x.Showing)
+                .Include(x => x.Showing.Movie)
+                .Include("BookingSeating.Seating")
                 .ToListAsync();
         }
 
@@ -60,9 +63,23 @@ namespace CinemaNVS.DAL.Repositories.Transactions
         {
             return await _dBContext
                 .Bookings
-                .Include("Movie")
-                .Include("Customer")
+                .Include(x => x.Customer)
+                .Include(x => x.Showing)
+                .Include(x => x.Showing.Movie)
+                .Include("BookingSeating.Seating")
                 .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<IEnumerable<Booking>> SelectBookingsByShowingIdAsync(int id)
+        {
+            return await _dBContext
+                .Bookings
+                .Include(x => x.Customer)
+                .Include(x => x.Showing)
+                .Include(x => x.Showing.Movie)
+                .Include("BookingSeating.Seating")
+                .Where(x => x.ShowingId == id)
+                .ToListAsync();
         }
 
         public async Task<Booking> UpdateBookingByIdAsync(Booking booking, int id)
@@ -71,9 +88,7 @@ namespace CinemaNVS.DAL.Repositories.Transactions
 
             if (bookingToUpdate != null)
             {
-                bookingToUpdate.Price = booking.Price;
                 bookingToUpdate.BookingDate = booking.BookingDate;
-                bookingToUpdate.MovieId = booking.MovieId;
                 bookingToUpdate.CustomerId = booking.CustomerId;
 
                 await _dBContext.SaveChangesAsync();

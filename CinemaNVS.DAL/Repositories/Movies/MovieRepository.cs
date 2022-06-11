@@ -51,7 +51,8 @@ namespace CinemaNVS.DAL.Repositories.Movies
         {
             return await _dBContext
                 .Movies
-                .Include("Director")
+                .Include(x => x.Director)
+                .Include(x => x.Showings)
                 .Include("MovieActor.Actor")
                 .ToListAsync();
         }
@@ -60,7 +61,8 @@ namespace CinemaNVS.DAL.Repositories.Movies
         {
             return await _dBContext
                 .Movies
-                .Include("Director")
+                .Include(x => x.Director)
+                .Include(x => x.Showings)
                 .Include("MovieActor.Actor")
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
