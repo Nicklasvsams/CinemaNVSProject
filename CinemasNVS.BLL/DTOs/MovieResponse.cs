@@ -14,8 +14,17 @@ namespace CinemasNVS.BLL.DTOs
         public string ImdbLink { get; set; }
         public int DirectorId { get; set; }
 
+        public IEnumerable<MovieResponseShowing> ShowingResponse { get; set; }
         public IEnumerable<MovieResponseActor> ActorResponse { get; set; }
         public MovieResponseDirector DirectorResponse { get; set; }
+    }
+
+    public class MovieResponseShowing
+    {
+        public int Id { get; set; }
+        public int Price { get; set; }
+        public DateTime TimeOfShowing { get; set; }
+        public int MovieId { get; set; }
     }
 
     public class MovieResponseDirector
