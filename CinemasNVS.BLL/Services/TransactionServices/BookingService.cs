@@ -1,6 +1,7 @@
 ﻿using CinemaNVS.DAL.Database.Entities.Transactions;
 using CinemaNVS.DAL.Repositories.Transactions;
 using CinemasNVS.BLL.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,6 +33,19 @@ namespace CinemasNVS.BLL.Services.TransactionServices
 
         public async Task<BookingResponse> CreateBookingAsync(BookingRequest booking)
         {
+            List<Booking> bookings = (List<Booking>)await _bookingRepository.SelectBookingsByShowingIdAsync(booking.ShowingId);
+            List<string> occupiedSeatings = new List<string>();
+
+            foreach (Booking boo in bookings)
+            {
+                foreach (BookingSeating seat in boo.BookingSeating)
+                {
+                    occupiedSeatings.Add(seat.Seating.Seat);
+                }
+            }
+
+            if (occupiedSeatings.Contains(booking.Seat)) return null;
+            
             return MapEntityToResponse(await _bookingRepository.InsertBookingAsync(MapRequestToEntity(booking)));
         }
 
@@ -61,28 +75,10 @@ namespace CinemasNVS.BLL.Services.TransactionServices
                 booRes = new BookingResponse()
                 {
                     Id = booking.Id,
-                    Price = booking.Price,
                     BookingDate = booking.BookingDate,
-                    MovieId = booking.MovieId,
-                    CustomerId = booking.CustomerId
+                    CustomerId = booking.CustomerId,
+                    ShowingId = booking.ShowingId
                 };
-
-                if (booking.Movie != null)
-                {
-                    booRes.MovieResponse = new BookingResponseMovie()
-                    {
-                        Id = booking.Movie.Id,
-                        Title = booking.Movie.Title,
-                        Rating = booking.Movie.Rating,
-                        ReleaseDate = booking.Movie.ReleaseDate,
-                        RuntimeMinutes = booking.Movie.RuntimeMinutes,
-                        ImdbLink = booking.Movie.ImdbLink,
-                        TrailerLink = booking.Movie.TrailerLink
-                    };
-
-                    if (booking.Movie.IsRunning == 1) booRes.MovieResponse.IsRunning = true;
-                    else booRes.MovieResponse.IsRunning = false;
-                }
 
                 if (booking.Customer != null)
                 {
@@ -98,6 +94,54 @@ namespace CinemasNVS.BLL.Services.TransactionServices
                     if (booking.Customer.IsActive == "yes") booRes.CustomerResponse.IsActive = true;
                     else booRes.CustomerResponse.IsActive = false;
                 }
+
+                if (booking.Showing != null)
+                {
+                    BookingResponseShowing shoRes = new BookingResponseShowing()
+                    {
+                        Id = booking.Showing.Id,
+                        MovieId = booking.Showing.MovieId,
+                        TimeOfShowing = booking.Showing.TimeOfShowing,
+                        Price = booking.Showing.Price
+                    };
+
+                    booRes.ShowingResponse = shoRes;
+
+                    if (booking.Showing.Movie != null)
+                    {
+                        ShowingResponseMovie movRes = new ShowingResponseMovie()
+                        {
+                            Id = booking.Showing.Movie.Id,
+                            Title = booking.Showing.Movie.Title,
+                            RuntimeMinutes = booking.Showing.Movie.RuntimeMinutes,
+                            ReleaseDate = booking.Showing.Movie.ReleaseDate,
+                            TrailerLink = booking.Showing.Movie.TrailerLink,
+                            ImdbLink = booking.Showing.Movie.ImdbLink,
+                            DirectorId = booking.Showing.Movie.DirectorId
+                        };
+
+                        if (booking.Showing.Movie.IsRunning == 1) movRes.IsRunning = true;
+                        else movRes.IsRunning = false;
+
+                        booRes.ShowingResponse.MovieResponse = movRes;
+                    }
+                }
+
+                if (booking.BookingSeating != null)
+                {
+                    List<BookingResponseSeating> seaRes = new List<BookingResponseSeating>();
+
+                    foreach (BookingSeating booSea in booking.BookingSeating)
+                    {
+                        seaRes.Add(new BookingResponseSeating()
+                        {
+                            Id = booSea.Seating.Id,
+                            Seat = booSea.Seating.Seat
+                        });
+                    }
+
+                    booRes.SeatingResponses = seaRes;
+                }
             }
 
             return booRes;
@@ -107,10 +151,9 @@ namespace CinemasNVS.BLL.Services.TransactionServices
         {
             Booking boo = new Booking()
             {
-                Price = booReq.Price,
                 BookingDate = booReq.BookingDate,
-                MovieId = booReq.MovieId,
-                CustomerId = booReq.CustomerId
+                CustomerId = booReq.CustomerId,
+                ShowingId = booReq.ShowingId
             };
 
             return boo;
