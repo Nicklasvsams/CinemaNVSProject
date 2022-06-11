@@ -1,4 +1,5 @@
 ﻿using CinemaNVS.DAL.Database.Entities.Movies;
+using CinemaNVS.DAL.Database.Entities.Transactions;
 using CinemaNVS.DAL.Repositories.Movies;
 using CinemasNVS.BLL.DTOs;
 using System.Collections.Generic;
@@ -69,6 +70,9 @@ namespace CinemasNVS.BLL.Services.MovieServices
                     DirectorId = movie.DirectorId
                 };
 
+                if (movie.IsRunning == 1) movRes.IsRunning = true;
+                else movRes.IsRunning = false;
+
                 if (movie.MovieActor != null)
                 {
                     List<MovieResponseActor> actRes = new List<MovieResponseActor>();
@@ -83,6 +87,7 @@ namespace CinemasNVS.BLL.Services.MovieServices
                         });
 
                     }
+
                     movRes.ActorResponse = actRes;
                 }
 
@@ -96,8 +101,23 @@ namespace CinemasNVS.BLL.Services.MovieServices
                     };
                 }
 
-                if (movie.IsRunning == 1) movRes.IsRunning = true;
-                else movRes.IsRunning = false;
+                if (movie.Showings != null)
+                {
+                    List<MovieResponseShowing> shoRes = new List<MovieResponseShowing>();
+
+                    foreach (Showing showing in movie.Showings)
+                    {
+                        shoRes.Add(new MovieResponseShowing()
+                        {
+                            Id = showing.Id,
+                            MovieId = showing.MovieId,
+                            TimeOfShowing = showing.TimeOfShowing,
+                            Price = showing.Price
+                        });
+
+                    }
+                    movRes.ShowingResponse = shoRes;
+                }
             }
 
             return movRes;
