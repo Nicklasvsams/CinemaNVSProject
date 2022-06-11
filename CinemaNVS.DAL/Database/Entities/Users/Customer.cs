@@ -19,7 +19,10 @@ namespace CinemaNVS.DAL.Database.Entities.Users
         public string Email { get; set; }
         [Column(TypeName = "nvarchar(3)")]
         public string IsActive { get; set; }
+        [Column(TypeName = "int")]
+        public int LoginId { get; set; }
 
+        public Login Login { get; set; }
         public ICollection<Booking> Bookings { get; set; }
     }
 }

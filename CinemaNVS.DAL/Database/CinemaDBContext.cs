@@ -2,6 +2,9 @@
 using CinemaNVS.DAL.Database.Entities.Transactions;
 using CinemaNVS.DAL.Database.Entities.Users;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace CinemaNVS.DAL.Database
 {
@@ -18,6 +21,9 @@ namespace CinemaNVS.DAL.Database
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Login> Logins { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Showing> Showings { get; set; }
+        public DbSet<Seating> Seatings { get; set; }
+        public DbSet<BookingSeating> BookingSeating { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,6 +43,23 @@ namespace CinemaNVS.DAL.Database
                 .HasOne(a => a.Actor)
                 .WithMany(ma => ma.MovieActor)
                 .HasForeignKey(ai => ai.ActorId);
+
+            modelBuilder.Entity<BookingSeating>()
+                .HasKey(bs => new { bs.BookingId, bs.SeatingId });
+
+            modelBuilder.Entity<BookingSeating>()
+                .Property<int>("Id")
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<BookingSeating>()
+                .HasOne(b => b.Booking)
+                .WithMany(bs => bs.BookingSeating)
+                .HasForeignKey(bi => bi.BookingId);
+
+            modelBuilder.Entity<BookingSeating>()
+                .HasOne(s => s.Seating)
+                .WithMany(bs => bs.BookingSeating)
+                .HasForeignKey(si => si.SeatingId);
 
             modelBuilder.Entity<Login>()
                 .HasIndex(l => l.Username)
@@ -67,7 +90,6 @@ namespace CinemaNVS.DAL.Database
                     ReleaseDate = new System.DateTime(2013, 01, 24),
                     IsRunning = 0,
                     RuntimeMinutes = 165,
-                    Rating = 8.4F,
                     TrailerLink = "https://www.youtube.com/watch?v=0fUCuvNlOCg",
                     ImdbLink = "https://www.imdb.com/title/tt1853728/"
                 });
@@ -80,6 +102,16 @@ namespace CinemaNVS.DAL.Database
                     ActorId = 1
                 });
 
+
+            modelBuilder.Entity<Login>().HasData(
+                new Login()
+                {
+                    Id = 1,
+                    Username = "Bobby",
+                    Password = "Passw0rd",
+                    IsAdmin = "no"
+                });
+
             modelBuilder.Entity<Customer>().HasData(
                 new Customer()
                 {
@@ -88,17 +120,8 @@ namespace CinemaNVS.DAL.Database
                     LastName = "Levinsen",
                     PhoneNo = 11223344,
                     Email = "Test@gmail.com",
-                    IsActive = "yes"
-                });
-
-            modelBuilder.Entity<Login>().HasData(
-                new Login()
-                {
-                    Id = 1,
-                    Username = "Bobby",
-                    Password = "Passw0rd",
-                    IsAdmin = "no",
-                    CustomerId = 1
+                    IsActive = "yes",
+                    LoginId = 1
                 });
 
             modelBuilder.Entity<Login>().HasData(
@@ -110,14 +133,48 @@ namespace CinemaNVS.DAL.Database
                     IsAdmin = "yes"
                 });
 
+            modelBuilder.Entity<Showing>().HasData(
+                new Showing()
+                {
+                    Id = 1,
+                    MovieId = 1,
+                    Price = 140,
+                    TimeOfShowing = DateTime.Now
+                });
+
             modelBuilder.Entity<Booking>().HasData(
                 new Booking()
                 {
                     Id = 1,
                     BookingDate = new System.DateTime(2022, 05, 24),
-                    Price = 140,
                     CustomerId = 1,
-                    MovieId = 1
+                    ShowingId = 1
+                });
+
+            char[] charList = "ABCDEFGHIJ".ToCharArray();
+            int seatingId = 1;
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    modelBuilder.Entity<Seating>().HasData(
+                        new Seating()
+                        {
+                            Id = seatingId,
+                            Seat = charList[i].ToString() + (j+1).ToString()
+                        });
+
+                    seatingId++;
+                }
+            }
+
+            modelBuilder.Entity<BookingSeating>().HasData(
+                new BookingSeating()
+                {
+                    Id = 1,
+                    BookingId = 1,
+                    SeatingId = 1
                 });
         }
     }

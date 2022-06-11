@@ -14,9 +14,5 @@ namespace CinemaNVS.DAL.Database.Entities.Users
         public string Password { get; set; }
         [Column(TypeName = "nvarchar(3)")]
         public string IsAdmin { get; set; }
-        [Column(TypeName = "int")]
-        public int? CustomerId { get; set; }
-
-        public Customer Customer { get; set; }
     }
 }
