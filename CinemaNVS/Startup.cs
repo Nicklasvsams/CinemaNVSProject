@@ -68,6 +68,15 @@ namespace CinemaNVS
             services.AddScoped<IBookingRepository, BookingRepository>();
             services.AddScoped<IBookingService, BookingService>();
 
+            services.AddScoped<ISeatingRepository, SeatingRepository>();
+            services.AddScoped<ISeatingService, SeatingService>();
+
+            services.AddScoped<IShowingRepository, ShowingRepository>();
+            services.AddScoped<IShowingService, ShowingService>();
+
+            services.AddScoped<IBookingSeatingRepository, BookingSeatingRepository>();
+            services.AddScoped<IBookingSeatingService, BookingSeatingService>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
