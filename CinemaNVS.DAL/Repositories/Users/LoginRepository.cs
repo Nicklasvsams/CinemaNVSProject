@@ -47,6 +47,7 @@ namespace CinemaNVS.DAL.Repositories.Users
             {
                 loginToUpdate.Username = login.Username;
                 loginToUpdate.Password = login.Password;
+                loginToUpdate.IsAdmin = login.IsAdmin;
 
                 await _dBContext.SaveChangesAsync();
             }
