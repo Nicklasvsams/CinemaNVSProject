@@ -46,15 +46,38 @@ namespace CinemaNVS.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetById([FromRoute] string username)
+        {
+            try
+            {
+                var loginResponse = await _loginService.GetLoginByUsernameAsync(username);
+
+                if (loginResponse == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(loginResponse);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
         [HttpGet("{username}, {password}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AuthorizeByName([FromRoute] string username, [FromRoute] string password)
+        public async Task<IActionResult> AuthorizeLogin([FromRoute] string username, [FromRoute] string password)
         {
             try
             {
-                var loginResponse = await _loginService.AuthorizeLoginByUsernameAsync(username, password);
+                var loginResponse = await _loginService.AuthorizeLoginAsync(username, password);
 
                 if (loginResponse == null)
                 {

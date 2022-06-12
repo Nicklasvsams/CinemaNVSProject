@@ -10,7 +10,8 @@ namespace CinemasNVS.BLL.Services.UserServices
     public interface ILoginService
     {
         Task<IEnumerable<LoginResponse>> GetAllLoginsAsync();
-        Task<LoginResponse> AuthorizeLoginByUsernameAsync(string name, string password);
+        Task<LoginResponse> GetLoginByUsernameAsync(string username);
+        Task<LoginResponse> AuthorizeLoginAsync(string name, string password);
         Task<LoginResponse> CreateLoginAsync(LoginRequest login);
         Task<LoginResponse> UpdateLoginByUsernameAsync(LoginRequest login, string username);
         Task<LoginResponse> DeleteLoginByUsernameAsync(string username);
@@ -25,7 +26,7 @@ namespace CinemasNVS.BLL.Services.UserServices
             _loginRepository = loginRepository;
         }
 
-        public async Task<LoginResponse> AuthorizeLoginByUsernameAsync(string username, string password)
+        public async Task<LoginResponse> AuthorizeLoginAsync(string username, string password)
         {
             Login login = await _loginRepository.SelectLoginByNameAsync(username);
             LoginResponse logRes = new LoginResponse();
@@ -64,6 +65,11 @@ namespace CinemasNVS.BLL.Services.UserServices
             IEnumerable<Login> logins = await _loginRepository.SelectAllLoginsAsync();
 
             return logins.Select(x => MapEntityToResponse(x)).ToList();
+        }
+
+        public async Task<LoginResponse> GetLoginByUsernameAsync(string username)
+        {
+            return MapEntityToResponse(await _loginRepository.SelectLoginByNameAsync(username));
         }
 
         public async Task<LoginResponse> UpdateLoginByUsernameAsync(LoginRequest login, string username)
