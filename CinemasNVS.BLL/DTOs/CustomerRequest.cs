@@ -19,5 +19,7 @@ namespace CinemasNVS.BLL.DTOs
         public string Email { get; set; }
         [Required]
         public bool IsActive { get; set; }
+        [Required]
+        public int LoginId { get; set; }
     }
 }

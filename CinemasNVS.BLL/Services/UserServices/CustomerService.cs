@@ -117,7 +117,8 @@ namespace CinemasNVS.BLL.Services.UserServices
                 FirstName = cusReq.FirstName,
                 LastName = cusReq.LastName,
                 Email = cusReq.Email,
-                PhoneNo = cusReq.PhoneNo
+                PhoneNo = cusReq.PhoneNo,
+                LoginId = cusReq.LoginId
             };
 
             if (cusReq.IsActive) cus.IsActive = "yes";
