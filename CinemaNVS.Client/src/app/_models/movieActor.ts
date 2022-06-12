@@ -5,6 +5,5 @@ export interface MovieActor {
     id: number;
     movieId: number;
     actorId: number;
-
     movie?: Movie;
 }

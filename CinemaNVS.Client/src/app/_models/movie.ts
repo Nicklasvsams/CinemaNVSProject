@@ -1,5 +1,6 @@
 import { Actor } from "./actor";
 import { Director } from "./director";
+import { Showing } from "./showing";
 
 export interface Movie {
     id: number;
@@ -12,4 +13,5 @@ export interface Movie {
     directorId: number;
     directorResponse?: Director;
     actorResponse?: Actor[];
+    showingResponses?: Showing[];
 }
