@@ -38,7 +38,7 @@
                         <b>Title: </b>{{movieActor.movie.title}}
                     </li>
                     <li>
-                        <div *ngFor="let actor of movieActor.movie.actorResponse">
+                        <div *ngFor="let actor of movieActor.movie.actorResponses">
                             <div *ngIf="actor.id == movieActor.actorId">
                                 <b>Actor ID: </b>{{movieActor.actorId}}
                                 <b>Name: </b>{{actor.name}}

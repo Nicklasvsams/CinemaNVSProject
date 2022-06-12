@@ -58,10 +58,8 @@
                 <li><b>Runtime: </b>{{movie.runtimeMinutes}} minutes</li>
                 <li><b>Release date: </b>{{movie.releaseDate | date}}</li>
                 <li>
-                    <b>
-                        <div *ngIf="movie.isRunning==true; else elseBlock">Movie is running.</div>
-                        <ng-template #elseBlock>Movie is not running.</ng-template>
-                    </b>
+                    <div *ngIf="movie.isRunning==true; else elseBlock">Movie is running</div>
+                    <ng-template #elseBlock>Movie is not running</ng-template>
                 </li>
                 <li><b>Trailer link: </b>{{movie.trailerLink}}</li>
                 <li><b>IMDB link: </b>{{movie.imdbLink}}</li>

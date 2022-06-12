@@ -12,6 +12,6 @@ export interface Movie {
     imdbLink: string;
     directorId: number;
     directorResponse?: Director;
-    actorResponse?: Actor[];
+    actorResponses?: Actor[];
     showingResponses?: Showing[];
 }
