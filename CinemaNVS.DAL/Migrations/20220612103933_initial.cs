@@ -145,7 +145,7 @@ namespace CinemaNVS.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    TimeOfShowing = table.Column<DateTime>(type: "date", nullable: false),
+                    TimeOfShowing = table.Column<DateTime>(type: "smalldatetime", nullable: false),
                     MovieId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -370,7 +370,7 @@ namespace CinemaNVS.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Showings",
                 columns: new[] { "Id", "MovieId", "Price", "TimeOfShowing" },
-                values: new object[] { 1, 1, 140, new DateTime(2022, 6, 11, 17, 19, 26, 517, DateTimeKind.Local).AddTicks(4512) });
+                values: new object[] { 1, 1, 140, new DateTime(2022, 6, 28, 19, 30, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.InsertData(
                 table: "Bookings",

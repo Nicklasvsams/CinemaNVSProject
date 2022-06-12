@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaNVS.DAL.Migrations
 {
     [DbContext(typeof(CinemaDBContext))]
-    [Migration("20220611151928_initial")]
+    [Migration("20220612103933_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -742,7 +742,7 @@ namespace CinemaNVS.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("TimeOfShowing")
-                        .HasColumnType("date");
+                        .HasColumnType("smalldatetime");
 
                     b.HasKey("Id");
 
@@ -756,7 +756,7 @@ namespace CinemaNVS.DAL.Migrations
                             Id = 1,
                             MovieId = 1,
                             Price = 140,
-                            TimeOfShowing = new DateTime(2022, 6, 11, 17, 19, 26, 517, DateTimeKind.Local).AddTicks(4512)
+                            TimeOfShowing = new DateTime(2022, 6, 28, 19, 30, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
