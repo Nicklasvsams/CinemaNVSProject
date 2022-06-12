@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
             .subscribe({
               next: (x) => {
                 this.logins.push(x);
-                this.login = this.loginObject();
+                this.cancel();
               },
               error: (err) => {
                 console.log(err);
