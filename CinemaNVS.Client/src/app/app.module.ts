@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DirectorComponent } from './admin/director/director.component';
 import { ActorComponent } from './admin/actor/actor.component';
 import { MovieActorComponent } from './admin/movie-actor/movie-actor.component';
+import { LoginComponent } from './admin/login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MovieActorComponent } from './admin/movie-actor/movie-actor.component';
     MovieComponent,
     DirectorComponent,
     ActorComponent,
-    MovieActorComponent
+    MovieActorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

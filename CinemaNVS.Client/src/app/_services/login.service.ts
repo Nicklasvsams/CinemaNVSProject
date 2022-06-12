@@ -32,11 +32,11 @@ export class LoginService {
     return this.http.post<Login>(this.apiUrl, login, this.httpOptions)
   }
 
-  deleteLogin(loginId: number): Observable<Login> {
-    return this.http.delete<Login>(this.apiUrl + '/' + loginId, this.httpOptions)
+  deleteLogin(username: string): Observable<Login> {
+    return this.http.delete<Login>(this.apiUrl + '/' + username, this.httpOptions)
   }
 
-  updateLogin(loginId: number, director: Login): Observable<Login> {
-    return this.http.put<Login>(this.apiUrl + '/' + loginId, director, this.httpOptions)
+  updateLogin(username: string, login: Login): Observable<Login> {
+    return this.http.put<Login>(this.apiUrl + '/' + username, login, this.httpOptions)
   }
 }

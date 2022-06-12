@@ -99,3 +99,11 @@ footer {
     background-color: grey;
     border-top: 1px solid;
 }
+
+.passwordNotValid {
+    background-color: red !important;
+}
+
+.passwordValid {
+    background-color: green !important;
+}

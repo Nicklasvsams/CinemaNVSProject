@@ -1,0 +1,52 @@
+<div class="main">
+    <h1>Login administration</h1>
+    <div class="dataForms">
+        <ul>
+            <li>
+                <label>Username</label>
+                <input [(ngModel)]="login.username">
+            </li>
+            <div id="passwordValid">
+                <li>
+                    <label>Password</label>
+                    <input [(ngModel)]="login.password" type="password" class="passwords"
+                        (change)="onChangeEvent($event)">
+                </li>
+                <li>
+                    <label>Re-enter password</label>
+                    <input [(ngModel)]="loginPassword" type="password" class="passwords"
+                        (change)="onChangeEvent($event)">
+                </li>
+            </div>
+            <li>
+                <label>Admin rights</label>
+                <select [(ngModel)]="login.isAdmin">
+                    <option disabled selected>Is user admin?</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </li>
+            <button (click)="save()">Save</button>
+            <button (click)="cancel()">Cancel</button>
+        </ul>
+    </div>
+
+    <ul class="content" *ngIf="logins.length > 0">
+        <div class="infoCard" *ngFor="let login of logins">
+            <ul>
+                <li>
+                    <h3>Login info:</h3>
+                </li>
+                <li><b>Id: </b>{{login.id}}</li>
+                <li><b>Username: </b>{{login.username}}</li>
+                <li>
+                    <div *ngIf="login.isAdmin==true; else elseBlock">User is admin</div>
+                    <ng-template #elseBlock>User is not admin</ng-template>
+                </li>
+
+                <button (click)="edit(login)">Edit</button>
+                <button (click)="delete(login)">Delete</button>
+            </ul>
+        </div>
+    </ul>
+</div>
