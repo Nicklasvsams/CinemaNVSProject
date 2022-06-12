@@ -1,0 +1,63 @@
+<div class="main">
+    <h1>Customer administration</h1>
+    <div class="dataForms">
+        <ul>
+            <li>
+                <label>First name</label>
+                <input [(ngModel)]="customer.firstName">
+            </li>
+            <li>
+                <label>Last name</label>
+                <input [(ngModel)]="customer.lastName">
+            </li>
+            <li>
+                <label>Phone number</label>
+                <input [(ngModel)]="customer.phoneNo" type="number">
+            </li>
+            <li>
+                <label>E-Mail</label>
+                <input [(ngModel)]="customer.email" type="email">
+            </li>
+            <li>
+                <label>Active status</label>
+                <select [(ngModel)]="customer.isActive">
+                    <option disabled selected>Is customer activated?</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </li>
+            <li>
+                <label>Login</label>
+                <select [(ngModel)]="customer.loginId" type="number">
+                    <option disabled selected>Choose Login</option>
+                    <option *ngFor="let login of logins" [ngValue]='login.id'>
+                        {{ login.username }}
+                    </option>
+                </select>
+            </li>
+            <button (click)="save()">Save</button>
+            <button (click)="cancel()">Cancel</button>
+        </ul>
+    </div>
+
+    <ul class="content" *ngIf="customers.length > 0">
+        <div class="infoCard" *ngFor="let customer of customers">
+            <ul>
+                <li>
+                    <h3>Customer info:</h3>
+                </li>
+                <li><b>Id: </b>{{customer.id}}</li>
+                <li><b>Name: </b>{{customer.firstName}} {{customer.lastName}}</li>
+                <li><b>Phone number: </b>{{customer.phoneNo}}</li>
+                <li><b>E-Mail: </b>{{customer.email}}</li>
+                <li>
+                    <div *ngIf="customer.isActive==true; else elseBlock">Customer is active</div>
+                    <ng-template #elseBlock>Customer is not active</ng-template>
+                </li>
+                <li><b>Login ID: </b>{{customer.loginId}}</li>
+                <button (click)="edit(customer)">Edit</button>
+                <button (click)="delete(customer)">Delete</button>
+            </ul>
+        </div>
+    </ul>
+</div>

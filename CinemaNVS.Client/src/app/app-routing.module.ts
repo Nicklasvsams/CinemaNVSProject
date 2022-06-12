@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActorComponent } from './admin/actor/actor.component';
+import { CustomerComponent } from './admin/customer/customer.component';
 import { DirectorComponent } from './admin/director/director.component';
 import { LoginComponent } from './admin/login/login.component';
 import { MovieActorComponent } from './admin/movie-actor/movie-actor.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'admin/director', component: DirectorComponent },
   { path: 'admin/actor', component: ActorComponent },
   { path: 'admin/movie-actor', component: MovieActorComponent },
-  { path: 'admin/login', component: LoginComponent }
+  { path: 'admin/login', component: LoginComponent },
+  { path: 'admin/customer', component: CustomerComponent }
 ];
 
 @NgModule({

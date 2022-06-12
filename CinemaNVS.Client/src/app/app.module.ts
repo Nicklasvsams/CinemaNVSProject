@@ -13,6 +13,7 @@ import { DirectorComponent } from './admin/director/director.component';
 import { ActorComponent } from './admin/actor/actor.component';
 import { MovieActorComponent } from './admin/movie-actor/movie-actor.component';
 import { LoginComponent } from './admin/login/login.component';
+import { CustomerComponent } from './admin/customer/customer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoginComponent } from './admin/login/login.component';
     DirectorComponent,
     ActorComponent,
     MovieActorComponent,
-    LoginComponent
+    LoginComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
