@@ -44,8 +44,8 @@ namespace CinemasNVS.BLL.Services.TransactionServices
         {
             return new BookingSeating()
             {
-                BookingId = booSeaReq.bookingId,
-                SeatingId = booSeaReq.seatingId
+                BookingId = booSeaReq.BookingId,
+                SeatingId = booSeaReq.SeatingId
             };
         }
 
@@ -54,8 +54,8 @@ namespace CinemasNVS.BLL.Services.TransactionServices
             return new BookingSeatingResponse()
             {
                 Id = booSea.Id,
-                bookingId = booSea.BookingId,
-                seatingId = booSea.SeatingId
+                BookingId = booSea.BookingId,
+                SeatingId = booSea.SeatingId
             };
         }
     }

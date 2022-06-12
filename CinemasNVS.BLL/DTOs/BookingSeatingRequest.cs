@@ -5,8 +5,8 @@ namespace CinemasNVS.BLL.DTOs
     public class BookingSeatingRequest
     {
         [Required]
-        public int bookingId { get; set; }
+        public int BookingId { get; set; }
         [Required]
-        public int seatingId { get; set; }
+        public int SeatingId { get; set; }
     }
 }

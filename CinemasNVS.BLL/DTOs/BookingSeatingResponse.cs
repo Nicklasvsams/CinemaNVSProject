@@ -3,7 +3,7 @@
     public class BookingSeatingResponse
     {
         public int Id { get; set; }
-        public int bookingId { get; set; }
-        public int seatingId { get; set; }
+        public int BookingId { get; set; }
+        public int SeatingId { get; set; }
     }
 }

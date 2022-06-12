@@ -88,7 +88,7 @@ namespace CinemasNVS.BLL.Services.MovieServices
 
                     }
 
-                    movRes.ActorResponse = actRes;
+                    movRes.ActorResponses = actRes;
                 }
 
                 if (movie.Director != null)
@@ -116,7 +116,7 @@ namespace CinemasNVS.BLL.Services.MovieServices
                         });
 
                     }
-                    movRes.ShowingResponse = shoRes;
+                    movRes.ShowingResponses = shoRes;
                 }
             }
 

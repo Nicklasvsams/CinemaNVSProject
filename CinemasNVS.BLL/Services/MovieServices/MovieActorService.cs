@@ -44,8 +44,8 @@ namespace CinemasNVS.BLL.Services.MovieServices
         {
             return new MovieActor()
             {
-                MovieId = movActRes.movieId,
-                ActorId = movActRes.actorId
+                MovieId = movActRes.MovieId,
+                ActorId = movActRes.ActorId
             };
         }
 
@@ -54,8 +54,8 @@ namespace CinemasNVS.BLL.Services.MovieServices
             return new MovieActorResponse()
             {
                 Id = movAct.Id,
-                movieId = movAct.MovieId,
-                actorId = movAct.ActorId
+                MovieId = movAct.MovieId,
+                ActorId = movAct.ActorId
             };
         }
     }
