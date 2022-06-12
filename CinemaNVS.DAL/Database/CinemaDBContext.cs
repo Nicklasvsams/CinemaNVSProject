@@ -139,7 +139,7 @@ namespace CinemaNVS.DAL.Database
                     Id = 1,
                     MovieId = 1,
                     Price = 140,
-                    TimeOfShowing = DateTime.Now
+                    TimeOfShowing = new DateTime(2022, 06, 28, 19, 30, 00)
                 });
 
             modelBuilder.Entity<Booking>().HasData(

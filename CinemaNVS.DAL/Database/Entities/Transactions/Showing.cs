@@ -12,7 +12,7 @@ namespace CinemaNVS.DAL.Database.Entities.Transactions
         public int Id { get; set; }
         [Column(TypeName = "int")]
         public int Price { get; set; }
-        [Column(TypeName = "date")]
+        [Column(TypeName = "smalldatetime")]
         public DateTime TimeOfShowing { get; set; }
         [Column(TypeName = "int")]
         public int MovieId { get; set; }
