@@ -55,7 +55,7 @@ namespace CinemaNVS
             services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<ILoginService, LoginService>();
 
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            StartupDAL.DALStartupConf(services);
             services.AddScoped<ICustomerService, CustomerService>();
 
             services.AddScoped<IBookingRepository, BookingRepository>();
