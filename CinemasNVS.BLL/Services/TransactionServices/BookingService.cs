@@ -1,7 +1,6 @@
 ﻿using CinemaNVS.DAL.Database.Entities.Transactions;
 using CinemaNVS.DAL.Repositories.Transactions;
 using CinemasNVS.BLL.DTOs;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

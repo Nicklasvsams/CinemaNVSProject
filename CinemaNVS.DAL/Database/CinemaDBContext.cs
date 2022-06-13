@@ -3,8 +3,6 @@ using CinemaNVS.DAL.Database.Entities.Transactions;
 using CinemaNVS.DAL.Database.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace CinemaNVS.DAL.Database
 {
