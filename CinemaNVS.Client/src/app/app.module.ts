@@ -16,7 +16,6 @@ import { LoginComponent } from './admin/login/login.component';
 import { CustomerComponent } from './admin/customer/customer.component';
 import { ShowingComponent } from './admin/showing/showing.component';
 import { BookingComponent } from './admin/booking/booking.component';
-import { SeatingComponent } from './admin/seating/seating.component';
 import { BookingSeatingComponent } from './admin/booking-seating/booking-seating.component';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { BookingSeatingComponent } from './admin/booking-seating/booking-seating
     CustomerComponent,
     ShowingComponent,
     BookingComponent,
-    SeatingComponent,
     BookingSeatingComponent
   ],
   imports: [
