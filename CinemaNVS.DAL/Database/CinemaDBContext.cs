@@ -108,6 +108,12 @@ namespace CinemaNVS.DAL.Database
                     Username = "Bobby",
                     Password = "Passw0rd",
                     IsAdmin = "no"
+                },
+                new Login(){
+                    Id = 2,
+                    Username = "admin",
+                    Password = "admin",
+                    IsAdmin = "yes"
                 });
 
             modelBuilder.Entity<Customer>().HasData(
@@ -120,15 +126,6 @@ namespace CinemaNVS.DAL.Database
                     Email = "Test@gmail.com",
                     IsActive = "yes",
                     LoginId = 1
-                });
-
-            modelBuilder.Entity<Login>().HasData(
-                new Login()
-                {
-                    Id = 2,
-                    Username = "admin",
-                    Password = "admin",
-                    IsAdmin = "yes"
                 });
 
             modelBuilder.Entity<Showing>().HasData(
