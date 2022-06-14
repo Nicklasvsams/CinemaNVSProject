@@ -29,7 +29,7 @@ export class CustomerService {
     return this.http.post<Customer>(this.apiUrl, customer, this.httpOptions)
   }
 
-  deleteCustomer(customerId: number): Observable<Customer> {
+  changeActiveStatusForCustomer(customerId: number): Observable<Customer> {
     return this.http.delete<Customer>(this.apiUrl + '/' + customerId, this.httpOptions)
   }
 

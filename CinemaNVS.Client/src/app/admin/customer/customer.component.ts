@@ -12,6 +12,8 @@ import { LoginService } from 'src/app/_services/login.service';
 export class CustomerComponent implements OnInit {
 
   customers: Customer[] = [];
+  activeCustomers: Customer[] = [];
+  inactiveCustomers: Customer[] = [];
   logins: Login[] = [];
   customer: Customer = { id: 0, firstName: "", lastName: "", phoneNo: 0, email: "", isActive: false, loginId: 0 };
 
@@ -19,7 +21,17 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerService.getAllCustomers()
-      .subscribe(x => this.customers = x);
+      .subscribe({
+        next: (x) => {
+          this.activeCustomers = x.filter(x => x.isActive === true);
+          this.inactiveCustomers = x.filter(x => x.isActive === false);
+          console.log(this.activeCustomers);
+          console.log(this.inactiveCustomers);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
 
     this.loginService.getAllLogins()
       .subscribe(x => this.logins = x);
@@ -29,11 +41,18 @@ export class CustomerComponent implements OnInit {
     this.customer = customer;
   }
 
-  delete(customer: Customer): void {
-    if (confirm('Are you sure you want to delete this customer?')) {
-      this.customerService.deleteCustomer(customer.id)
-        .subscribe(() => {
-          this.customers = this.customers.filter(x => x.id != customer.id)
+  changeActiveStatus(customer: Customer): void {
+    if (confirm('Are you sure you want to change activation for this customer?')) {
+      this.customerService.changeActiveStatusForCustomer(customer.id)
+        .subscribe((x) => {
+          if(x.isActive === true){
+            this.activeCustomers.push(x);
+            this.inactiveCustomers = this.inactiveCustomers.filter(y => y.id != x.id);
+          }
+          else{
+            this.inactiveCustomers.push(x);
+            this.activeCustomers = this.activeCustomers.filter(y => y.id != x.id)
+          }
         });
     }
   }
@@ -46,7 +65,12 @@ export class CustomerComponent implements OnInit {
         this.customerService.addCustomer(this.customer)
           .subscribe({
             next: (x) => {
-              this.customers.push(x);
+              if(x.isActive === true){
+                this.activeCustomers.push(x);
+              }
+              else{
+                this.inactiveCustomers.push(x);
+              }
               this.customer = this.customerObject();
             },
             error: (err) => {
