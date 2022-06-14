@@ -1,1 +1,66 @@
-<p>booking-seating works!</p>
+<div class="main">
+    <h1>Booking-Seating relation administration</h1>
+    <div class="dataForms">
+        <ul>
+            <li>
+                <label>Booking</label>
+                <select [(ngModel)]="bookingSeating.bookingId" type="number">
+                    <option disabled selected>Choose booking</option>
+                    <option *ngFor="let booking of bookings" [ngValue]='booking.id'>
+                        <div *ngIf="booking != null && 
+                        booking.showingResponse != null && 
+                        booking.showingResponse.timeOfShowing != null && 
+                        booking.showingResponse.movieResponse != null">
+                            {{booking.showingResponse.movieResponse.title}} - {{booking.showingResponse.timeOfShowing |
+                            date}} {{booking.showingResponse.timeOfShowing | date: "HH:mm"}}
+
+                        </div>
+                    </option>
+                </select>
+            </li>
+            <li>
+                <label>Seating</label>
+                <select [(ngModel)]="bookingSeating.seatingId" type="number">
+                    <option disabled selected>Choose seating</option>
+                    <option *ngFor="let seating of seatings" [ngValue]='seating.id'>
+                        {{ seating.seat }}
+                    </option>
+                </select>
+            </li>
+            <button (click)="save()">Save</button>
+            <button (click)="cancel()">Cancel</button>
+        </ul>
+    </div>
+
+    <ul class="content" *ngIf="bookingSeatings.length > 0">
+        <div class="infoCard" *ngFor="let bookingSeating of bookingSeatings">
+            <div
+                *ngIf="bookingSeating.bookingResponse != null && bookingSeating.bookingResponse.showingResponse != null && bookingSeating.bookingResponse.showingResponse.movieResponse != null">
+                <ul>
+                    <li>
+                        <h3>Booking-Seating relation info:</h3>
+                    </li>
+                    <li><b>ID: </b>{{bookingSeating.id}}</li>
+                    <li>
+                        <b>Booking ID: </b>{{bookingSeating.bookingId}} -
+                        <b>Date of booking: </b>{{bookingSeating.bookingResponse.bookingDate | date }}
+                    </li>
+                    <li><b>Booking showing: </b>{{bookingSeating.bookingResponse.showingResponse.movieResponse.title}} -
+                        {{bookingSeating.bookingResponse.showingResponse.timeOfShowing | date }}
+                        {{bookingSeating.bookingResponse.showingResponse.timeOfShowing | date: "HH:mm"}}
+                    </li>
+                    <li>
+                        <div *ngFor="let seating of bookingSeating.bookingResponse.seatingResponses">
+                            <div *ngIf="seating.id == bookingSeating.seatingId">
+                                <b>Seating ID: </b>{{bookingSeating.seatingId}}
+                                <b>Seat: </b>{{seating.seat}}
+                            </div>
+                        </div>
+                    </li>
+
+                    <button (click)="delete(bookingSeating)">Delete</button>
+                </ul>
+            </div>
+        </div>
+    </ul>
+</div>

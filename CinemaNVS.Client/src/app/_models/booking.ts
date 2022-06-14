@@ -1,3 +1,4 @@
+import { BookingSeating } from "./bookingSeating";
 import { Customer } from "./customer";
 import { Seating } from "./seating";
 import { Showing } from "./showing";
@@ -10,4 +11,5 @@ export interface Booking {
     customerResponse?: Customer;
     showingResponse?: Showing;
     seatingResponses?: Seating[];
+    bookingSeatings?: BookingSeating[];
 }
