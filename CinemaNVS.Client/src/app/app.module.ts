@@ -15,6 +15,9 @@ import { MovieActorComponent } from './admin/movie-actor/movie-actor.component';
 import { LoginComponent } from './admin/login/login.component';
 import { CustomerComponent } from './admin/customer/customer.component';
 import { ShowingComponent } from './admin/showing/showing.component';
+import { BookingComponent } from './admin/booking/booking.component';
+import { SeatingComponent } from './admin/seating/seating.component';
+import { BookingSeatingComponent } from './admin/booking-seating/booking-seating.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { ShowingComponent } from './admin/showing/showing.component';
     MovieActorComponent,
     LoginComponent,
     CustomerComponent,
-    ShowingComponent
+    ShowingComponent,
+    BookingComponent,
+    SeatingComponent,
+    BookingSeatingComponent
   ],
   imports: [
     BrowserModule,
