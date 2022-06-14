@@ -11,6 +11,15 @@
                 <input [(ngModel)]="movie.runtimeMinutes">
             </li>
             <li>
+                <label>Trailer link</label>
+                <input [(ngModel)]="movie.trailerLink">
+            </li>
+            <li>
+                <label>IMDB link</label>
+                <input [(ngModel)]="movie.imdbLink">
+            </li>
+            
+            <li>
                 <label>Is running</label>
                 <select [(ngModel)]="movie.isRunning">
                     <option disabled selected>Is movie running?</option>
@@ -19,16 +28,8 @@
                 </select>
             </li>
             <li>
-                <label>Trailer link</label>
-                <input [(ngModel)]="movie.trailerLink">
-            </li>
-            <li>
-                <label>IMDB link</label>
-                <input [(ngModel)]="movie.imdbLink">
-            </li>
-            <li>
                 <label>Director</label>
-                <select [(ngModel)]="movie.directorId" type="number">
+                <select [(ngModel)]="movie.directorId">
                     <option disabled selected>Choose director</option>
                     <option *ngFor="let director of directors" [ngValue]='director.id'>
                         {{ director.name }}
