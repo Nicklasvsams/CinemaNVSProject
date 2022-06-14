@@ -14,6 +14,7 @@ import { ActorComponent } from './admin/actor/actor.component';
 import { MovieActorComponent } from './admin/movie-actor/movie-actor.component';
 import { LoginComponent } from './admin/login/login.component';
 import { CustomerComponent } from './admin/customer/customer.component';
+import { ShowingComponent } from './admin/showing/showing.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CustomerComponent } from './admin/customer/customer.component';
     ActorComponent,
     MovieActorComponent,
     LoginComponent,
-    CustomerComponent
+    CustomerComponent,
+    ShowingComponent
   ],
   imports: [
     BrowserModule,
