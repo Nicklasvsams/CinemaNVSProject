@@ -72,8 +72,7 @@ namespace CinemasNVS.BLL.Services.UserServices
                     FirstName = customer.FirstName,
                     LastName = customer.LastName,
                     Email = customer.Email,
-                    PhoneNo = customer.PhoneNo,
-                    LoginId = customer.LoginId
+                    PhoneNo = customer.PhoneNo
                 };
 
                 if (customer.Bookings != null)
@@ -96,15 +95,6 @@ namespace CinemasNVS.BLL.Services.UserServices
 
                 if (customer.IsActive == "yes") cusRes.IsActive = true;
                 else cusRes.IsActive = false;
-
-                if (customer.Login != null)
-                {
-                    cusRes.LoginResponse = new CustomerResponseLogin()
-                    {
-                        Id = customer.Login.Id,
-                        Username = customer.Login.Username
-                    };
-                }
             }
 
             return cusRes;
@@ -117,8 +107,7 @@ namespace CinemasNVS.BLL.Services.UserServices
                 FirstName = cusReq.FirstName,
                 LastName = cusReq.LastName,
                 Email = cusReq.Email,
-                PhoneNo = cusReq.PhoneNo,
-                LoginId = cusReq.LoginId
+                PhoneNo = cusReq.PhoneNo
             };
 
             if (cusReq.IsActive) cus.IsActive = "yes";

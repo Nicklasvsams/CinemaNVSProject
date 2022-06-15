@@ -28,6 +28,7 @@ namespace CinemaNVS.DAL.Repositories.Users
         {
             return await _dBContext
                 .Logins
+                .Include(x => x.Customer)
                 .FirstOrDefaultAsync(x => x.Username == name);
         }
 
@@ -48,6 +49,7 @@ namespace CinemaNVS.DAL.Repositories.Users
                 loginToUpdate.Username = login.Username;
                 loginToUpdate.Password = login.Password;
                 loginToUpdate.IsAdmin = login.IsAdmin;
+                loginToUpdate.CustomerId = login.CustomerId;
 
                 await _dBContext.SaveChangesAsync();
             }
@@ -59,6 +61,7 @@ namespace CinemaNVS.DAL.Repositories.Users
         {
             return await _dBContext
                 .Logins
+                .Include(x => x.Customer)
                 .ToListAsync();
         }
 

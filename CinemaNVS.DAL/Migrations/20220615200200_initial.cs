@@ -22,6 +22,23 @@ namespace CinemaNVS.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    PhoneNo = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    IsActive = table.Column<string>(type: "nvarchar(3)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Directors",
                 columns: table => new
                 {
@@ -36,21 +53,6 @@ namespace CinemaNVS.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Logins",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(50)", nullable: true),
-                    IsAdmin = table.Column<string>(type: "nvarchar(3)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Logins", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Seatings",
                 columns: table => new
                 {
@@ -61,6 +63,28 @@ namespace CinemaNVS.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Seatings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Logins",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    IsAdmin = table.Column<string>(type: "nvarchar(3)", nullable: true),
+                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Logins", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Logins_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,30 +108,6 @@ namespace CinemaNVS.DAL.Migrations
                         name: "FK_Movies_Directors_DirectorId",
                         column: x => x.DirectorId,
                         principalTable: "Directors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Customers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(30)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(30)", nullable: true),
-                    PhoneNo = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    IsActive = table.Column<string>(type: "nvarchar(3)", nullable: true),
-                    LoginId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Customers_Logins_LoginId",
-                        column: x => x.LoginId,
-                        principalTable: "Logins",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -218,25 +218,24 @@ namespace CinemaNVS.DAL.Migrations
                 values: new object[] { 1, "https://www.imdb.com/name/nm0004937/", "Jamie Foxx" });
 
             migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "Id", "Email", "FirstName", "IsActive", "LastName", "PhoneNo" },
+                values: new object[,]
+                {
+                    { 1, "Test@gmail.com", "admin", "yes", "admin", 51515151 },
+                    { 2, "Test@gmail.com", "Bob", "yes", "Levinsen", 11223344 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Directors",
                 columns: new[] { "Id", "ImdbLink", "Name" },
                 values: new object[] { 1, "https://www.imdb.com/name/nm0000233/", "Quentin Tarantino" });
-
-            migrationBuilder.InsertData(
-                table: "Logins",
-                columns: new[] { "Id", "IsAdmin", "Password", "Username" },
-                values: new object[,]
-                {
-                    { 1, "no", "Passw0rd", "Bobby" },
-                    { 2, "yes", "admin", "admin" }
-                });
 
             migrationBuilder.InsertData(
                 table: "Seatings",
                 columns: new[] { "Id", "Seat" },
                 values: new object[,]
                 {
-                    { 3, "A3" },
                     { 75, "H5" },
                     { 74, "H4" },
                     { 73, "H3" },
@@ -247,8 +246,8 @@ namespace CinemaNVS.DAL.Migrations
                     { 68, "G8" },
                     { 67, "G7" },
                     { 66, "G6" },
+                    { 76, "H6" },
                     { 65, "G5" },
-                    { 64, "G4" },
                     { 63, "G3" },
                     { 62, "G2" },
                     { 61, "G1" },
@@ -258,8 +257,9 @@ namespace CinemaNVS.DAL.Migrations
                     { 57, "F7" },
                     { 56, "F6" },
                     { 55, "F5" },
-                    { 76, "H6" },
                     { 54, "F4" },
+                    { 64, "G4" },
+                    { 2, "A2" },
                     { 77, "H7" },
                     { 79, "H9" },
                     { 100, "J10" },
@@ -294,7 +294,6 @@ namespace CinemaNVS.DAL.Migrations
                     { 53, "F3" },
                     { 52, "F2" },
                     { 51, "F1" },
-                    { 24, "C4" },
                     { 23, "C3" },
                     { 22, "C2" },
                     { 21, "C1" },
@@ -315,14 +314,15 @@ namespace CinemaNVS.DAL.Migrations
                     { 6, "A6" },
                     { 5, "A5" },
                     { 4, "A4" },
+                    { 3, "A3" },
+                    { 24, "C4" },
                     { 25, "C5" },
                     { 26, "C6" },
                     { 27, "C7" },
-                    { 28, "C8" },
-                    { 1, "A1" },
                     { 49, "E9" },
                     { 48, "E8" },
-                    { 47, "E7" }
+                    { 47, "E7" },
+                    { 46, "E6" }
                 });
 
             migrationBuilder.InsertData(
@@ -330,15 +330,14 @@ namespace CinemaNVS.DAL.Migrations
                 columns: new[] { "Id", "Seat" },
                 values: new object[,]
                 {
-                    { 46, "E6" },
                     { 45, "E5" },
                     { 44, "E4" },
                     { 43, "E3" },
                     { 42, "E2" },
                     { 41, "E1" },
-                    { 2, "A2" },
                     { 40, "D10" },
-                    { 38, "D8" },
+                    { 1, "A1" },
+                    { 39, "D9" },
                     { 37, "D7" },
                     { 36, "D6" },
                     { 35, "D5" },
@@ -348,14 +347,20 @@ namespace CinemaNVS.DAL.Migrations
                     { 31, "D1" },
                     { 30, "C10" },
                     { 29, "C9" },
-                    { 39, "D9" },
+                    { 28, "C8" },
+                    { 38, "D8" },
                     { 50, "E10" }
                 });
 
             migrationBuilder.InsertData(
-                table: "Customers",
-                columns: new[] { "Id", "Email", "FirstName", "IsActive", "LastName", "LoginId", "PhoneNo" },
-                values: new object[] { 1, "Test@gmail.com", "Bob", "yes", "Levinsen", 1, 11223344 });
+                table: "Logins",
+                columns: new[] { "Id", "CustomerId", "IsAdmin", "Password", "Username" },
+                values: new object[] { 2, 1, "yes", "admin", "admin" });
+
+            migrationBuilder.InsertData(
+                table: "Logins",
+                columns: new[] { "Id", "CustomerId", "IsAdmin", "Password", "Username" },
+                values: new object[] { 1, 2, "no", "Passw0rd", "Bobby" });
 
             migrationBuilder.InsertData(
                 table: "Movies",
@@ -398,9 +403,9 @@ namespace CinemaNVS.DAL.Migrations
                 column: "SeatingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_LoginId",
-                table: "Customers",
-                column: "LoginId");
+                name: "IX_Logins_CustomerId",
+                table: "Logins",
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logins_Username",
@@ -431,6 +436,9 @@ namespace CinemaNVS.DAL.Migrations
                 name: "BookingSeating");
 
             migrationBuilder.DropTable(
+                name: "Logins");
+
+            migrationBuilder.DropTable(
                 name: "MovieActor");
 
             migrationBuilder.DropTable(
@@ -447,9 +455,6 @@ namespace CinemaNVS.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Showings");
-
-            migrationBuilder.DropTable(
-                name: "Logins");
 
             migrationBuilder.DropTable(
                 name: "Movies");

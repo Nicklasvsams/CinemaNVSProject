@@ -777,15 +777,10 @@ namespace CinemaNVS.DAL.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int>("LoginId")
-                        .HasColumnType("int");
-
                     b.Property<int>("PhoneNo")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LoginId");
 
                     b.ToTable("Customers");
 
@@ -794,10 +789,18 @@ namespace CinemaNVS.DAL.Migrations
                         {
                             Id = 1,
                             Email = "Test@gmail.com",
+                            FirstName = "admin",
+                            IsActive = "yes",
+                            LastName = "admin",
+                            PhoneNo = 51515151
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "Test@gmail.com",
                             FirstName = "Bob",
                             IsActive = "yes",
                             LastName = "Levinsen",
-                            LoginId = 1,
                             PhoneNo = 11223344
                         });
                 });
@@ -808,6 +811,9 @@ namespace CinemaNVS.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<string>("IsAdmin")
                         .HasColumnType("nvarchar(3)");
@@ -820,6 +826,8 @@ namespace CinemaNVS.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CustomerId");
+
                     b.HasIndex("Username")
                         .IsUnique()
                         .HasFilter("[Username] IS NOT NULL");
@@ -830,6 +838,7 @@ namespace CinemaNVS.DAL.Migrations
                         new
                         {
                             Id = 1,
+                            CustomerId = 2,
                             IsAdmin = "no",
                             Password = "Passw0rd",
                             Username = "Bobby"
@@ -837,6 +846,7 @@ namespace CinemaNVS.DAL.Migrations
                         new
                         {
                             Id = 2,
+                            CustomerId = 1,
                             IsAdmin = "yes",
                             Password = "admin",
                             Username = "admin"
@@ -922,15 +932,15 @@ namespace CinemaNVS.DAL.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("CinemaNVS.DAL.Database.Entities.Users.Customer", b =>
+            modelBuilder.Entity("CinemaNVS.DAL.Database.Entities.Users.Login", b =>
                 {
-                    b.HasOne("CinemaNVS.DAL.Database.Entities.Users.Login", "Login")
+                    b.HasOne("CinemaNVS.DAL.Database.Entities.Users.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("LoginId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Login");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("CinemaNVS.DAL.Database.Entities.Movies.Actor", b =>

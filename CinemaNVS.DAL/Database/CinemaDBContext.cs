@@ -107,25 +107,35 @@ namespace CinemaNVS.DAL.Database
                     Id = 1,
                     Username = "Bobby",
                     Password = "Passw0rd",
-                    IsAdmin = "no"
+                    IsAdmin = "no",
+                    CustomerId = 2
                 },
                 new Login(){
                     Id = 2,
                     Username = "admin",
                     Password = "admin",
-                    IsAdmin = "yes"
+                    IsAdmin = "yes",
+                    CustomerId = 1
                 });
 
             modelBuilder.Entity<Customer>().HasData(
                 new Customer()
                 {
                     Id = 1,
+                    FirstName = "admin",
+                    LastName = "admin",
+                    PhoneNo = 51515151,
+                    Email = "Test@gmail.com",
+                    IsActive = "yes"
+                },
+                new Customer()
+                {
+                    Id = 2,
                     FirstName = "Bob",
                     LastName = "Levinsen",
                     PhoneNo = 11223344,
                     Email = "Test@gmail.com",
-                    IsActive = "yes",
-                    LoginId = 1
+                    IsActive = "yes"
                 });
 
             modelBuilder.Entity<Showing>().HasData(

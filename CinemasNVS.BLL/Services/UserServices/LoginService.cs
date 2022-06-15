@@ -87,11 +87,27 @@ namespace CinemasNVS.BLL.Services.UserServices
                 {
                     Id = login.Id,
                     Username = login.Username,
-                    IsAuthorized = false
+                    IsAuthorized = false,
+                    CustomerId = login.CustomerId
                 };
 
                 if (login.IsAdmin == "yes") logRes.IsAdmin = true;
                 else logRes.IsAdmin = false;
+
+                if (login.Customer != null)
+                {
+                    logRes.CustomerResponse = new LoginResponseCustomer()
+                    {
+                        Id = login.Customer.Id,
+                        FirstName = login.Customer.FirstName,
+                        LastName = login.Customer.LastName,
+                        Email = login.Customer.Email,
+                        PhoneNo = login.Customer.PhoneNo
+                    };
+
+                    if (login.Customer.IsActive == "yes") logRes.CustomerResponse.IsActive = true;
+                    else logRes.CustomerResponse.IsActive = false;
+                }
             }
 
             return logRes;
@@ -102,7 +118,8 @@ namespace CinemasNVS.BLL.Services.UserServices
             Login log = new Login()
             {
                 Username = logReq.Username,
-                Password = logReq.Password
+                Password = logReq.Password,
+                
             };
 
             if (logReq.IsAdmin) log.IsAdmin = "yes";

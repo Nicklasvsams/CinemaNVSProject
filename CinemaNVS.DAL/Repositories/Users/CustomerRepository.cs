@@ -60,7 +60,6 @@ namespace CinemaNVS.DAL.Repositories.Users
             return await _dBContext
                 .Customers
                 .Include(x => x.Bookings)
-                .Include(x => x.Login)
                 .ToListAsync();
         }
 
@@ -69,7 +68,6 @@ namespace CinemaNVS.DAL.Repositories.Users
             return await _dBContext
                 .Customers
                 .Include(x => x.Bookings)
-                .Include(x => x.Login)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
