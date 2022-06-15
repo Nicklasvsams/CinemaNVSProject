@@ -34,7 +34,7 @@ export class ActorComponent implements OnInit {
 
   save(): void {
     if (this.actor.id == 0) {
-      if (confirm('Save new director?')) {
+      if (confirm('Save new actor?')) {
         this.actorService.addActor(this.actor)
           .subscribe({
             next: (x) => {
@@ -48,7 +48,7 @@ export class ActorComponent implements OnInit {
       }
     }
     else {
-      if (confirm('Update director with ID ' + this.actor.id + '?')) {
+      if (confirm('Update actor with ID ' + this.actor.id + '?')) {
         this.actorService.updateActor(this.actor.id, this.actor)
           .subscribe({
             error: (err) => {
