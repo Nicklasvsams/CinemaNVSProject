@@ -14,16 +14,8 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
 
   }
+
   AuthenticateLogin(authorizedLogin: AuthorizedLogin): Observable<AuthorizedLogin> {
     return this.http.get<any>(this.apiUrl + authorizedLogin.loginResponse.username + '/' + authorizedLogin.loginResponse.password);
-  }
-
-  // authGuard ....
-  IsLoggedIn(): boolean {
-    return sessionStorage.getItem('token') != null;
-  }
-
-  GetToken() {
-    return sessionStorage.getItem('token') || '';
   }
 }
