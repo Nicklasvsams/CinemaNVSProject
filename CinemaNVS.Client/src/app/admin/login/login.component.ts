@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Customer } from 'src/app/_models/customer';
 import { Login } from 'src/app/_models/login';
+import { CustomerService } from 'src/app/_services/customer.service';
 import { LoginService } from 'src/app/_services/login.service';
 
 @Component({
@@ -11,14 +13,18 @@ export class LoginComponent implements OnInit {
   authorization: any = sessionStorage?.getItem('role');
 
   logins: Login[] = [];
+  customers: Customer[] = [];
   loginPassword: string = "";
-  login: Login = { id: 0, username: "", password: "", isAdmin: false }
+  login: Login = { id: 0, username: "", password: "", isAdmin: false, customerId: 0 }
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private customerService: CustomerService) { }
 
   ngOnInit(): void {
     this.loginService.getAllLogins()
       .subscribe(x => this.logins = x);
+
+    this.customerService.getAllCustomers()
+      .subscribe(x => this.customers = x);
   }
 
   edit(login: Login): void {
@@ -92,7 +98,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginObject(): Login {
-    return { id: 0, username: "", password: "", isAdmin: false }
+    return { id: 0, username: "", password: "", isAdmin: false, customerId: 0 }
   }
 
   onChangeEvent(event: any) {

@@ -26,6 +26,15 @@
                     <option>No</option>
                 </select>
             </li>
+            <li>
+                <label>Customer</label>
+                <select [(ngModel)]="login.customerId" type="number">
+                    <option disabled selected>Choose Login</option>
+                    <option *ngFor="let customer of customers" [ngValue]='customer.id'>
+                        {{ customer.firstName }} {{ customer.lastName }}
+                    </option>
+                </select>
+            </li>
             <button (click)="save()">Save</button>
             <button (click)="cancel()">Cancel</button>
         </ul>
@@ -43,6 +52,7 @@
                     <div *ngIf="login.isAdmin==true; else elseBlock">User is admin</div>
                     <ng-template #elseBlock>User is not admin</ng-template>
                 </li>
+                <li><b>Customer ID: </b>{{login.customerId}}</li>
 
                 <button (click)="edit(login)">Edit</button>
                 <button (click)="delete(login)">Delete</button>

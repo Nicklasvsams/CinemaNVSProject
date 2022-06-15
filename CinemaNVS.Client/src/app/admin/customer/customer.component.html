@@ -26,15 +26,6 @@
                     <option>No</option>
                 </select>
             </li>
-            <li>
-                <label>Login</label>
-                <select [(ngModel)]="customer.loginId" type="number">
-                    <option disabled selected>Choose Login</option>
-                    <option *ngFor="let login of logins" [ngValue]='login.id'>
-                        {{ login.username }}
-                    </option>
-                </select>
-            </li>
             <button (click)="save()">Save</button>
             <button (click)="cancel()">Cancel</button>
         </ul>
@@ -50,7 +41,6 @@
                 <li><b>Phone number: </b>{{customer.phoneNo}}</li>
                 <li><b>E-Mail: </b>{{customer.email}}</li>
                 <li>Customer is active</li>
-                <li><b>Login ID: </b>{{customer.loginId}}</li>
                 <button (click)="edit(customer)">Edit</button>
                 <button (click)="changeActiveStatus(customer)">Activation</button>
             </ul>
@@ -68,7 +58,6 @@
                 <li><b>Phone number: </b>{{customer.phoneNo}}</li>
                 <li><b>E-Mail: </b>{{customer.email}}</li>
                 <li>Customer is not active</li>
-                <li><b>Login ID: </b>{{customer.loginId}}</li>
                 <button (click)="edit(customer)">Edit</button>
                 <button (click)="changeActiveStatus(customer)">Activation</button>
             </ul>

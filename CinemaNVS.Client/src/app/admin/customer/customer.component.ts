@@ -15,8 +15,7 @@ export class CustomerComponent implements OnInit {
   customers: Customer[] = [];
   activeCustomers: Customer[] = [];
   inactiveCustomers: Customer[] = [];
-  logins: Login[] = [];
-  customer: Customer = { id: 0, firstName: "", lastName: "", phoneNo: 0, email: "", isActive: false, loginId: 0 };
+  customer: Customer = { id: 0, firstName: "", lastName: "", phoneNo: 0, email: "", isActive: false };
 
   constructor(private customerService: CustomerService, private loginService: LoginService) { }
 
@@ -33,9 +32,6 @@ export class CustomerComponent implements OnInit {
           console.log(err);
         }
       });
-
-    this.loginService.getAllLogins()
-      .subscribe(x => this.logins = x);
   }
 
   edit(customer: Customer): void {
@@ -97,6 +93,6 @@ export class CustomerComponent implements OnInit {
   }
 
   customerObject(): Customer {
-    return { id: 0, firstName: "", lastName: "", phoneNo: 0, email: "", isActive: false, loginId: 0 };
+    return { id: 0, firstName: "", lastName: "", phoneNo: 0, email: "", isActive: false };
   }
 }
