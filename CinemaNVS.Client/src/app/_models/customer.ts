@@ -1,5 +1,4 @@
 import { Booking } from "./booking";
-import { Login } from "./login";
 
 export interface Customer {
     id: number;
@@ -8,7 +7,5 @@ export interface Customer {
     phoneNo: number;
     email: string;
     isActive: boolean;
-    loginId: number;
-    loginResponse?: Login;
     bookingResponses?: Booking[];
 }
