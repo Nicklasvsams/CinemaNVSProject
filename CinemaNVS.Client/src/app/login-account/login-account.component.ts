@@ -10,7 +10,7 @@ import { AuthenticationService } from '../_services/authentication.service';
 })
 export class LoginAccountComponent implements OnInit {
 
-  authLogin: AuthorizedLogin = { loginResponse: { id: 0, username: '', password: '', isAdmin: false }, jwToken: "" }
+  authLogin: AuthorizedLogin = { loginResponse: { id: 0, username: '', password: '', isAdmin: false, customerId: 0 }, jwToken: "" }
 
   @Output() sessionInfoEvent = new EventEmitter<void>();
 
