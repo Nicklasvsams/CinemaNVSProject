@@ -1,33 +1,38 @@
 nav {
     display: flex;
+}
+
+nav>div {
+    display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
-nav>a {
+nav>div>a {
     padding-left: 15px;
     padding-right: 15px;
     text-decoration: none;
     font-size: 25px;
     font-weight: 600;
+    color: black;
 }
 
 div.dropdown>button {
-    padding: 5px 10px 5px 10px !important;
-    font-size: 25px !important;
+    padding: 0 !important;
+    font-size: 24px !important;
 }
 
-nav>a:visited {
+nav>div>a:visited {
     color: inherit;
 }
 
 /* Dropdown Button */
 #dropbtn {
     background-color: inherit;
-    padding: 16px;
-    font-size: 16px;
+    padding: 0 10px 0 10px;
+    font-size: 14px;
     border: none;
     cursor: pointer;
 }
@@ -70,4 +75,22 @@ nav>a:visited {
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {
     display: block;
+}
+
+app-login-account {
+    display: flex;
+    align-items: center;
+}
+
+#login {
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+#loggedInInfo {
+    display: flex;
+}
+
+#loggedIn {
+    margin-right: 5px;
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,9 @@ import { CustomerComponent } from './admin/customer/customer.component';
 import { ShowingComponent } from './admin/showing/showing.component';
 import { BookingComponent } from './admin/booking/booking.component';
 import { BookingSeatingComponent } from './admin/booking-seating/booking-seating.component';
+import { LoginAccountComponent } from './login-account/login-account.component';
+import { JwtInterceptorService } from './_services/jwt-interceptor.service';
+import { UnauthorizedComponent } from './admin/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { BookingSeatingComponent } from './admin/booking-seating/booking-seating
     CustomerComponent,
     ShowingComponent,
     BookingComponent,
-    BookingSeatingComponent
+    BookingSeatingComponent,
+    LoginAccountComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,9 @@ import { BookingSeatingComponent } from './admin/booking-seating/booking-seating
     MaterialModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

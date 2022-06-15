@@ -1,18 +1,31 @@
 <nav>
-    <a routerLink="/">Home</a>
-    <div class="dropdown">
-        <button (click)="dropDownNav()" id="dropbtn">Navigation</button>
-        <div id="mydropdown" class="dropdown-content">
-            <a routerLink="/admin/movie">Movies</a>
-            <a routerLink="/admin/actor">Actors</a>
-            <a routerLink="/admin/movie-actor">Movie-Actor relations</a>
-            <a routerLink="/admin/director">Directors</a>
-            <a routerLink="/admin/login">Logins</a>
-            <a routerLink="/admin/customer">Customers</a>
-            <a routerLink="/admin/showing">Showings</a>
-            <a routerLink="/admin/booking">Bookings</a>
-            <a routerLink="/admin/booking-seating">Booking-Seating relations</a>
+    <div>
+        <a routerLink="/">Home</a>
+        <div class="dropdown" *ngIf="sessionRole === 'admin'">
+            <button (click)="dropDownNav()" id="dropbtn">Admin</button>
+            <div id="mydropdown" class="dropdown-content">
+                <a routerLink="/admin/movie">Movies</a>
+                <a routerLink="/admin/actor">Actors</a>
+                <a routerLink="/admin/movie-actor">Movie-Actor relations</a>
+                <a routerLink="/admin/director">Directors</a>
+                <a routerLink="/admin/login">Logins</a>
+                <a routerLink="/admin/customer">Customers</a>
+                <a routerLink="/admin/showing">Showings</a>
+                <a routerLink="/admin/booking">Bookings</a>
+                <a routerLink="/admin/booking-seating">Booking-Seating relations</a>
+            </div>
         </div>
+    </div>
+    <div id="login">
+        <div *ngIf="sessionUsername=='' || sessionUsername == null; else elseBlock">
+            <app-login-account (sessionInfoEvent)="modifySessionInfo()"></app-login-account>
+        </div>
+        <ng-template #elseBlock>
+            <div id="loggedInInfo">
+                <div id="loggedIn">Logged in as: <b>{{sessionUsername}}</b> </div>
+                <div><button (click)="logOut()">Log out</button></div>
+            </div>
+        </ng-template>
     </div>
 </nav>
 <router-outlet></router-outlet>

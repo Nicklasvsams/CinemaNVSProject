@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginComponent } from './admin/login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
   title = 'Cinema NVS';
+  sessionUsername: any = '';
+  sessionRole: any = '';
+
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
+    this.sessionUsername = sessionStorage?.getItem('user');
+    this.sessionRole = sessionStorage?.getItem('role');
+
     window.onclick = (event: Event) => {
       if ((event.target as HTMLButtonElement) != document.getElementById('dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -20,6 +30,18 @@ export class AppComponent implements OnInit {
         }
       }
     }
+  }
+
+  modifySessionInfo(): void {
+    this.sessionUsername = sessionStorage.getItem('user');
+    this.sessionRole = sessionStorage.getItem('role');
+  }
+
+  logOut(): void {
+    sessionStorage.clear();
+    this.sessionUsername = '';
+    this.sessionRole = '';
+    this.route.navigate(['']);
   }
 
   /* When the user clicks on the button,
