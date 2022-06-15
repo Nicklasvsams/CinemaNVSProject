@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="authorization == 'admin'; else elseBlock">
     <h1>Customer administration</h1>
     <div class="dataForms">
         <ul>
@@ -41,37 +41,40 @@
     </div>
     <ul class="content" *ngIf="activeCustomers.length > 0">
         <div class="infoCard" *ngFor="let customer of activeCustomers">
-                <ul>
-                    <li>
-                        <h3>Customer info:</h3>
-                    </li>
-                    <li><b>Id: </b>{{customer.id}}</li>
-                    <li><b>Name: </b>{{customer.firstName}} {{customer.lastName}}</li>
-                    <li><b>Phone number: </b>{{customer.phoneNo}}</li>
-                    <li><b>E-Mail: </b>{{customer.email}}</li>
-                    <li>Customer is active</li>
-                    <li><b>Login ID: </b>{{customer.loginId}}</li>
-                    <button (click)="edit(customer)">Edit</button>
-                    <button (click)="changeActiveStatus(customer)">Activation</button>
-                </ul>
+            <ul>
+                <li>
+                    <h3>Customer info:</h3>
+                </li>
+                <li><b>Id: </b>{{customer.id}}</li>
+                <li><b>Name: </b>{{customer.firstName}} {{customer.lastName}}</li>
+                <li><b>Phone number: </b>{{customer.phoneNo}}</li>
+                <li><b>E-Mail: </b>{{customer.email}}</li>
+                <li>Customer is active</li>
+                <li><b>Login ID: </b>{{customer.loginId}}</li>
+                <button (click)="edit(customer)">Edit</button>
+                <button (click)="changeActiveStatus(customer)">Activation</button>
+            </ul>
         </div>
     </ul>
     <hr>
     <ul class="content" *ngIf="inactiveCustomers.length > 0">
         <div class="infoCard" *ngFor="let customer of inactiveCustomers">
-                <ul>
-                    <li>
-                        <h3>Customer info (Inactive):</h3>
-                    </li>
-                    <li><b>Id: </b>{{customer.id}}</li>
-                    <li><b>Name: </b>{{customer.firstName}} {{customer.lastName}}</li>
-                    <li><b>Phone number: </b>{{customer.phoneNo}}</li>
-                    <li><b>E-Mail: </b>{{customer.email}}</li>
-                    <li>Customer is not active</li>
-                    <li><b>Login ID: </b>{{customer.loginId}}</li>
-                    <button (click)="edit(customer)">Edit</button>
-                    <button (click)="changeActiveStatus(customer)">Activation</button>
-                </ul>
+            <ul>
+                <li>
+                    <h3>Customer info (Inactive):</h3>
+                </li>
+                <li><b>Id: </b>{{customer.id}}</li>
+                <li><b>Name: </b>{{customer.firstName}} {{customer.lastName}}</li>
+                <li><b>Phone number: </b>{{customer.phoneNo}}</li>
+                <li><b>E-Mail: </b>{{customer.email}}</li>
+                <li>Customer is not active</li>
+                <li><b>Login ID: </b>{{customer.loginId}}</li>
+                <button (click)="edit(customer)">Edit</button>
+                <button (click)="changeActiveStatus(customer)">Activation</button>
+            </ul>
         </div>
     </ul>
 </div>
+<ng-template #elseBlock>
+    <app-unauthorized></app-unauthorized>
+</ng-template>

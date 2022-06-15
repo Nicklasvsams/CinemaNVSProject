@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="authorization == 'admin'; else elseBlock">
     <h1>Movie administration</h1>
     <div class="dataForms">
         <ul>
@@ -18,7 +18,7 @@
                 <label>IMDB link</label>
                 <input [(ngModel)]="movie.imdbLink">
             </li>
-            
+
             <li>
                 <label>Is running</label>
                 <select [(ngModel)]="movie.isRunning">
@@ -71,3 +71,6 @@
         </div>
     </ul>
 </div>
+<ng-template #elseBlock>
+    <app-unauthorized></app-unauthorized>
+</ng-template>

@@ -13,6 +13,8 @@ import { MovieService } from 'src/app/_services/movie.service';
 })
 
 export class MovieActorComponent implements OnInit {
+  authorization: any = sessionStorage?.getItem('role');
+
   movieActors: MovieActor[] = [];
   movieActor: MovieActor = { id: 0, movieId: 0, actorId: 0 };
   movies: Movie[] = [];
@@ -28,10 +30,12 @@ export class MovieActorComponent implements OnInit {
           this.movieActorService.getAllMovieActors()
             .subscribe({
               next: (x) => {
-                this.movieActors = x;
-                this.movieActors.forEach((movieActor, index) =>
-                  this.movieActors[index].movie = this.movies
-                    .find(x => x.id == movieActor.movieId));
+                if (x != null) {
+                  this.movieActors = x;
+                  this.movieActors.forEach((movieActor, index) =>
+                    this.movieActors[index].movie = this.movies
+                      .find(x => x.id == movieActor.movieId));
+                }
               }
             });
         }

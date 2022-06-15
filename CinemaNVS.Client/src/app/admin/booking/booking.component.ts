@@ -14,6 +14,7 @@ import { ShowingService } from 'src/app/_services/showing.service';
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
+  authorization: any = sessionStorage?.getItem('role');
 
   bookings: Booking[] = [];
   customers: Customer[] = [];

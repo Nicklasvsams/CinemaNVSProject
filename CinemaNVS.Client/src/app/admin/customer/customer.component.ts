@@ -10,6 +10,7 @@ import { LoginService } from 'src/app/_services/login.service';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
+  authorization: any = sessionStorage?.getItem('role');
 
   customers: Customer[] = [];
   activeCustomers: Customer[] = [];
@@ -45,11 +46,11 @@ export class CustomerComponent implements OnInit {
     if (confirm('Are you sure you want to change activation for this customer?')) {
       this.customerService.changeActiveStatusForCustomer(customer.id)
         .subscribe((x) => {
-          if(x.isActive === true){
+          if (x.isActive === true) {
             this.activeCustomers.push(x);
             this.inactiveCustomers = this.inactiveCustomers.filter(y => y.id != x.id);
           }
-          else{
+          else {
             this.inactiveCustomers.push(x);
             this.activeCustomers = this.activeCustomers.filter(y => y.id != x.id)
           }
@@ -65,10 +66,10 @@ export class CustomerComponent implements OnInit {
         this.customerService.addCustomer(this.customer)
           .subscribe({
             next: (x) => {
-              if(x.isActive === true){
+              if (x.isActive === true) {
                 this.activeCustomers.push(x);
               }
-              else{
+              else {
                 this.inactiveCustomers.push(x);
               }
               this.customer = this.customerObject();

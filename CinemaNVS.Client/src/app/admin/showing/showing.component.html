@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="authorization == 'admin'; else elseBlock">
     <h1>Showing administration</h1>
     <div class="dataForms">
         <ul>
@@ -32,7 +32,8 @@
                 </li>
                 <li><b>ID: </b>{{showing.id}}</li>
                 <li><b>Price: </b>{{showing.price}}</li>
-                <li><b>Time of showing: </b>{{showing.timeOfShowing | date}} - {{showing.timeOfShowing | date: "HH:mm"}}</li>
+                <li><b>Time of showing: </b>{{showing.timeOfShowing | date}} - {{showing.timeOfShowing | date: "HH:mm"}}
+                </li>
                 <li><b>Movie ID: </b>{{showing.movieId}}</li>
 
                 <button (click)="edit(showing)">Edit</button>
@@ -41,3 +42,6 @@
         </div>
     </ul>
 </div>
+<ng-template #elseBlock>
+    <app-unauthorized></app-unauthorized>
+</ng-template>

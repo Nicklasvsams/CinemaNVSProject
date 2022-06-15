@@ -9,7 +9,9 @@ import { ShowingService } from 'src/app/_services/showing.service';
   templateUrl: './showing.component.html',
   styleUrls: ['./showing.component.css']
 })
+
 export class ShowingComponent implements OnInit {
+  authorization: any = sessionStorage?.getItem('role');
 
   showings: Showing[] = [];
   movies: Movie[] = [];

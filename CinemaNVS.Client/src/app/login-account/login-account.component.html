@@ -1,0 +1,7 @@
+<div class="loginform">
+    <form>
+        <input [(ngModel)]="authLogin.loginResponse.username" placeholder="Username" name="user">
+        <input [(ngModel)]="authLogin.loginResponse.password" type="password" placeholder="Password" name="pass">
+        <button (click)="loginAccount()" type="submit">Login</button>
+    </form>
+</div>

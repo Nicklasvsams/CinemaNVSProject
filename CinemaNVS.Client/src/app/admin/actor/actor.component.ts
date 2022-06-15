@@ -8,6 +8,7 @@ import { ActorService } from 'src/app/_services/actor.service';
   styleUrls: ['./actor.component.css']
 })
 export class ActorComponent implements OnInit {
+  authorization: any = sessionStorage?.getItem('role');
 
   actors: Actor[] = [];
   actor: Actor = { id: 0, name: '', imdbLink: '' }

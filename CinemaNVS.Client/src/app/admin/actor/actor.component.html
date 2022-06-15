@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="authorization == 'admin'; else elseBlock">
     <h1>Actor administration</h1>
     <div class="dataForms">
         <ul>
@@ -31,3 +31,6 @@
         </div>
     </ul>
 </div>
+<ng-template #elseBlock>
+    <app-unauthorized></app-unauthorized>
+</ng-template>

@@ -8,6 +8,7 @@ import { DirectorService } from 'src/app/_services/director.service';
   styleUrls: ['./director.component.css']
 })
 export class DirectorComponent implements OnInit {
+  authorization: any = sessionStorage?.getItem('role');
 
   directors: Director[] = [];
   director: Director = { id: 0, name: '', imdbLink: '' }

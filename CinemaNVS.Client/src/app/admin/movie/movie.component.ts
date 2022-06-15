@@ -10,6 +10,8 @@ import { DirectorService } from 'src/app/_services/director.service';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit {
+  authorization: any = sessionStorage?.getItem('role');
+
   movies: Movie[] = [];
   directors: Director[] = [];
   movie: Movie = { id: 0, title: '', runtimeMinutes: 0, releaseDate: new Date(), isRunning: false, trailerLink: '', imdbLink: '', directorId: 0 };

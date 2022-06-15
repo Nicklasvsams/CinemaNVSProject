@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/_services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  authorization: any = sessionStorage?.getItem('role');
 
   logins: Login[] = [];
   loginPassword: string = "";
