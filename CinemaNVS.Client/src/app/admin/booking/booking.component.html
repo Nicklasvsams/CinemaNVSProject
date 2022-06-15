@@ -1,1 +1,61 @@
-<p>booking works!</p>
+<div class="main">
+    <h1>Booking administration</h1>
+    <div class="dataForms">
+        <ul>
+            <li class="updateBookingInput">
+                <label>Date of booking</label>
+                <input [(ngModel)]="booking.bookingDate" type="date">
+            </li>
+            <li>
+                <label>Showing</label>
+                <select [(ngModel)]="booking.showingId" type="number">
+                    <option disabled selected>Choose showing</option>
+                    <option *ngFor="let showing of showings" [ngValue]='showing.id'>
+                        <div *ngIf="showing.movieResponse != null">
+                            {{ showing.movieResponse.title }} - {{showing.timeOfShowing | date}} -
+                            {{showing.timeOfShowing | date: "HH:mm"}}
+                        </div>
+                    </option>
+                </select>
+            </li>
+            <li class="updateBookingInput">
+                <label>Customer</label>
+                <select [(ngModel)]="booking.customerId" type="number">
+                    <option disabled selected>Choose customer</option>
+                    <option *ngFor="let customer of customers" [ngValue]='customer.id'>
+                        {{ customer.firstName }}
+                    </option>
+                </select>
+            </li>
+            <button (click)="save()">Save</button>
+            <button (click)="cancel()">Cancel</button>
+        </ul>
+    </div>
+
+    <ul class="content" *ngIf="bookings.length > 0">
+        <div class="infoCard" *ngFor="let booking of bookings">
+            <ul>
+                <li>
+                    <h3>Booking info:</h3>
+                </li>
+                <li><b>ID: </b>{{booking.id}}</li>
+                <li><b>Time of booking: </b>{{booking.bookingDate | date}}</li>
+                <li><b>Seats: </b>
+                    <div *ngFor="let seating of booking.seatingResponses">
+                        {{seating.seat}}
+                    </div>
+                </li>
+                <li *ngIf="booking.customerResponse != null"><b>Customer ID: </b>{{booking.customerId}} -
+                    {{booking.customerResponse.firstName}}</li>
+                <li *ngIf="booking.showingResponse != null && booking.showingResponse.movieResponse != null">
+                    <b>Showing ID: </b>{{booking.showingId}} - {{booking.showingResponse.movieResponse.title}}:
+                    {{booking.showingResponse.timeOfShowing | date}}
+                    {{booking.showingResponse.timeOfShowing | date: "HH:mm"}}
+                </li>
+
+                <button (click)="edit(booking)">Edit</button>
+                <button (click)="delete(booking)">Delete</button>
+            </ul>
+        </div>
+    </ul>
+</div>

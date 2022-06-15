@@ -11,5 +11,4 @@ export interface Booking {
     customerResponse?: Customer;
     showingResponse?: Showing;
     seatingResponses?: Seating[];
-    bookingSeatings?: BookingSeating[];
 }
