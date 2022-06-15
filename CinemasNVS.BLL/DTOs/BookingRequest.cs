@@ -11,7 +11,6 @@ namespace CinemasNVS.BLL.DTOs
         public int ShowingId { get; set; }
         [Required]
         public int CustomerId { get; set; }
-        [Required]
-        public string Seat { get; set; }
+        public string Seat { get; set; } = "";
     }
 }

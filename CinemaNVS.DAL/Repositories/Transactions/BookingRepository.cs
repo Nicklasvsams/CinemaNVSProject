@@ -88,8 +88,7 @@ namespace CinemaNVS.DAL.Repositories.Transactions
 
             if (bookingToUpdate != null)
             {
-                bookingToUpdate.BookingDate = booking.BookingDate;
-                bookingToUpdate.CustomerId = booking.CustomerId;
+                bookingToUpdate.ShowingId = booking.ShowingId;
 
                 await _dBContext.SaveChangesAsync();
             }
