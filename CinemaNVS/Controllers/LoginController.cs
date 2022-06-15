@@ -1,8 +1,15 @@
-﻿using CinemasNVS.BLL.DTOs;
+﻿using CinemaNVS.Models;
+using CinemasNVS.BLL.DTOs;
 using CinemasNVS.BLL.Services.UserServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CinemaNVS.Controllers
@@ -12,12 +19,15 @@ namespace CinemaNVS.Controllers
     public class LoginController : ControllerBase
     {
         private readonly ILoginService _loginService;
+        private readonly JWTSetting _jWTSetting;
 
-        public LoginController(ILoginService loginService)
+        public LoginController(ILoginService loginService, IOptions<JWTSetting> jWTSetting)
         {
             _loginService = loginService;
+            _jWTSetting = jWTSetting.Value;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -69,7 +79,7 @@ namespace CinemaNVS.Controllers
             }
         }
 
-        [HttpGet("{username}, {password}")]
+        [HttpGet("{username},{password}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -81,10 +91,27 @@ namespace CinemaNVS.Controllers
 
                 if (loginResponse == null)
                 {
-                    return NotFound();
-                }
+                    return Unauthorized();
+                };
 
-                return Ok(loginResponse);
+                var tokenhandler = new JwtSecurityTokenHandler();//Reads and validates a 'JSON Web Token' (JWT) 
+                var tokenkey = System.Text.Encoding.UTF8.GetBytes(_jWTSetting.SecretKey); // unicode characters => sequence of bytes, 16 bit til 8 bit system
+                var tokenDescriptor = new SecurityTokenDescriptor // Represents the cryptographic key and security algorithms that are used to generate a digital signature.
+                {
+                    Subject = new ClaimsIdentity(
+                        new Claim[]
+                        {
+                                new Claim(ClaimTypes.Name, loginResponse.Username),
+                                new Claim(ClaimTypes.Role, loginResponse.IsAdmin ? "Admin" : "User")
+                        }
+                    ),
+                    Expires = DateTime.Now.AddSeconds(600),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenkey), SecurityAlgorithms.HmacSha256)
+                };
+                var token = tokenhandler.CreateToken(tokenDescriptor);
+                var finalToken = tokenhandler.WriteToken(token);
+                
+                return Ok(new AuthorizedLogin(loginResponse, finalToken));
             }
             catch
             {

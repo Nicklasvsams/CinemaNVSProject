@@ -2,16 +2,21 @@ using CinemaNVS.DAL.Database;
 using CinemaNVS.DAL.Repositories.Movies;
 using CinemaNVS.DAL.Repositories.Transactions;
 using CinemaNVS.DAL.Repositories.Users;
+using CinemaNVS.Models;
 using CinemasNVS.BLL.Services.MovieServices;
 using CinemasNVS.BLL.Services.TransactionServices;
 using CinemasNVS.BLL.Services.UserServices;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Text;
 
 namespace CinemaNVS
 {
@@ -39,6 +44,9 @@ namespace CinemaNVS
             });
 
             services.AddDbContext<CinemaDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CinemaDBContext")));
+
+            services.Configure<JWTSetting>(Configuration.GetSection("JWTSetting"));
+            var authkey = Configuration.GetValue<string>("JWTSetting:SecretKey");
 
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IMovieService, MovieService>();
@@ -75,6 +83,27 @@ namespace CinemaNVS
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CinemaNVS", Version = "v1" });
             });
+
+            services.AddAuthentication(item =>
+            {
+                item.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                item.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(item =>
+            {
+
+                item.RequireHttpsMetadata = true;
+                item.SaveToken = true;
+                item.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authkey)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,6 +121,8 @@ namespace CinemaNVS
             app.UseCors("_CORSRules");
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
