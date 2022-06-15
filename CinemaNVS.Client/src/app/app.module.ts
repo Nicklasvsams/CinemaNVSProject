@@ -20,6 +20,7 @@ import { BookingSeatingComponent } from './admin/booking-seating/booking-seating
 import { LoginAccountComponent } from './login-account/login-account.component';
 import { JwtInterceptorService } from './_services/jwt-interceptor.service';
 import { UnauthorizedComponent } from './admin/unauthorized/unauthorized.component';
+import { UserAdminComponent } from './user/user-admin/user-admin.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UnauthorizedComponent } from './admin/unauthorized/unauthorized.compone
     BookingComponent,
     BookingSeatingComponent,
     LoginAccountComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    UserAdminComponent
   ],
   imports: [
     BrowserModule,
