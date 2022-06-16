@@ -10,6 +10,7 @@ namespace CinemasNVS.BLL.Services.TransactionServices
     public interface IBookingService
     {
         Task<IEnumerable<BookingResponse>> GetAllBookingsAsync();
+        Task<IEnumerable<BookingResponse>> GetBookingsByShowingId(int id);
         Task<BookingResponse> GetBookingByIdAsync(int id);
         Task<BookingResponse> DeleteBookingByIdAsync(int id);
         Task<BookingResponse> UpdateBookingByIdAsync(BookingRequest booking, int id);
@@ -150,12 +151,18 @@ namespace CinemasNVS.BLL.Services.TransactionServices
         {
             Booking boo = new Booking()
             {
-                BookingDate = booReq.BookingDate,
                 CustomerId = booReq.CustomerId,
                 ShowingId = booReq.ShowingId
             };
 
             return boo;
+        }
+
+        public async Task<IEnumerable<BookingResponse>> GetBookingsByShowingId(int id)
+        {
+            IEnumerable<Booking> bookings = await _bookingRepository.SelectBookingsByShowingIdAsync(id);
+
+            return bookings.Select(x => MapEntityToResponse(x));
         }
     }
 }

@@ -72,6 +72,30 @@ namespace CinemaNVS.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("[action]/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetByShowingId([FromRoute] int id)
+        {
+            try
+            {
+                var bookingResponse = await _bookingService.GetBookingsByShowingId(id);
+
+                if (bookingResponse == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(bookingResponse);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
         [HttpPost]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]

@@ -56,12 +56,12 @@ namespace CinemaNVS.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        [Authorize(Roles = "Admin")]
+        [HttpGet("{username}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetById([FromRoute] string username)
+        public async Task<IActionResult> GetByUsername([FromRoute] string username)
         {
             try
             {
@@ -106,7 +106,7 @@ namespace CinemaNVS.Controllers
                                 new Claim(ClaimTypes.Role, loginResponse.IsAdmin ? "Admin" : "User")
                         }
                     ),
-                    Expires = DateTime.Now.AddSeconds(600),
+                    Expires = DateTime.Now.AddHours(10),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenkey), SecurityAlgorithms.HmacSha256)
                 };
                 var token = tokenhandler.CreateToken(tokenDescriptor);

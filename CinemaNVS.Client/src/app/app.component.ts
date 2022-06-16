@@ -10,14 +10,16 @@ import { LoginComponent } from './admin/login/login.component';
 export class AppComponent implements OnInit {
 
   title = 'Cinema NVS';
-  sessionUsername: any = '';
-  sessionRole: any = '';
+  sessionUsername: any = null;
+  sessionRole: any = null;
 
   constructor(private route: Router) { }
 
   ngOnInit(): void {
     this.sessionUsername = sessionStorage?.getItem('user');
     this.sessionRole = sessionStorage?.getItem('role');
+
+    console.log(this.sessionUsername);
 
     window.onclick = (event: Event) => {
       if ((event.target as HTMLButtonElement) != document.getElementById('dropbtn')) {
@@ -39,8 +41,8 @@ export class AppComponent implements OnInit {
 
   logOut(): void {
     sessionStorage.clear();
-    this.sessionUsername = '';
-    this.sessionRole = '';
+    this.sessionUsername = null;
+    this.sessionRole = null;
     this.route.navigate(['']);
   }
 

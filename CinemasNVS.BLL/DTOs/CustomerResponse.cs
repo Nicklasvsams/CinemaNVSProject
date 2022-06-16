@@ -21,5 +21,8 @@ namespace CinemasNVS.BLL.DTOs
         public DateTime BookingDate { get; set; }
         public int CustomerId { get; set; }
         public int ShowingId { get; set; }
+
+        public IEnumerable<BookingResponseSeating> SeatingResponses { get; set; }
+        public BookingResponseShowing ShowingResponse { get; set; }
     }
 }

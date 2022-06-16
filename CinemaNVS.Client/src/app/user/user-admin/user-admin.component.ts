@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from 'src/app/_models/customer';
+import { Booking } from 'src/app/_models/booking';
 import { Login } from 'src/app/_models/login';
-import { CustomerService } from 'src/app/_services/customer.service';
+import { BookingService } from 'src/app/_services/booking.service';
 import { LoginService } from 'src/app/_services/login.service';
 
 @Component({
@@ -10,12 +10,33 @@ import { LoginService } from 'src/app/_services/login.service';
   styleUrls: ['./user-admin.component.css']
 })
 export class UserAdminComponent implements OnInit {
-  customer: Customer = { id: 0, firstName: '', lastName: '', phoneNo: 0, email: '', isActive: false }
   login: Login = { id: 0, username: "", password: "", isAdmin: false, customerId: 0 }
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private bookingService: BookingService) { }
 
   ngOnInit(): void {
+    let sessionUser: any = sessionStorage.getItem('user');
+
+    if (sessionUser != null) {
+      this.loginService.getLogin(sessionUser)
+        .subscribe({
+          next: (x) => {
+            this.login = x;
+            console.log(x);
+          }
+        });
+    }
+  }
+
+  delete(booking: Booking): void {
+    if (confirm('Are you sure you want to delete this booking?')) {
+      this.bookingService.deleteBooking(booking.id)
+        .subscribe(() => {
+          if (this.login.customerResponse != null && this.login.customerResponse.bookingResponses != null) {
+            this.login.customerResponse.bookingResponses = this.login.customerResponse.bookingResponses.filter(x => x.id != booking.id)
+          }
+        });
+    }
   }
 
 }

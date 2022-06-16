@@ -1,4 +1,6 @@
-﻿namespace CinemasNVS.BLL.DTOs
+﻿using System.Collections.Generic;
+
+namespace CinemasNVS.BLL.DTOs
 {
     public class LoginResponse
     {
@@ -20,5 +22,7 @@
         public int PhoneNo { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }
+
+        public ICollection<CustomerResponseBooking> bookingResponses { get; set; }
     }
 }

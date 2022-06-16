@@ -2,7 +2,9 @@ nav {
     display: flex;
 }
 
-nav>div {
+.links,
+#loggedInInfo,
+#login {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +12,8 @@ nav>div {
     padding-bottom: 5px;
 }
 
-nav>div>a {
+nav>div>a,
+nav>div>div>a {
     padding-left: 15px;
     padding-right: 15px;
     text-decoration: none;

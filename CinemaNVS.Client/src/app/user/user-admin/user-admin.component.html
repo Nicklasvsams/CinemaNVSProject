@@ -1,1 +1,33 @@
-<p>user-admin works!</p>
+<main class="main">
+    <h1>Account details</h1>
+    <div class="content" *ngIf="login.customerResponse != null">
+        <div class="infoCard">
+            <h3>Personal details</h3>
+            <ul>
+                <li><b>Name: </b>{{login.customerResponse.firstName}} {{login.customerResponse.lastName}}</li>
+                <li><b>Phone: </b>{{login.customerResponse.phoneNo}}</li>
+                <li><b>E-Mail: </b>{{login.customerResponse.email}}</li>
+                <li><b>Username: </b>{{login.username}}</li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <h1>Bookings</h1>
+    <div class="content" *ngIf="login.customerResponse != null && 
+    login.customerResponse.bookingResponses">
+        <div class="infoCard" *ngFor="let booking of login.customerResponse.bookingResponses">
+            <ul *ngIf="booking.showingResponse != null && booking.showingResponse.movieResponse != null">
+                <li><b>Movie: </b>{{ booking.showingResponse.movieResponse.title }}</li>
+                <li><b>Booking date: </b>{{ booking.bookingDate | date }}</li>
+                <li><b>Showing: </b>{{booking.showingResponse.timeOfShowing | date }} -
+                    {{booking.showingResponse.timeOfShowing | date: "HH:mm" }}</li>
+                <li><b>Price: </b>{{booking.showingResponse.price}}</li>
+                <div *ngFor="let seat of booking.seatingResponses">
+                    <li><b>Seat: </b>{{seat.seat}}</li>
+                </div>
+                <li><b></b></li>
+            </ul>
+            <button (click)="delete(booking)">Delete</button>
+        </div>
+    </div>
+</main>

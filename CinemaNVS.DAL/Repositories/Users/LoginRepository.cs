@@ -2,6 +2,7 @@
 using CinemaNVS.DAL.Database.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CinemaNVS.DAL.Repositories.Users
@@ -29,6 +30,17 @@ namespace CinemaNVS.DAL.Repositories.Users
             return await _dBContext
                 .Logins
                 .Include(x => x.Customer)
+                .Include(x => x.Customer.Bookings)
+                .Include(x => x.Customer.Bookings)
+                .ThenInclude(x => x.BookingSeating)
+                .Include(x => x.Customer.Bookings)
+                .ThenInclude(x => x.BookingSeating)
+                .ThenInclude(x => x.Seating)
+                .Include(x => x.Customer.Bookings)
+                .ThenInclude(x => x.Showing)
+                .Include(x => x.Customer.Bookings)
+                .ThenInclude(x => x.Showing)
+                .ThenInclude(x => x.Movie)
                 .FirstOrDefaultAsync(x => x.Username == name);
         }
 

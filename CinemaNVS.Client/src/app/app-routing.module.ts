@@ -10,9 +10,13 @@ import { MovieActorComponent } from './admin/movie-actor/movie-actor.component';
 import { MovieComponent } from './admin/movie/movie.component';
 import { ShowingComponent } from './admin/showing/showing.component';
 import { FrontpageComponent } from './frontpage/frontpage.component';
+import { UserAdminComponent } from './user/user-admin/user-admin.component';
+import { UserBookingComponent } from './user/user-booking/user-booking.component';
 
 const routes: Routes = [
   { path: '', component: FrontpageComponent },
+  { path: 'user/administration', component: UserAdminComponent },
+  { path: 'user/booking', component: UserBookingComponent },
   { path: 'admin/movie', component: MovieComponent },
   { path: 'admin/director', component: DirectorComponent },
   { path: 'admin/actor', component: ActorComponent },

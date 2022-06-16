@@ -10,7 +10,9 @@
                         <div *ngIf="booking != null && 
                         booking.showingResponse != null && 
                         booking.showingResponse.timeOfShowing != null && 
-                        booking.showingResponse.movieResponse != null">
+                        booking.showingResponse.movieResponse != null &&
+                        booking.customerResponse != null">
+                            {{booking.customerResponse.firstName}} {{booking.customerResponse.lastName}} -
                             {{booking.showingResponse.movieResponse.title}} - {{booking.showingResponse.timeOfShowing |
                             date}} {{booking.showingResponse.timeOfShowing | date: "HH:mm"}}
 

@@ -1,4 +1,3 @@
-import { BookingSeating } from "./bookingSeating";
 import { Customer } from "./customer";
 import { Seating } from "./seating";
 import { Showing } from "./showing";

@@ -1,0 +1,74 @@
+#userBookingMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+
+#showingsContainer {
+    margin: 20px 0;
+}
+
+#showingsContainer select {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 5px 10px;
+    appearance: none;
+}
+
+#cinemaContainer {
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+
+.seat,
+.showcaseSeat {
+    background-color: rgb(68, 68, 255);
+    height: 20px;
+    width: 20px;
+    margin: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.seat:not(.occupied):hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.selected,
+.showcaseSelected {
+    background-color: greenyellow;
+}
+
+.occupied,
+.showcaseOccupied {
+    background-color: red;
+}
+
+.row,
+.showcase,
+.showcase>li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.showcase li small {
+    margin-left: 2px;
+}
+
+button {
+    margin-left: 5px;
+}
+
+.screen {
+    background-color: black;
+    height: 70px;
+    width: 100%;
+    margin: 15px 0;
+    transform: rotateX(-45eg);
+}

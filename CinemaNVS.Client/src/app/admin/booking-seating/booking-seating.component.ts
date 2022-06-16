@@ -21,7 +21,7 @@ export class BookingSeatingComponent implements OnInit {
   bookings: Booking[] = [];
   seatings: Seating[] = [];
 
-  constructor(private bookingSeatingService: BookingSeatingService, private bookingService: BookingService, private seatingService: SeatingService, private showingService: ShowingService, private customerService: CustomerService) { }
+  constructor(private bookingSeatingService: BookingSeatingService, private bookingService: BookingService, private seatingService: SeatingService) { }
 
   ngOnInit(): void {
     this.bookingService.getAllBookings()
@@ -32,10 +32,12 @@ export class BookingSeatingComponent implements OnInit {
           this.bookingSeatingService.getAllBookingSeatings()
             .subscribe({
               next: (x) => {
-                this.bookingSeatings = x;
-                this.bookingSeatings.forEach((bookingSeating, index) =>
-                  this.bookingSeatings[index].bookingResponse = this.bookings
-                    .find(x => x.id == bookingSeating.bookingId));
+                if (x != null) {
+                  this.bookingSeatings = x;
+                  this.bookingSeatings.forEach((bookingSeating, index) =>
+                    this.bookingSeatings[index].bookingResponse = this.bookings
+                      .find(x => x.id == bookingSeating.bookingId));
+                }
               }
             });
         }

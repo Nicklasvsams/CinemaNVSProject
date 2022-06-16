@@ -116,7 +116,7 @@ namespace CinemasNVS.BLL.Services.MovieServices
                         });
 
                     }
-                    movRes.ShowingResponses = shoRes;
+                    movRes.ShowingResponses = shoRes.OrderBy(o => o.TimeOfShowing);
                 }
             }
 

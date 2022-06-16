@@ -27,6 +27,7 @@ export class LoginAccountComponent implements OnInit {
           this.authLogin = x;
           sessionStorage.setItem('token', this.authLogin.jwToken);
           sessionStorage.setItem('user', this.authLogin.loginResponse.username);
+          sessionStorage.setItem('cusId', this.authLogin.loginResponse.customerId.toString());
           sessionStorage.setItem('role', this.authLogin.loginResponse.isAdmin ? "admin" : "user");
           this.sessionInfoEvent.emit();
           this.route.navigate(['']);

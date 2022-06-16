@@ -1,5 +1,5 @@
 <nav>
-    <div>
+    <div class="links">
         <a routerLink="/">Home</a>
         <div class="dropdown" *ngIf="sessionRole === 'admin'">
             <button (click)="dropDownNav()" id="dropbtn">Admin</button>
@@ -15,9 +15,12 @@
                 <a routerLink="/admin/booking-seating">Booking-Seating relations</a>
             </div>
         </div>
+        <div class="links" *ngIf="sessionUsername != null  && sessionUsername != 'admin'">
+            <a routerLink="/user/administration">Account</a>
+        </div>
     </div>
     <div id="login">
-        <div *ngIf="sessionUsername=='' || sessionUsername == null; else elseBlock">
+        <div *ngIf="sessionUsername == null; else elseBlock">
             <app-login-account (sessionInfoEvent)="modifySessionInfo()"></app-login-account>
         </div>
         <ng-template #elseBlock>

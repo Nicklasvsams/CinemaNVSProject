@@ -25,6 +25,10 @@ export class BookingService {
     return this.http.get<Booking>(this.apiUrl + "/" + bookingId)
   }
 
+  getBookingByShowingId(showingId: number): Observable<Booking[]> {
+    return this.http.get<Booking[]>(this.apiUrl + "/GetByShowingId/" + showingId)
+  }
+
   addBooking(booking: Booking): Observable<Booking> {
     return this.http.post<Booking>(this.apiUrl, booking, this.httpOptions)
   }

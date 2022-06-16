@@ -1,4 +1,5 @@
-﻿using CinemaNVS.DAL.Database.Entities.Users;
+﻿using CinemaNVS.DAL.Database.Entities.Transactions;
+using CinemaNVS.DAL.Database.Entities.Users;
 using CinemaNVS.DAL.Repositories.Users;
 using CinemasNVS.BLL.DTOs;
 using System.Collections.Generic;
@@ -104,6 +105,72 @@ namespace CinemasNVS.BLL.Services.UserServices
                         Email = login.Customer.Email,
                         PhoneNo = login.Customer.PhoneNo
                     };
+
+                    if(login.Customer.Bookings != null)
+                    {
+                        List<CustomerResponseBooking> cusResBooList = new List<CustomerResponseBooking>();
+
+                        foreach (Booking boo in login.Customer.Bookings)
+                        {
+                            CustomerResponseBooking cusResBoo = new CustomerResponseBooking();
+
+                            cusResBoo.Id = boo.Id;
+                            cusResBoo.BookingDate = boo.BookingDate;
+                            cusResBoo.CustomerId = boo.CustomerId;
+                            cusResBoo.ShowingId = boo.ShowingId;
+
+                            if(boo.BookingSeating != null)
+                            {
+                                List<BookingResponseSeating> BooResSeaList = new List<BookingResponseSeating>();
+
+                                foreach(BookingSeating booSea in boo.BookingSeating)
+                                {
+                                    BookingResponseSeating booResSea = new BookingResponseSeating();
+
+                                    booResSea.Id = booSea.Seating.Id;
+                                    booResSea.Seat = booSea.Seating.Seat;
+
+                                    BooResSeaList.Add(booResSea);
+                                }
+
+                                cusResBoo.SeatingResponses = BooResSeaList;
+                            }
+
+                            if(boo.Showing != null)
+                            {
+                                BookingResponseShowing booResSho = new BookingResponseShowing();
+
+                                booResSho.Id = boo.Showing.Id;
+                                booResSho.Price = boo.Showing.Price;
+                                booResSho.TimeOfShowing = boo.Showing.TimeOfShowing;
+                                booResSho.MovieId = boo.Showing.MovieId;
+
+                                cusResBoo.ShowingResponse = booResSho;
+
+                                if (boo.Showing.Movie != null)
+                                {
+                                    ShowingResponseMovie shoResMov = new ShowingResponseMovie();
+
+                                    shoResMov.Id = boo.Showing.Movie.Id;
+                                    shoResMov.Title = boo.Showing.Movie.Title;
+                                    shoResMov.ReleaseDate = boo.Showing.Movie.ReleaseDate;
+                                    shoResMov.RuntimeMinutes = boo.Showing.Movie.RuntimeMinutes;
+                                    shoResMov.TrailerLink = boo.Showing.Movie.TrailerLink;
+                                    shoResMov.ImdbLink = boo.Showing.Movie.ImdbLink;
+                                    shoResMov.DirectorId = boo.Showing.Movie.DirectorId;
+
+                                    if (boo.Showing.Movie.IsRunning == 1) shoResMov.IsRunning = true;
+                                    else shoResMov.IsRunning = false;
+
+                                    cusResBoo.ShowingResponse.MovieResponse = shoResMov;
+                                }
+                            }
+
+                            cusResBooList.Add(cusResBoo);
+                        };
+
+                        logRes.CustomerResponse.bookingResponses = cusResBooList;
+                    }
 
                     if (login.Customer.IsActive == "yes") logRes.CustomerResponse.IsActive = true;
                     else logRes.CustomerResponse.IsActive = false;

@@ -74,9 +74,7 @@ namespace CinemaNVS.DAL.Repositories.Transactions
         {
             return await _dBContext
                 .Bookings
-                .Include(x => x.Customer)
                 .Include(x => x.Showing)
-                .Include(x => x.Showing.Movie)
                 .Include("BookingSeating.Seating")
                 .Where(x => x.ShowingId == id)
                 .ToListAsync();

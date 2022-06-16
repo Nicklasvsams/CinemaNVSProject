@@ -19,6 +19,7 @@
             <div *ngFor="let actor of movie.actorResponses">
                 <a href="{{actor.imdbLink}}">{{actor.name}}</a>
             </div>
+            <button (click)="directToBookingPage(movie)">Book</button>
         </div>
     </div>
 
