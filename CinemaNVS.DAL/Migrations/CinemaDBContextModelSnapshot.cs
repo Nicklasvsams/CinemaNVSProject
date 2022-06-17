@@ -40,8 +40,50 @@ namespace CinemaNVS.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ImdbLink = "https://www.imdb.com/name/nm0004937/",
-                            Name = "Jamie Foxx"
+                            ImdbLink = "https://www.imdb.com/name/nm0262635/",
+                            Name = "Chris Evans"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ImdbLink = "https://www.imdb.com/name/nm1551130/",
+                            Name = "Keke Palmer"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ImdbLink = "https://www.imdb.com/name/nm0812307/",
+                            Name = "Peter Sohn"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ImdbLink = "https://www.imdb.com/name/nm0169806/",
+                            Name = "Taiki Waititi"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ImdbLink = "https://www.imdb.com/name/nm0695435/",
+                            Name = "Chris Pratt"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ImdbLink = "https://www.imdb.com/name/nm0397171/",
+                            Name = "Bryce Dallas Howard"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ImdbLink = "https://www.imdb.com/name/nm0000368/",
+                            Name = "Laura Dern"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ImdbLink = "https://www.imdb.com/name/nm0000554/",
+                            Name = "Sam Neill"
                         });
                 });
 
@@ -66,8 +108,14 @@ namespace CinemaNVS.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ImdbLink = "https://www.imdb.com/name/nm0000233/",
-                            Name = "Quentin Tarantino"
+                            ImdbLink = "https://www.imdb.com/name/nm0533691/",
+                            Name = "Angus MacLane"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ImdbLink = "https://www.imdb.com/name/nm1119880/",
+                            Name = "Colin Trevorrow"
                         });
                 });
 
@@ -110,12 +158,23 @@ namespace CinemaNVS.DAL.Migrations
                         {
                             Id = 1,
                             DirectorId = 1,
-                            ImdbLink = "https://www.imdb.com/title/tt1853728/",
-                            IsRunning = 0,
-                            ReleaseDate = new DateTime(2013, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RuntimeMinutes = 165,
-                            Title = "Django Unchained",
-                            TrailerLink = "https://www.youtube.com/watch?v=0fUCuvNlOCg"
+                            ImdbLink = "https://www.imdb.com/title/tt10298810/",
+                            IsRunning = 1,
+                            ReleaseDate = new DateTime(2022, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RuntimeMinutes = 100,
+                            Title = "Lightyear",
+                            TrailerLink = "https://www.imdb.com/video/vi1034797593/?playlistId=tt10298810"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DirectorId = 2,
+                            ImdbLink = "https://www.imdb.com/title/tt8041270/",
+                            IsRunning = 1,
+                            ReleaseDate = new DateTime(2022, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RuntimeMinutes = 146,
+                            Title = "Jurassic World: Dominion",
+                            TrailerLink = "https://www.imdb.com/video/vi764854809/?playlistId=tt8041270"
                         });
                 });
 
@@ -144,6 +203,48 @@ namespace CinemaNVS.DAL.Migrations
                             MovieId = 1,
                             ActorId = 1,
                             Id = 1
+                        },
+                        new
+                        {
+                            MovieId = 1,
+                            ActorId = 2,
+                            Id = 2
+                        },
+                        new
+                        {
+                            MovieId = 1,
+                            ActorId = 3,
+                            Id = 3
+                        },
+                        new
+                        {
+                            MovieId = 1,
+                            ActorId = 4,
+                            Id = 4
+                        },
+                        new
+                        {
+                            MovieId = 2,
+                            ActorId = 5,
+                            Id = 5
+                        },
+                        new
+                        {
+                            MovieId = 2,
+                            ActorId = 6,
+                            Id = 6
+                        },
+                        new
+                        {
+                            MovieId = 2,
+                            ActorId = 7,
+                            Id = 5
+                        },
+                        new
+                        {
+                            MovieId = 2,
+                            ActorId = 8,
+                            Id = 5
                         });
                 });
 
@@ -754,7 +855,56 @@ namespace CinemaNVS.DAL.Migrations
                             Id = 1,
                             MovieId = 1,
                             Price = 140,
+                            TimeOfShowing = new DateTime(2022, 6, 28, 13, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MovieId = 1,
+                            Price = 140,
+                            TimeOfShowing = new DateTime(2022, 6, 28, 15, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MovieId = 1,
+                            Price = 140,
+                            TimeOfShowing = new DateTime(2022, 6, 28, 17, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            MovieId = 1,
+                            Price = 140,
                             TimeOfShowing = new DateTime(2022, 6, 28, 19, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            MovieId = 2,
+                            Price = 160,
+                            TimeOfShowing = new DateTime(2022, 6, 27, 13, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            MovieId = 2,
+                            Price = 160,
+                            TimeOfShowing = new DateTime(2022, 6, 27, 15, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            MovieId = 2,
+                            Price = 160,
+                            TimeOfShowing = new DateTime(2022, 6, 27, 17, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            MovieId = 2,
+                            Price = 160,
+                            TimeOfShowing = new DateTime(2022, 6, 27, 19, 30, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 

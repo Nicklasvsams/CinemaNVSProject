@@ -186,7 +186,7 @@ namespace CinemasNVS.BLL.Services.UserServices
             {
                 Username = logReq.Username,
                 Password = logReq.Password,
-                
+                CustomerId = logReq.CustomerId
             };
 
             if (logReq.IsAdmin) log.IsAdmin = "yes";

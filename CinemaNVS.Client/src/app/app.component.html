@@ -20,7 +20,8 @@
         </div>
     </div>
     <div id="login">
-        <div *ngIf="sessionUsername == null; else elseBlock">
+        <div id="createLogin" *ngIf="sessionUsername == null; else elseBlock">
+            <a routerLink="/user/user-login">Create user</a>
             <app-login-account (sessionInfoEvent)="modifySessionInfo()"></app-login-account>
         </div>
         <ng-template #elseBlock>

@@ -215,7 +215,17 @@ namespace CinemaNVS.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Actors",
                 columns: new[] { "Id", "ImdbLink", "Name" },
-                values: new object[] { 1, "https://www.imdb.com/name/nm0004937/", "Jamie Foxx" });
+                values: new object[,]
+                {
+                    { 1, "https://www.imdb.com/name/nm0262635/", "Chris Evans" },
+                    { 2, "https://www.imdb.com/name/nm1551130/", "Keke Palmer" },
+                    { 3, "https://www.imdb.com/name/nm0812307/", "Peter Sohn" },
+                    { 4, "https://www.imdb.com/name/nm0169806/", "Taiki Waititi" },
+                    { 5, "https://www.imdb.com/name/nm0695435/", "Chris Pratt" },
+                    { 6, "https://www.imdb.com/name/nm0397171/", "Bryce Dallas Howard" },
+                    { 7, "https://www.imdb.com/name/nm0000368/", "Laura Dern" },
+                    { 8, "https://www.imdb.com/name/nm0000554/", "Sam Neill" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Customers",
@@ -229,14 +239,17 @@ namespace CinemaNVS.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Directors",
                 columns: new[] { "Id", "ImdbLink", "Name" },
-                values: new object[] { 1, "https://www.imdb.com/name/nm0000233/", "Quentin Tarantino" });
+                values: new object[,]
+                {
+                    { 2, "https://www.imdb.com/name/nm1119880/", "Colin Trevorrow" },
+                    { 1, "https://www.imdb.com/name/nm0533691/", "Angus MacLane" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Seatings",
                 columns: new[] { "Id", "Seat" },
                 values: new object[,]
                 {
-                    { 75, "H5" },
                     { 74, "H4" },
                     { 73, "H3" },
                     { 72, "H2" },
@@ -246,8 +259,8 @@ namespace CinemaNVS.DAL.Migrations
                     { 68, "G8" },
                     { 67, "G7" },
                     { 66, "G6" },
-                    { 76, "H6" },
                     { 65, "G5" },
+                    { 64, "G4" },
                     { 63, "G3" },
                     { 62, "G2" },
                     { 61, "G1" },
@@ -258,22 +271,15 @@ namespace CinemaNVS.DAL.Migrations
                     { 56, "F6" },
                     { 55, "F5" },
                     { 54, "F4" },
-                    { 64, "G4" },
-                    { 2, "A2" },
-                    { 77, "H7" },
-                    { 79, "H9" },
+                    { 75, "H5" },
+                    { 53, "F3" },
+                    { 76, "H6" },
+                    { 78, "H8" },
                     { 100, "J10" },
                     { 99, "J9" },
                     { 98, "J8" },
                     { 97, "J7" },
-                    { 96, "J6" },
-                    { 95, "J5" },
-                    { 94, "J4" },
-                    { 93, "J3" },
-                    { 92, "J2" },
-                    { 91, "J1" },
-                    { 90, "I10" },
-                    { 89, "I9" }
+                    { 96, "J6" }
                 });
 
             migrationBuilder.InsertData(
@@ -281,6 +287,13 @@ namespace CinemaNVS.DAL.Migrations
                 columns: new[] { "Id", "Seat" },
                 values: new object[,]
                 {
+                    { 95, "J5" },
+                    { 94, "J4" },
+                    { 93, "J3" },
+                    { 92, "J2" },
+                    { 91, "J1" },
+                    { 77, "H7" },
+                    { 90, "I10" },
                     { 88, "I8" },
                     { 87, "I7" },
                     { 86, "I6" },
@@ -290,11 +303,11 @@ namespace CinemaNVS.DAL.Migrations
                     { 82, "I2" },
                     { 81, "I1" },
                     { 80, "H10" },
-                    { 78, "H8" },
-                    { 53, "F3" },
-                    { 52, "F2" },
+                    { 79, "H9" },
+                    { 89, "I9" },
+                    { 1, "A1" },
                     { 51, "F1" },
-                    { 23, "C3" },
+                    { 50, "E10" },
                     { 22, "C2" },
                     { 21, "C1" },
                     { 20, "B10" },
@@ -315,14 +328,7 @@ namespace CinemaNVS.DAL.Migrations
                     { 5, "A5" },
                     { 4, "A4" },
                     { 3, "A3" },
-                    { 24, "C4" },
-                    { 25, "C5" },
-                    { 26, "C6" },
-                    { 27, "C7" },
-                    { 49, "E9" },
-                    { 48, "E8" },
-                    { 47, "E7" },
-                    { 46, "E6" }
+                    { 2, "A2" }
                 });
 
             migrationBuilder.InsertData(
@@ -330,15 +336,22 @@ namespace CinemaNVS.DAL.Migrations
                 columns: new[] { "Id", "Seat" },
                 values: new object[,]
                 {
+                    { 23, "C3" },
+                    { 24, "C4" },
+                    { 25, "C5" },
+                    { 26, "C6" },
+                    { 49, "E9" },
+                    { 48, "E8" },
+                    { 47, "E7" },
                     { 45, "E5" },
                     { 44, "E4" },
                     { 43, "E3" },
                     { 42, "E2" },
                     { 41, "E1" },
                     { 40, "D10" },
-                    { 1, "A1" },
                     { 39, "D9" },
-                    { 37, "D7" },
+                    { 52, "F2" },
+                    { 38, "D8" },
                     { 36, "D6" },
                     { 35, "D5" },
                     { 34, "D4" },
@@ -348,34 +361,58 @@ namespace CinemaNVS.DAL.Migrations
                     { 30, "C10" },
                     { 29, "C9" },
                     { 28, "C8" },
-                    { 38, "D8" },
-                    { 50, "E10" }
+                    { 27, "C7" },
+                    { 37, "D7" },
+                    { 46, "E6" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Logins",
                 columns: new[] { "Id", "CustomerId", "IsAdmin", "Password", "Username" },
-                values: new object[] { 2, 1, "yes", "admin", "admin" });
-
-            migrationBuilder.InsertData(
-                table: "Logins",
-                columns: new[] { "Id", "CustomerId", "IsAdmin", "Password", "Username" },
-                values: new object[] { 1, 2, "no", "Passw0rd", "Bobby" });
+                values: new object[,]
+                {
+                    { 2, 1, "yes", "admin", "admin" },
+                    { 1, 2, "no", "Passw0rd", "Bobby" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Movies",
                 columns: new[] { "Id", "DirectorId", "ImdbLink", "IsRunning", "ReleaseDate", "RuntimeMinutes", "Title", "TrailerLink" },
-                values: new object[] { 1, 1, "https://www.imdb.com/title/tt1853728/", 0, new DateTime(2013, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 165, "Django Unchained", "https://www.youtube.com/watch?v=0fUCuvNlOCg" });
+                values: new object[,]
+                {
+                    { 1, 1, "https://www.imdb.com/title/tt10298810/", 1, new DateTime(2022, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 100, "Lightyear", "https://www.imdb.com/video/vi1034797593/?playlistId=tt10298810" },
+                    { 2, 2, "https://www.imdb.com/title/tt8041270/", 1, new DateTime(2022, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 146, "Jurassic World: Dominion", "https://www.imdb.com/video/vi764854809/?playlistId=tt8041270" }
+                });
 
             migrationBuilder.InsertData(
                 table: "MovieActor",
                 columns: new[] { "ActorId", "MovieId", "Id" },
-                values: new object[] { 1, 1, 1 });
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 1, 2 },
+                    { 3, 1, 3 },
+                    { 4, 1, 4 },
+                    { 5, 2, 5 },
+                    { 6, 2, 6 },
+                    { 7, 2, 5 },
+                    { 8, 2, 5 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Showings",
                 columns: new[] { "Id", "MovieId", "Price", "TimeOfShowing" },
-                values: new object[] { 1, 1, 140, new DateTime(2022, 6, 28, 19, 30, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[,]
+                {
+                    { 1, 1, 140, new DateTime(2022, 6, 28, 13, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 1, 140, new DateTime(2022, 6, 28, 15, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 1, 140, new DateTime(2022, 6, 28, 17, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 1, 140, new DateTime(2022, 6, 28, 19, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, 2, 160, new DateTime(2022, 6, 27, 13, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, 2, 160, new DateTime(2022, 6, 27, 15, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 7, 2, 160, new DateTime(2022, 6, 27, 17, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 8, 2, 160, new DateTime(2022, 6, 27, 19, 30, 0, 0, DateTimeKind.Unspecified) }
+                });
 
             migrationBuilder.InsertData(
                 table: "Bookings",

@@ -97,3 +97,11 @@ app-login-account {
 #loggedIn {
     margin-right: 5px;
 }
+
+#login {
+    display: flex;
+}
+
+#createLogin {
+    display: flex;
+}

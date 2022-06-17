@@ -67,29 +67,88 @@ namespace CinemaNVS.DAL.Database
                 new Director()
                 {
                     Id = 1,
-                    Name = "Quentin Tarantino",
-                    ImdbLink = "https://www.imdb.com/name/nm0000233/"
+                    Name = "Angus MacLane",
+                    ImdbLink = "https://www.imdb.com/name/nm0533691/"
+                },
+                new Director()
+                {
+                    Id = 2,
+                    Name = "Colin Trevorrow",
+                    ImdbLink = "https://www.imdb.com/name/nm1119880/"
                 });
 
             modelBuilder.Entity<Actor>().HasData(
                 new Actor()
                 {
                     Id = 1,
-                    Name = "Jamie Foxx",
-                    ImdbLink = "https://www.imdb.com/name/nm0004937/"
+                    Name = "Chris Evans",
+                    ImdbLink = "https://www.imdb.com/name/nm0262635/"
+                },
+                new Actor()
+                {
+                    Id = 2,
+                    Name = "Keke Palmer",
+                    ImdbLink = "https://www.imdb.com/name/nm1551130/"
+                },
+                new Actor()
+                {
+                    Id = 3,
+                    Name = "Peter Sohn",
+                    ImdbLink = "https://www.imdb.com/name/nm0812307/"
+                },
+                new Actor()
+                {
+                    Id = 4,
+                    Name = "Taiki Waititi",
+                    ImdbLink = "https://www.imdb.com/name/nm0169806/"
+                },
+                new Actor()
+                {
+                    Id = 5,
+                    Name = "Chris Pratt",
+                    ImdbLink = "https://www.imdb.com/name/nm0695435/"
+                },
+                new Actor()
+                {
+                    Id = 6,
+                    Name = "Bryce Dallas Howard",
+                    ImdbLink = "https://www.imdb.com/name/nm0397171/"
+                },
+                new Actor()
+                {
+                    Id = 7,
+                    Name = "Laura Dern",
+                    ImdbLink = "https://www.imdb.com/name/nm0000368/"
+                },
+                new Actor()
+                {
+                    Id = 8,
+                    Name = "Sam Neill",
+                    ImdbLink = "https://www.imdb.com/name/nm0000554/"
                 });
 
             modelBuilder.Entity<Movie>().HasData(
                 new Movie()
                 {
                     Id = 1,
-                    Title = "Django Unchained",
+                    Title = "Lightyear",
                     DirectorId = 1,
-                    ReleaseDate = new System.DateTime(2013, 01, 24),
-                    IsRunning = 0,
-                    RuntimeMinutes = 165,
-                    TrailerLink = "https://www.youtube.com/watch?v=0fUCuvNlOCg",
-                    ImdbLink = "https://www.imdb.com/title/tt1853728/"
+                    ReleaseDate = new System.DateTime(2022, 06, 16),
+                    IsRunning = 1,
+                    RuntimeMinutes = 100,
+                    TrailerLink = "https://www.imdb.com/video/vi1034797593/?playlistId=tt10298810",
+                    ImdbLink = "https://www.imdb.com/title/tt10298810/"
+                },
+                new Movie()
+                {
+                    Id = 2,
+                    Title = "Jurassic World: Dominion",
+                    DirectorId = 2,
+                    ReleaseDate = new System.DateTime(2022, 06, 09),
+                    IsRunning = 1,
+                    RuntimeMinutes = 146,
+                    TrailerLink = "https://www.imdb.com/video/vi764854809/?playlistId=tt8041270",
+                    ImdbLink = "https://www.imdb.com/title/tt8041270/"
                 });
 
             modelBuilder.Entity<MovieActor>().HasData(
@@ -98,6 +157,47 @@ namespace CinemaNVS.DAL.Database
                     Id = 1,
                     MovieId = 1,
                     ActorId = 1
+                },
+                new MovieActor()
+                {
+                    Id = 2,
+                    MovieId = 1,
+                    ActorId = 2
+                },
+                new MovieActor()
+                {
+                    Id = 3,
+                    MovieId = 1,
+                    ActorId = 3
+                },
+                new MovieActor()
+                {
+                    Id = 4,
+                    MovieId = 1,
+                    ActorId = 4
+                },
+                new MovieActor()
+                {
+                    Id = 5,
+                    MovieId = 2,
+                    ActorId = 5
+                },
+                new MovieActor()
+                {
+                    Id = 6,
+                    MovieId = 2,
+                    ActorId = 6
+                }, 
+                new MovieActor()
+                {
+                    Id = 5,
+                    MovieId = 2,
+                    ActorId = 7
+                }, new MovieActor()
+                {
+                    Id = 5,
+                    MovieId = 2,
+                    ActorId = 8
                 });
 
 
@@ -144,7 +244,56 @@ namespace CinemaNVS.DAL.Database
                     Id = 1,
                     MovieId = 1,
                     Price = 140,
+                    TimeOfShowing = new DateTime(2022, 06, 28, 13, 30, 00)
+                },
+                new Showing()
+                {
+                    Id = 2,
+                    MovieId = 1,
+                    Price = 140,
+                    TimeOfShowing = new DateTime(2022, 06, 28, 15, 30, 00)
+                },
+                new Showing()
+                {
+                    Id = 3,
+                    MovieId = 1,
+                    Price = 140,
+                    TimeOfShowing = new DateTime(2022, 06, 28, 17, 30, 00)
+                },
+                new Showing()
+                {
+                    Id = 4,
+                    MovieId = 1,
+                    Price = 140,
                     TimeOfShowing = new DateTime(2022, 06, 28, 19, 30, 00)
+                }, 
+                new Showing()
+                {
+                    Id = 5,
+                    MovieId = 2,
+                    Price = 160,
+                    TimeOfShowing = new DateTime(2022, 06, 27, 13, 30, 00)
+                },
+                new Showing()
+                {
+                    Id = 6,
+                    MovieId = 2,
+                    Price = 160,
+                    TimeOfShowing = new DateTime(2022, 06, 27, 15, 30, 00)
+                },
+                new Showing()
+                {
+                    Id = 7,
+                    MovieId = 2,
+                    Price = 160,
+                    TimeOfShowing = new DateTime(2022, 06, 27, 17, 30, 00)
+                },
+                new Showing()
+                {
+                    Id = 8,
+                    MovieId = 2,
+                    Price = 160,
+                    TimeOfShowing = new DateTime(2022, 06, 27, 19, 30, 00)
                 });
 
             modelBuilder.Entity<Booking>().HasData(

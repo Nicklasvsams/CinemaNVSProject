@@ -1,0 +1,40 @@
+<div class="main">
+    <h1>Create account</h1>
+    <div class="dataForms">
+        <ul>
+            <li>
+                <label>Username</label>
+                <input [(ngModel)]="login.username">
+            </li>
+            <div id="passwordValid">
+                <li>
+                    <label>Password</label>
+                    <input [(ngModel)]="login.password" type="password" class="passwords"
+                        (change)="onChangeEvent($event)">
+                </li>
+                <li>
+                    <label>Re-enter password</label>
+                    <input [(ngModel)]="loginPassword" type="password" class="passwords"
+                        (change)="onChangeEvent($event)">
+                </li>
+            </div>
+            <li>
+                <label>First name</label>
+                <input [(ngModel)]="customer.firstName">
+            </li>
+            <li>
+                <label>Last name</label>
+                <input [(ngModel)]="customer.lastName">
+            </li>
+            <li>
+                <label>E-Mail</label>
+                <input [(ngModel)]="customer.email">
+            </li>
+            <li>
+                <label>Phone number</label>
+                <input [(ngModel)]="customer.phoneNo">
+            </li>
+            <button (click)="create()">Create user</button>
+        </ul>
+    </div>
+</div>

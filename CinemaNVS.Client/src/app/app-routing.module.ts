@@ -12,11 +12,13 @@ import { ShowingComponent } from './admin/showing/showing.component';
 import { FrontpageComponent } from './frontpage/frontpage.component';
 import { UserAdminComponent } from './user/user-admin/user-admin.component';
 import { UserBookingComponent } from './user/user-booking/user-booking.component';
+import { UserLoginComponent } from './user/user-login/user-login.component';
 
 const routes: Routes = [
   { path: '', component: FrontpageComponent },
   { path: 'user/administration', component: UserAdminComponent },
   { path: 'user/booking', component: UserBookingComponent },
+  { path: 'user/user-login', component: UserLoginComponent },
   { path: 'admin/movie', component: MovieComponent },
   { path: 'admin/director', component: DirectorComponent },
   { path: 'admin/actor', component: ActorComponent },

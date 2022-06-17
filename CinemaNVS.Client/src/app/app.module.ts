@@ -21,6 +21,7 @@ import { JwtInterceptorService } from './_services/jwt-interceptor.service';
 import { UnauthorizedComponent } from './admin/unauthorized/unauthorized.component';
 import { UserAdminComponent } from './user/user-admin/user-admin.component';
 import { UserBookingComponent } from './user/user-booking/user-booking.component';
+import { UserLoginComponent } from './user/user-login/user-login.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UserBookingComponent } from './user/user-booking/user-booking.component
     LoginAccountComponent,
     UnauthorizedComponent,
     UserAdminComponent,
-    UserBookingComponent
+    UserBookingComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
