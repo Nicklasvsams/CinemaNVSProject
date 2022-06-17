@@ -73,6 +73,7 @@ namespace CinemaNVS.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("[action]/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

@@ -167,7 +167,7 @@ namespace CinemaNVS.Controllers
         }
 
         [HttpDelete("{username}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
